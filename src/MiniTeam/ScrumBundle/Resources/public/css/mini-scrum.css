@@ -1,0 +1,38 @@
+.centered{
+    text-align: center;
+}
+
+.align-right{
+    text-align: right;
+}
+
+.very-close{
+    margin-top:3px;
+    margin-bottom:3px;
+    padding: 4px;
+    padding-left: 8px;
+}
+
+.dev-comment{
+    margin-top:3px;
+    margin-bottom:3px;
+    padding: 4px;
+    padding-left: 8px;
+    max-width: 75%;
+}
+.po-comment{
+    margin-top:3px;
+    margin-bottom:3px;
+    padding: 4px;
+    padding-left: 8px;
+    max-width: 75%;
+    margin-left: 25%;
+}
+
+
+.gray-text{
+    color:#999;
+}
+.black-text{
+    color:#333;
+}
