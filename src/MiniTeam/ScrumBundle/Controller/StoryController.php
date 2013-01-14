@@ -11,6 +11,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 class StoryController extends Controller
 {
     /**
+     * @Extra\Route("/{projectName}/backlog")
+     * @Extra\Template()
+     */
+    public function backlogAction($projectName)
+    {
+        return array('projectName' => $projectName);
+    }
+
+    /**
      * @Extra\Route("/{projectName}/{title}")
      * @Extra\Template()
      */
