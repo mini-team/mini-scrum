@@ -1,8 +1,33 @@
+# CI
+build/
+app/phpunit*.xml
+
+# Web files
+web/config.php
 web/bundles/
+web/uploads/
+
+# Configuration
+app/SymfonyRequirements.php
 app/bootstrap.php.cache
+app/config/parameters.yml
 app/cache/*
 app/logs/*
-build/
+
+# Vendors
 vendor
+
+# Binaries
+bin
+
+# Symfttpd, Composer
 composer.phar
 symfttpd/
+
+# IDEs
+.DS_Store
+.idea
+*.csv
+*.swp
+*.pyc
+*~
