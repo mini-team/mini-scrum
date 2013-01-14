@@ -1,0 +1,108 @@
+
+{% set classHome = '' %}
+{% set classBacklog = '' %}
+{% set classSprintBacklog = '' %}
+{% set classDoing = '' %}
+{% set classBlocked = '' %}
+{% set classToValidate = '' %}
+{% set classDone = '' %}
+{% set classUS = '' %}
+{% if activeTab == 'home' %}
+    {% set classHome = 'active' %}
+{% elseif activeTab == 'backlog' %}
+    {% set classBacklog = 'active' %}
+{% elseif activeTab == 'sprintBacklog' %}
+    {% set classSprintBacklog = 'active' %}
+{% elseif activeTab == 'doing' %}
+    {% set classDoing = 'active' %}
+{% elseif activeTab == 'blocked' %}
+    {% set classBlocked = 'active' %}
+{% elseif activeTab == 'toValidate' %}
+    {% set classToValidate = 'active' %}
+{% elseif activeTab == 'done' %}
+    {% set classDone = 'active' %}
+{% elseif activeTab == 'us' %}
+    {% set classUS = 'active' %}
+{% endif %} 
+
+<div class="row">
+    <div class="span1">
+        <div class="pagination pagination-large pagination-centered">
+            <ul>
+                <li class="{{ classHome }}">
+                    <a href="#" class="centered">
+                        Home
+                        <br>
+                        <i class="icon-home"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+        
+    <div class="span10">
+                    
+        <div class="pagination pagination-large pagination-centered">
+            <ul>
+                <li class="{{ classBacklog }}">
+                    <a href="#" class="centered">
+                        Backlog
+                        <br>
+                        <span class="badge">24</span>
+                    </a>
+                </li>
+                <li class="{{ classSprintBacklog }}">
+                    <a href="#" class="centered">
+                        Sprint backlog
+                        <br>
+                        <span class="badge badge-warning">12</span>
+                    </a>
+                </li>
+                <li class="{{ classDoing }}">
+                    <a href="#" class="centered">
+                        Doing
+                        <br>
+                        <span class="badge badge-info">3</span>
+                    </a>
+                </li>
+                <li class="{{ classBlocked }}">
+                    <a href="#" class="centered">
+                        Blocked
+                        <br>
+                        <span class="badge badge-important">1</span>
+                    </a>
+                </li>
+                <li class="{{ classToValidate }}">
+                    <a href="#" class="centered">
+                        To validate
+                        <br>
+                        <span class="badge badge-success">1</span>
+                    </a>
+                </li>
+                <li class="{{ classDone }}">
+                    <a href="#" class="centered">
+                        Done
+                        <br>
+                        <span class="badge">5</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    
+    <div class="span1">
+        <div class="pagination pagination-large">
+            <ul>
+                <li class="{{ classUS }}">
+                    <a href="#" class="centered">
+                        User
+                        <br>
+                        Story
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
