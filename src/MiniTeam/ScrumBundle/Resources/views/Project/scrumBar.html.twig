@@ -1,0 +1,64 @@
+
+{% macro item(label, path, badgeClass,ticketNumber, tabName, activeTab) %}
+    <li class="{% if tabName == activeTab %}active{% endif %}">
+        <a href="{{ path }}" class="centered">
+            {{ label }}
+            <br>
+            <span class="badge {% if ticketNumber >0 %}{{badgeClass}}{% endif %}">{{ ticketNumber }}</span>
+        </a>
+    </li>
+{% endmacro %}
+
+{% import _self as menu %}
+
+<div class="row">
+    <div class="span1">
+        <div class="pagination pagination-large pagination-centered">
+            <ul>
+                <li class="{% if activeTab == 'home' %}active{% endif %}">
+                    <a href="#" class="centered">
+                        Home
+                        <br>
+                        <i class="icon-home"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+        
+    <div class="span10">
+                    
+        <div class="pagination pagination-large pagination-centered">
+            <ul>
+                {{ menu.item('Backlog','#','',24,'backlog', activeTab) }}
+                
+                {{ menu.item('Sprint backlog','#','badge-warning',12,'sprintBacklog',activeTab) }}
+                
+                {{ menu.item('Doing','#','badge-info',3,'doing',activeTab) }}
+                
+                {{ menu.item('Blocked','#','badge-important',1,'blocked',activeTab) }}
+                
+                {{ menu.item('To validate','#','badge-success',2,'toValidate',activeTab) }}
+                
+                {{ menu.item('Done','#','',8,'done',activeTab) }}
+ 
+            </ul>
+        </div>
+
+    </div>
+    
+    <div class="span1">
+        <div class="pagination pagination-large">
+            <ul>
+                <li class="{% if activeTab == 'us' %}active{% endif %}">
+                    <a href="#" class="centered">
+                        User
+                        <br>
+                        Story
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+

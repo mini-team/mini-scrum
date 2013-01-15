@@ -11,11 +11,22 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 class ProjectController extends Controller
 {
     /**
-     * @Extra\Route("/{name}")
+     * @Extra\Route("/{projectName}")
      * @Extra\Template()
      */
-    public function showAction($name)
+    public function showAction($projectName)
     {
-        return array('name' => $name);
+        return array('projectName' => $projectName);
     }
+    
+    /**
+     * @Extra\Template()
+     */
+    public function scrumBarAction($projectName,$activeTab)
+    {
+        //TODO get real scrum bar information
+        return array('projectName' => $projectName,'activeTab'=>$activeTab);
+    }
+    
+
 }
