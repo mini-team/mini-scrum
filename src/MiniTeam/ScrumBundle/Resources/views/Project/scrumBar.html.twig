@@ -1,35 +1,21 @@
 
-{% set classHome = '' %}
-{% set classBacklog = '' %}
-{% set classSprintBacklog = '' %}
-{% set classDoing = '' %}
-{% set classBlocked = '' %}
-{% set classToValidate = '' %}
-{% set classDone = '' %}
-{% set classUS = '' %}
-{% if activeTab == 'home' %}
-    {% set classHome = 'active' %}
-{% elseif activeTab == 'backlog' %}
-    {% set classBacklog = 'active' %}
-{% elseif activeTab == 'sprintBacklog' %}
-    {% set classSprintBacklog = 'active' %}
-{% elseif activeTab == 'doing' %}
-    {% set classDoing = 'active' %}
-{% elseif activeTab == 'blocked' %}
-    {% set classBlocked = 'active' %}
-{% elseif activeTab == 'toValidate' %}
-    {% set classToValidate = 'active' %}
-{% elseif activeTab == 'done' %}
-    {% set classDone = 'active' %}
-{% elseif activeTab == 'us' %}
-    {% set classUS = 'active' %}
-{% endif %} 
+{% macro item(label, path, badgeClass,ticketNumber, tabName, activeTab) %}
+    <li class="{% if tabName == activeTab %}active{% endif %}">
+        <a href="{{ path }}" class="centered">
+            {{ label }}
+            <br>
+            <span class="badge {% if ticketNumber >0 %}{{badgeClass}}{% endif %}">{{ ticketNumber }}</span>
+        </a>
+    </li>
+{% endmacro %}
+
+{% import _self as menu %}
 
 <div class="row">
     <div class="span1">
         <div class="pagination pagination-large pagination-centered">
             <ul>
-                <li class="{{ classHome }}">
+                <li class="{% if activeTab == 'home' %}active{% endif %}">
                     <a href="#" class="centered">
                         Home
                         <br>
@@ -44,48 +30,18 @@
                     
         <div class="pagination pagination-large pagination-centered">
             <ul>
-                <li class="{{ classBacklog }}">
-                    <a href="#" class="centered">
-                        Backlog
-                        <br>
-                        <span class="badge">24</span>
-                    </a>
-                </li>
-                <li class="{{ classSprintBacklog }}">
-                    <a href="#" class="centered">
-                        Sprint backlog
-                        <br>
-                        <span class="badge badge-warning">12</span>
-                    </a>
-                </li>
-                <li class="{{ classDoing }}">
-                    <a href="#" class="centered">
-                        Doing
-                        <br>
-                        <span class="badge badge-info">3</span>
-                    </a>
-                </li>
-                <li class="{{ classBlocked }}">
-                    <a href="#" class="centered">
-                        Blocked
-                        <br>
-                        <span class="badge badge-important">1</span>
-                    </a>
-                </li>
-                <li class="{{ classToValidate }}">
-                    <a href="#" class="centered">
-                        To validate
-                        <br>
-                        <span class="badge badge-success">1</span>
-                    </a>
-                </li>
-                <li class="{{ classDone }}">
-                    <a href="#" class="centered">
-                        Done
-                        <br>
-                        <span class="badge">5</span>
-                    </a>
-                </li>
+                {{ menu.item('Backlog','#','',24,'backlog', activeTab) }}
+                
+                {{ menu.item('Sprint backlog','#','badge-warning',12,'sprintBacklog',activeTab) }}
+                
+                {{ menu.item('Doing','#','badge-info',3,'doing',activeTab) }}
+                
+                {{ menu.item('Blocked','#','badge-important',1,'blocked',activeTab) }}
+                
+                {{ menu.item('To validate','#','badge-success',2,'toValidate',activeTab) }}
+                
+                {{ menu.item('Done','#','',8,'done',activeTab) }}
+ 
             </ul>
         </div>
 
@@ -94,7 +50,7 @@
     <div class="span1">
         <div class="pagination pagination-large">
             <ul>
-                <li class="{{ classUS }}">
+                <li class="{% if activeTab == 'us' %}active{% endif %}">
                     <a href="#" class="centered">
                         User
                         <br>
