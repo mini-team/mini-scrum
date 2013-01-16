@@ -17,12 +17,6 @@ fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
 
-
-mini_team_user:
-    resource: "@MiniTeamUserBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
 homepage:
     pattern:  /
     defaults: { _controller: MiniTeamScrumBundle:Project:show, projectName: "mini-scrum" }
