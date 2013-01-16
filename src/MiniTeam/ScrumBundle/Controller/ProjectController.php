@@ -7,8 +7,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 
 /**
  * @author Benjamin Grandfond <benjamin.grandfond@gmail.com>
- *
- * @Extra\Route("/project")
  */
 class ProjectController extends Controller
 {
