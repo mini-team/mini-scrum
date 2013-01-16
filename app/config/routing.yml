@@ -1,17 +1,31 @@
-mini_team_scrum:
-    resource: "@MiniTeamScrumBundle/Controller/"
-    type:     annotation
-    prefix:   /
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /profile
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /profile
+
+homepage:
+    pattern:  /
+    defaults: { _controller: MiniTeamScrumBundle:Project:show, projectName: "mini-scrum" }
 
 _proxy:
     resource: "@FrameworkBundle/Resources/config/routing/proxy.xml"
     prefix:   /_proxy
-    
-# Internal routing configuration to handle ESI
-# ****** WARNING ******
-# This route should be enabled with caution as it can open a security vulnerability
-# see http://symfony.com/blog/security-release-symfony-2-0-20-and-2-1-5-released for more information
-# ****** WARNING ******
-#_internal:
-#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
-#    prefix:   /_internal
+
+mini_team_scrum:
+    resource: "@MiniTeamScrumBundle/Controller/"
+    type:     annotation
+    prefix:   /

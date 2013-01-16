@@ -4,12 +4,6 @@
     "autoload": {
         "psr-0": { "": "src/" }
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/benja-M-1/phpspec2"
-        }
-    ],
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "2.2.*",
@@ -23,7 +17,9 @@
         "sensio/framework-extra-bundle": "2.2.*",
         "sensio/generator-bundle": "2.2.*",
         "jms/security-extra-bundle": "1.4.*",
-        "jms/di-extra-bundle": "1.3.*"
+        "jms/di-extra-bundle": "1.3.*",
+        "doctrine/doctrine-fixtures-bundle": "dev-master",
+        "friendsofsymfony/user-bundle": "*"
     },
     "require-dev": {
         "benjaM1/symfttpd": "dev-master",
