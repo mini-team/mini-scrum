@@ -5,6 +5,7 @@ framework:
     test: ~
     session:
         storage_id: session.storage.mock_file
+        save_path: "%kernel.root_dir%/../data/test/sessions"
 
 web_profiler:
     toolbar: false
