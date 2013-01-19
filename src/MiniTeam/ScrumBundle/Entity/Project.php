@@ -51,7 +51,7 @@ class Project
      *
      * @ORM\OneToMany(
      *      targetEntity="MiniTeam\ScrumBundle\Entity\ProjectUser",
-     *      mappedBy="projects",
+     *      mappedBy="project",
      *      cascade={"persist", "remove", "merge"},
      *      fetch="EAGER"
      * )

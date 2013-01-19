@@ -28,7 +28,7 @@ class User extends BaseUser
      *
      * @ORM\OneToMany(
      *      targetEntity="MiniTeam\ScrumBundle\Entity\ProjectUser",
-     *      mappedBy="projects",
+     *      mappedBy="user",
      *      cascade={"persist", "remove", "merge"},
      *      fetch="EAGER"
      * )
