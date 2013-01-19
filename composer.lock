@@ -1,5 +1,5 @@
 {
-    "hash": "d3a2ab2d3b62d3155f837d8929f6cf02",
+    "hash": "baf66d86690646e5bbe623f78622e957",
     "packages": [
         {
             "name": "doctrine/common",
@@ -518,6 +518,59 @@
                 "nestedset",
                 "sortable",
                 "timestampable"
+            ]
+        },
+        {
+            "name": "incenteev/composer-parameter-handler",
+            "version": "dev-master",
+            "target-dir": "Incenteev/ParameterHandler",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Incenteev/ParameterHandler.git",
+                "reference": "6b42da93334d1b2977040175c74433470e4def60"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/Incenteev/ParameterHandler/archive/6b42da93334d1b2977040175c74433470e4def60.zip",
+                "reference": "6b42da93334d1b2977040175c74433470e4def60",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/yaml": ">=2.0,<2.3-dev"
+            },
+            "replace": {
+                "logsafe/composer-parameter-handler": "self.version"
+            },
+            "require-dev": {
+                "composer/composer": "*"
+            },
+            "time": "2012-10-26 13:03:36",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Incenteev\\ParameterHandler": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christophe Coevoet",
+                    "email": "stof@notk.org"
+                }
+            ],
+            "description": "Composer script handling your ignored parameter file",
+            "homepage": "https://github.com/Incenteev/ParameterHandler",
+            "keywords": [
+                "parameters management"
             ]
         },
         {
