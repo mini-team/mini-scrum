@@ -26,6 +26,7 @@ bin
 # Symfttpd, Composer
 composer.phar
 symfttpd/
+symfttpd.conf.php
 
 # IDEs
 .DS_Store
