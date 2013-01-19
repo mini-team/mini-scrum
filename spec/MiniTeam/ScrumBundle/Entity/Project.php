@@ -3,7 +3,7 @@
 namespace spec\MiniTeam\ScrumBundle\Entity;
 
 use PHPSpec2\ObjectBehavior;
-use MiniTeam\ScrumBundle\Entity\ProjectUser;
+use MiniTeam\ScrumBundle\Entity\Membership;
 
 class Project extends ObjectBehavior
 {

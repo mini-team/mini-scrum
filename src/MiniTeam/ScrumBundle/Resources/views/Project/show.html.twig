@@ -2,5 +2,18 @@
 
 {% block body %}
     {{ render(controller('MiniTeamScrumBundle:Project:scrumBar', { 'projectName': projectName ,'activeTab':'home'})) }}
+
+    <div class="row-fluid">
+        <div class="span6 well">
+            <h3>Member</h3>
+            <ul>
+            {% for membership in project.memberships %}
+                <li>{{ "%username% as %role%"|replace({ "%username%": membership.user.username, "%role%": membership.role }) }}</li>
+            {% else %}
+                <li>There is no user yet.</li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
 {% endblock %}
 

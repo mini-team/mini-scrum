@@ -27,13 +27,13 @@ class User extends BaseUser
      * @var \Doctrine\Common\Collections\ArrayCollection
      *
      * @ORM\OneToMany(
-     *      targetEntity="MiniTeam\ScrumBundle\Entity\ProjectUser",
+     *      targetEntity="MiniTeam\ScrumBundle\Entity\Membership",
      *      mappedBy="user",
      *      cascade={"persist", "remove", "merge"},
      *      fetch="EAGER"
      * )
      */
-    protected $projectsUsers;
+    protected $memberships;
 
     /**
      * @var ArrayCollection
@@ -45,25 +45,25 @@ class User extends BaseUser
      */
     public function __construct()
     {
-        $this->projectsUsers = new ArrayCollection();
+        $this->memberships = new ArrayCollection();
 
         parent::__construct();
     }
 
     /**
-     * @param \Doctrine\Common\Collections\ArrayCollection $projectsUsers
+     * @param \Doctrine\Common\Collections\ArrayCollection $memberships
      */
-    public function setProjectsUsers(ArrayCollection $projectsUsers)
+    public function setMemberships(ArrayCollection $memberships)
     {
-        $this->projectsUsers = $projectsUsers;
+        $this->memberships = $memberships;
     }
 
     /**
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
-    public function getProjectsUsers()
+    public function getMemberships()
     {
-        return $this->projectsUsers;
+        return $this->memberships;
     }
 
     /**
@@ -74,8 +74,8 @@ class User extends BaseUser
         if (null === $this->projects) {
             $this->projects = new ArrayCollection();
 
-            foreach ($this->projectsUsers as $pu) {
-                $this->projects[] = $pu->getProject();
+            foreach ($this->memberships as $membership) {
+                $this->projects[] = $membership->getProject();
             }
         }
 
@@ -107,12 +107,12 @@ class User extends BaseUser
             $project = $this->getSelectedProject();
         }
 
-        foreach ($this->projectsUsers as $projectUser) {
-            if ($projectUser->getProject() !== $project) {
+        foreach ($this->memberships as $membership) {
+            if ($membership->getProject() !== $project) {
                 continue;
             }
 
-            return $projectUser->getRole();
+            return $membership->getRole();
         }
 
         throw new \RuntimeException(sprintf('The user has no role on the project "%s".', $project->getName()));

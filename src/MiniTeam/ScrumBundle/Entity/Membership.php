@@ -7,14 +7,14 @@ use MiniTeam\ScrumBundle\Entity\Project;
 use MiniTeam\UserBundle\Entity\User;
 
 /**
- * ProjectUser description
+ * Member description
  *
  * @author Benjamin Grandfond <benjamin.grandfond@gmail.com>
  *
  * @ORM\Entity
- * @ORM\Table(name="project_user")
+ * @ORM\Table(name="membership")
  */
-class ProjectUser
+class Membership
 {
     const PRODUCT_OWNER = 'product-owner';
     const SCRUM_MASTER  = 'scrum-master';

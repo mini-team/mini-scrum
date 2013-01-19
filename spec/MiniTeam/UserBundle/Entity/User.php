@@ -17,16 +17,16 @@ class User extends ObjectBehavior
     }
 
     /**
-     * @param \MiniTeam\ScrumBundle\Entity\ProjectUser $pu
-     * @param \MiniTeam\ScrumBundle\Entity\Project     $project
+     * @param \MiniTeam\ScrumBundle\Entity\Membership $membership
+     * @param \MiniTeam\ScrumBundle\Entity\Project    $project
      */
-    function it_should_return_the_role_of_the_user_for_a_project($pu, $project)
+    function it_should_return_the_role_of_the_user_for_a_project($membership, $project)
     {
-        $role = \MiniTeam\ScrumBundle\Entity\ProjectUser::PRODUCT_OWNER;
-        $pu->getRole()->willReturn($role);
-        $pu->getProject()->willReturn($project);
+        $role = \MiniTeam\ScrumBundle\Entity\Membership::PRODUCT_OWNER;
+        $membership->getRole()->willReturn($role);
+        $membership->getProject()->willReturn($project);
 
-        $this->getProjectsUsers()->add($pu);
+        $this->getMemberships()->add($membership);
         $this->getProjectRole($project)->shouldReturn($role);
     }
 }

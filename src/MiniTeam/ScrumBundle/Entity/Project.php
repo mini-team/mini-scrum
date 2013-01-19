@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use MiniTeam\UserBundle\Entity\User;
-use MiniTeam\ScrumBundle\Entity\ProjectUser;
+use MiniTeam\ScrumBundle\Entity\Membership;
 
 /**
  * Project description
@@ -50,13 +50,13 @@ class Project
      * @var \Doctrine\Common\Collections\ArrayCollection
      *
      * @ORM\OneToMany(
-     *      targetEntity="MiniTeam\ScrumBundle\Entity\ProjectUser",
+     *      targetEntity="MiniTeam\ScrumBundle\Entity\Membership",
      *      mappedBy="project",
      *      cascade={"persist", "remove", "merge"},
      *      fetch="EAGER"
      * )
      */
-    protected $projectsUsers;
+    protected $memberships;
 
     /**
      * This is a cache for users of ProjectUsers relations.
@@ -80,7 +80,7 @@ class Project
      */
     public function __construct()
     {
-        $this->projectsUsers = new ArrayCollection();
+        $this->memberships = new ArrayCollection();
     }
 
     /**
@@ -137,9 +137,9 @@ class Project
     public function getUsers()
     {
         if (null === $this->users ||
-            $this->projectsUsers->count() > $this->users->count()
+            $this->memberships->count() > $this->users->count()
         ) {
-            $this->users = $this->projectsUsers->map(function ($pu) { return $pu->getUser(); });
+            $this->users = $this->memberships->map(function ($pu) { return $pu->getUser(); });
         }
 
         return $this->users;
@@ -152,12 +152,12 @@ class Project
      */
     public function addUser(User $user, $role = null)
     {
-        $pu = new ProjectUser();
+        $pu = new Membership();
         $pu->setProject($this);
         $pu->setUser($user);
-        $pu->setRole($role ?: ProjectUser::MEMBER);
+        $pu->setRole($role ?: Membership::MEMBER);
 
-        $this->projectsUsers->add($pu);
+        $this->memberships->add($pu);
     }
 
     /**
@@ -167,7 +167,7 @@ class Project
     {
         $this->productOwner = $user;
 
-        $this->addUser($user, ProjectUser::PRODUCT_OWNER);
+        $this->addUser($user, Membership::PRODUCT_OWNER);
     }
 
     /**
@@ -185,7 +185,7 @@ class Project
     {
         $this->scrumMaster = $user;
 
-        $this->addUser($user, ProjectUser::SCRUM_MASTER);
+        $this->addUser($user, Membership::SCRUM_MASTER);
     }
 
     /**
