@@ -457,12 +457,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/l3pp4rd/DoctrineExtensions.git",
-                "reference": "8b76f310b038647c85ae17143971b0c2abbd0a57"
+                "reference": "baa42fda5607978d70040b9f38b6b3a13823c903"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/l3pp4rd/DoctrineExtensions/archive/8b76f310b038647c85ae17143971b0c2abbd0a57.zip",
-                "reference": "8b76f310b038647c85ae17143971b0c2abbd0a57",
+                "url": "https://github.com/l3pp4rd/DoctrineExtensions/archive/baa42fda5607978d70040b9f38b6b3a13823c903.zip",
+                "reference": "baa42fda5607978d70040b9f38b6b3a13823c903",
                 "shasum": ""
             },
             "require": {
@@ -482,7 +482,7 @@
                 "doctrine/mongodb": ">=1.0.0",
                 "doctrine/mongodb-odm": ">=1.0.0-BETA7"
             },
-            "time": "2013-01-16 05:01:32",
+            "time": "2013-01-18 18:21:44",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -526,18 +526,18 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/jdorn/sql-formatter.git",
-                "reference": "a31cb6ffd64a8f7efa8e92f46b99fe9f990f9299"
+                "reference": "da55bd76098f872b44343ba456db868cbcac8776"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/jdorn/sql-formatter/archive/a31cb6ffd64a8f7efa8e92f46b99fe9f990f9299.zip",
-                "reference": "a31cb6ffd64a8f7efa8e92f46b99fe9f990f9299",
+                "url": "https://github.com/jdorn/sql-formatter/archive/da55bd76098f872b44343ba456db868cbcac8776.zip",
+                "reference": "da55bd76098f872b44343ba456db868cbcac8776",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2.4"
             },
-            "time": "2013-01-08 17:30:08",
+            "time": "2013-01-18 07:52:11",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -826,12 +826,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/JMSSecurityExtraBundle",
-                "reference": "527fd1440287e66e12df70b71406ae26f36131a1"
+                "reference": "ebb72f40c7496f156d0db67f27ad95978ed39e99"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/schmittjoh/JMSSecurityExtraBundle/archive/527fd1440287e66e12df70b71406ae26f36131a1.zip",
-                "reference": "527fd1440287e66e12df70b71406ae26f36131a1",
+                "url": "https://github.com/schmittjoh/JMSSecurityExtraBundle/archive/ebb72f40c7496f156d0db67f27ad95978ed39e99.zip",
+                "reference": "ebb72f40c7496f156d0db67f27ad95978ed39e99",
                 "shasum": ""
             },
             "require": {
@@ -856,7 +856,7 @@
                 "symfony/form": "*",
                 "symfony/validator": "*"
             },
-            "time": "2012-12-09 19:12:10",
+            "time": "2013-01-18 10:09:22",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -1028,18 +1028,18 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/schmittjoh/php-option",
-                "reference": "7c3d959ac1ab7677cca6463dbb7d443ef9eea8ed"
+                "reference": "617bd84bf0d918da79b06ac6765b5390b83b1321"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/schmittjoh/php-option/archive/7c3d959ac1ab7677cca6463dbb7d443ef9eea8ed.zip",
-                "reference": "7c3d959ac1ab7677cca6463dbb7d443ef9eea8ed",
+                "url": "https://github.com/schmittjoh/php-option/archive/617bd84bf0d918da79b06ac6765b5390b83b1321.zip",
+                "reference": "617bd84bf0d918da79b06ac6765b5390b83b1321",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2012-12-07 09:34:13",
+            "time": "2013-01-19 11:01:32",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1116,18 +1116,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensio/SensioDistributionBundle",
-                "reference": "e417fd79979a7727b98af4335bc3b708145e6bfc"
+                "reference": "222e6100b5125980b97f14c159bfb33681883abe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/sensio/SensioDistributionBundle/archive/e417fd79979a7727b98af4335bc3b708145e6bfc.zip",
-                "reference": "e417fd79979a7727b98af4335bc3b708145e6bfc",
+                "url": "https://github.com/sensio/SensioDistributionBundle/archive/222e6100b5125980b97f14c159bfb33681883abe.zip",
+                "reference": "222e6100b5125980b97f14c159bfb33681883abe",
                 "shasum": ""
             },
             "require": {
                 "symfony/framework-bundle": "2.2.*"
             },
-            "time": "2013-01-16 07:06:06",
+            "time": "2013-01-17 12:27:12",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -1162,19 +1162,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensio/SensioFrameworkExtraBundle",
-                "reference": "d40f6176d4dae9b8f0f7a1ca7e11dbfca77e8041"
+                "reference": "15e312243b3e3e958ce2105f15330d4304134765"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/sensio/SensioFrameworkExtraBundle/archive/d40f6176d4dae9b8f0f7a1ca7e11dbfca77e8041.zip",
-                "reference": "d40f6176d4dae9b8f0f7a1ca7e11dbfca77e8041",
+                "url": "https://github.com/sensio/SensioFrameworkExtraBundle/archive/15e312243b3e3e958ce2105f15330d4304134765.zip",
+                "reference": "15e312243b3e3e958ce2105f15330d4304134765",
                 "shasum": ""
             },
             "require": {
-                "doctrine/common": ">=2.1,<2.4-dev",
-                "symfony/framework-bundle": "2.2.*"
+                "symfony/framework-bundle": "2.2.*",
+                "doctrine/common": ">=2.1,<2.5-dev"
             },
-            "time": "2013-01-14 13:23:49",
+            "time": "2013-01-19 07:42:06",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -1209,12 +1209,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensio/SensioGeneratorBundle",
-                "reference": "v2.2.0-BETA1"
+                "reference": "5adbe8b38f9a16461fa13f2ed587967e8e989b35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/sensio/SensioGeneratorBundle/archive/v2.2.0-BETA1.zip",
-                "reference": "v2.2.0-BETA1",
+                "url": "https://github.com/sensio/SensioGeneratorBundle/archive/5adbe8b38f9a16461fa13f2ed587967e8e989b35.zip",
+                "reference": "5adbe8b38f9a16461fa13f2ed587967e8e989b35",
                 "shasum": ""
             },
             "require": {
@@ -1229,7 +1229,7 @@
             "suggest": {
                 "doctrine/doctrine-bundle": "to generate entities and their crud controller"
             },
-            "time": "2013-01-07 16:52:43",
+            "time": "2013-01-18 06:54:44",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -1321,18 +1321,18 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/swiftmailer/swiftmailer.git",
-                "reference": "8c5cbb3da0250295984b38911d92f89ae70f6489"
+                "reference": "fbc0b9302715936724d81d6c5ed1a06692f17e27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/swiftmailer/swiftmailer/archive/8c5cbb3da0250295984b38911d92f89ae70f6489.zip",
-                "reference": "8c5cbb3da0250295984b38911d92f89ae70f6489",
+                "url": "https://github.com/swiftmailer/swiftmailer/archive/fbc0b9302715936724d81d6c5ed1a06692f17e27.zip",
+                "reference": "fbc0b9302715936724d81d6c5ed1a06692f17e27",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2.4"
             },
-            "time": "2013-01-16 07:36:41",
+            "time": "2013-01-17 09:45:53",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1546,12 +1546,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/symfony/symfony.git",
-                "reference": "d72355ff7e5f0d042d9495b94e11ce5f69b8ba48"
+                "reference": "6923a484c299a4d26a03584af45d0b94cf87a529"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/symfony/archive/d72355ff7e5f0d042d9495b94e11ce5f69b8ba48.zip",
-                "reference": "d72355ff7e5f0d042d9495b94e11ce5f69b8ba48",
+                "url": "https://github.com/symfony/symfony/archive/6923a484c299a4d26a03584af45d0b94cf87a529.zip",
+                "reference": "6923a484c299a4d26a03584af45d0b94cf87a529",
                 "shasum": ""
             },
             "require": {
@@ -1605,7 +1605,7 @@
             "suggest": {
                 "doctrine/data-fixtures": "1.0.*"
             },
-            "time": "2013-01-16 22:09:43",
+            "time": "2013-01-19 07:50:02",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1694,18 +1694,18 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/fabpot/Twig.git",
-                "reference": "3225226e0be466395414da4b362013531eedb580"
+                "reference": "93c6a8dedc46c73ccdd61342de3d5e761e4412f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/fabpot/Twig/archive/3225226e0be466395414da4b362013531eedb580.zip",
-                "reference": "3225226e0be466395414da4b362013531eedb580",
+                "url": "https://github.com/fabpot/Twig/archive/93c6a8dedc46c73ccdd61342de3d5e761e4412f6.zip",
+                "reference": "93c6a8dedc46c73ccdd61342de3d5e761e4412f6",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2.4"
             },
-            "time": "2013-01-16 13:37:25",
+            "time": "2013-01-18 09:58:04",
             "type": "library",
             "extra": {
                 "branch-alias": {
