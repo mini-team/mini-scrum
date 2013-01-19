@@ -1,11 +1,11 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    {{ render(controller('MiniTeamScrumBundle:Project:scrumBar', { 'projectName': projectName ,'activeTab':'home'})) }}
+    {{ render(controller('MiniTeamScrumBundle:Project:scrumBar', { 'projectName': project.name ,'activeTab':'home'})) }}
 
     <div class="row-fluid">
-        <div class="span6 well">
-            <h3>Member</h3>
+        <div class="span4 well">
+            <h3>Members</h3>
             <ul>
             {% for membership in project.memberships %}
                 <li>{{ "%username% as %role%"|replace({ "%username%": membership.user.username, "%role%": membership.role }) }}</li>

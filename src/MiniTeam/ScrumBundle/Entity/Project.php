@@ -132,6 +132,25 @@ class Project
     }
 
     /**
+     * @param \Doctrine\Common\Collections\ArrayCollection $memberships
+     */
+    public function setMemberships(ArrayCollection $memberships)
+    {
+        $this->memberships = $memberships;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getMemberships()
+    {
+        return $this->memberships;
+    }
+
+    /**
+     * This method is a shortcut to lazy load users of every
+     * memberships to the project.
+     *
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getUsers()
@@ -147,6 +166,7 @@ class Project
 
     /**
      * Add a user to the project.
+     *
      * @param \MiniTeam\UserBundle\Entity\User $user
      * @param null                             $role
      */
