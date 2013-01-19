@@ -1,3 +1,6 @@
-Project {{ projectName }}!
+{% extends '::base.html.twig' %}
 
-backlog
+{% block body %}
+    {{ render(controller('MiniTeamScrumBundle:Project:scrumBar', { 'projectName': projectName ,'activeTab':'home'})) }}
+{% endblock %}
+

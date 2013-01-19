@@ -1,8 +1,6 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-
-        {{ render(controller('MiniTeamScrumBundle:Project:scrumBar', { 'projectName': projectName ,'activeTab':'home'})) }}
-
+    {{ render(controller('MiniTeamScrumBundle:Project:scrumBar', { 'projectName': projectName ,'activeTab':'home'})) }}
 {% endblock %}
 
