@@ -30,7 +30,7 @@
                     
         <div class="pagination pagination-large pagination-centered">
             <ul>
-                {{ menu.item('Backlog','#','',24,'backlog', activeTab) }}
+                {{ menu.item('Backlog', path('miniteam_scrum_story_backlog', { 'projectName': app.user.selectedProject }),'',24,'backlog', activeTab) }}
                 
                 {{ menu.item('Sprint backlog','#','badge-warning',12,'sprintBacklog',activeTab) }}
                 
