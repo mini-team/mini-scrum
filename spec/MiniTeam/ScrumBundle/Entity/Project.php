@@ -15,9 +15,6 @@ class Project extends ObjectBehavior
         $this->setProductOwner($user);
         $this->getProductOwner()->shoudReturnAnInstanceOf('\MiniTeam\UserBundle\Entity\User');
         $this->getUsers()->shouldHaveCount(1);
-
-        $userProject = $this->getUsers()->first();
-        $userProject->getRole()->shouldReturn(ProjectUser::PRODUCT_OWNER);
     }
 
     /**
@@ -28,8 +25,5 @@ class Project extends ObjectBehavior
         $this->setScrumMaster($user);
         $this->getScrumMaster()->shoudReturnAnInstanceOf('\MiniTeam\UserBundle\Entity\User');
         $this->getUsers()->shouldHaveCount(1);
-
-        $userProject = $this->getUsers()->first();
-        $userProject->getRole()->shouldReturn(ProjectUser::SCRUM_MASTER);
     }
 }

@@ -59,6 +59,8 @@ class Project
     protected $projectsUsers;
 
     /**
+     * This is a cache for users of ProjectUsers relations.
+     *
      * @var \Doctrine\Common\Collections\ArrayCollection
      */
     protected $users;
@@ -126,12 +128,10 @@ class Project
      */
     public function getUsers()
     {
-        if (null === $this->users) {
-            $this->users = new ArrayCollection();
-
-            foreach ($this->projectsUsers as $pu) {
-                $this->users[] = $pu;
-            }
+        if (null === $this->users ||
+            $this->projectsUsers->count() > $this->users->count()
+        ) {
+            $this->users = $this->projectsUsers->map(function ($pu) { return $pu->getUser(); });
         }
 
         return $this->users;
@@ -150,7 +150,6 @@ class Project
         $pu->setRole($role ?: ProjectUser::MEMBER);
 
         $this->projectsUsers->add($pu);
-        $this->getUsers()->add($pu->getUser());
     }
 
     /**

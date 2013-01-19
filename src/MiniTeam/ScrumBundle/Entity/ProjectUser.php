@@ -16,10 +16,10 @@ use MiniTeam\UserBundle\Entity\User;
  */
 class ProjectUser
 {
-    const PRODUCT_OWNER = 1;
-    const SCRUM_MASTER  = 2;
-    const DEVELOPER     = 3;
-    const MEMBER        = 4;
+    const PRODUCT_OWNER = 'product-owner';
+    const SCRUM_MASTER  = 'scrum-master';
+    const DEVELOPER     = 'developer';
+    const MEMBER        = 'member';
 
     /**
      * @var Integer
@@ -49,7 +49,7 @@ class ProjectUser
     /**
      * @var Integer
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=20)
      */
     protected $role;
 
