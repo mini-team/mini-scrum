@@ -2,6 +2,7 @@
 
 namespace MiniTeam\ScrumBundle\Controller;
 
+use MiniTeam\ScrumBundle\Entity\Project;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 
@@ -11,12 +12,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 class ProjectController extends Controller
 {
     /**
-     * @Extra\Route("/{projectName}")
+     * @Extra\Route("/{name}")
      * @Extra\Template()
      */
-    public function showAction($projectName)
+    public function showAction(Project $project)
     {
-        return array('projectName' => $projectName);
+        return array('project' => $project);
     }
     
     /**
