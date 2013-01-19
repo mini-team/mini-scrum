@@ -158,7 +158,7 @@ class Project
         if (null === $this->users ||
             $this->memberships->count() > $this->users->count()
         ) {
-            $this->users = $this->memberships->map(function ($pu) { return $pu->getUser(); });
+            $this->users = $this->memberships->map(function ($membership) { return $membership->getUser(); });
         }
 
         return $this->users;
@@ -172,12 +172,12 @@ class Project
      */
     public function addUser(User $user, $role = null)
     {
-        $pu = new Membership();
-        $pu->setProject($this);
-        $pu->setUser($user);
-        $pu->setRole($role ?: Membership::MEMBER);
+        $membership = new Membership();
+        $membership->setProject($this);
+        $membership->setUser($user);
+        $membership->setRole($role ?: Membership::MEMBER);
 
-        $this->memberships->add($pu);
+        $this->memberships->add($membership);
     }
 
     /**
