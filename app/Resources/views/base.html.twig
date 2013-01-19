@@ -28,16 +28,19 @@
                  
                 {% if app.user != null %}
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <div class="pull-left">
+                        <i class="icon-user"></i> {{ app.user.username }}
+                    </div>
+
                     <div class="pull-right">
+                        <a>{{ app.user.selectedProject ~ ' (' ~ app.user.projectRole ~ ')' }}</a>
                         {# later on, action button here could depend on user role #}
                         <a class="btn btn-success"><i class="icon-pencil icon-white"></i> Add user story</a>
                     </div>
-                    <p class="navbar-text"><i class="icon-user"></i> {{ app.user.username }}</p>
+
                     {% endif %}
                 {% endif %}
-               
-                 
-            </div>
+                </div>
         </div>
         
         <div class="container">

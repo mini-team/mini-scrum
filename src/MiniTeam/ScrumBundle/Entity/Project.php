@@ -84,6 +84,14 @@ class Project
     }
 
     /**
+     * @return String
+     */
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    /**
      * @return int
      */
     public function getId()
