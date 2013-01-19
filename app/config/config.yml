@@ -64,3 +64,8 @@ fos_user:
     db_driver: orm
     firewall_name: frontend
     user_class: MiniTeam\UserBundle\Entity\User
+
+stof_doctrine_extensions:
+    orm:
+        default:
+            sluggable: true

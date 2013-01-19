@@ -1,5 +1,5 @@
 {
-    "hash": "d6d28ba4c3d5e2ec25dea9a68de5c2b3",
+    "hash": "d3a2ab2d3b62d3155f837d8929f6cf02",
     "packages": [
         {
             "name": "doctrine/common",
@@ -449,6 +449,75 @@
             "homepage": "http://friendsofsymfony.github.com",
             "keywords": [
                 "User management"
+            ]
+        },
+        {
+            "name": "gedmo/doctrine-extensions",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/l3pp4rd/DoctrineExtensions.git",
+                "reference": "8b76f310b038647c85ae17143971b0c2abbd0a57"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/l3pp4rd/DoctrineExtensions/archive/8b76f310b038647c85ae17143971b0c2abbd0a57.zip",
+                "reference": "8b76f310b038647c85ae17143971b0c2abbd0a57",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "doctrine/common": ">=2.2,<2.5-dev"
+            },
+            "require-dev": {
+                "doctrine/mongodb": ">=1.0.0-BETA1",
+                "doctrine/mongodb-odm": ">=1.0.0-BETA6",
+                "doctrine/orm": ">=2.2",
+                "doctrine/dbal": ">=2.2",
+                "symfony/yaml": "2.*"
+            },
+            "suggest": {
+                "doctrine/orm": ">=2.2",
+                "doctrine/dbal": ">=2.2",
+                "doctrine/mongodb": ">=1.0.0",
+                "doctrine/mongodb-odm": ">=1.0.0-BETA7"
+            },
+            "time": "2013-01-16 05:01:32",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Gedmo": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gediminas Morkevicius",
+                    "email": "gediminas.morkevicius@gmail.com"
+                }
+            ],
+            "description": "Doctrine2 behavioral extensions",
+            "homepage": "http://gediminasm.org/",
+            "keywords": [
+                "tree",
+                "behaviors",
+                "doctrine2",
+                "extensions",
+                "gedmo",
+                "sluggable",
+                "loggable",
+                "translatable",
+                "nestedset",
+                "sortable",
+                "timestampable"
             ]
         },
         {
@@ -1047,18 +1116,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensio/SensioDistributionBundle",
-                "reference": "v2.2.0-BETA1"
+                "reference": "e417fd79979a7727b98af4335bc3b708145e6bfc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/sensio/SensioDistributionBundle/archive/v2.2.0-BETA1.zip",
-                "reference": "v2.2.0-BETA1",
+                "url": "https://github.com/sensio/SensioDistributionBundle/archive/e417fd79979a7727b98af4335bc3b708145e6bfc.zip",
+                "reference": "e417fd79979a7727b98af4335bc3b708145e6bfc",
                 "shasum": ""
             },
             "require": {
                 "symfony/framework-bundle": "2.2.*"
             },
-            "time": "2013-01-04 17:11:28",
+            "time": "2013-01-16 07:06:06",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -1185,23 +1254,85 @@
             "description": "This bundle generates code for you"
         },
         {
+            "name": "stof/doctrine-extensions-bundle",
+            "version": "dev-master",
+            "target-dir": "Stof/DoctrineExtensionsBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stof/StofDoctrineExtensionsBundle",
+                "reference": "4a17550d8b101c5aafc56c9950149aa189b8402d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/stof/StofDoctrineExtensionsBundle/archive/4a17550d8b101c5aafc56c9950149aa189b8402d.zip",
+                "reference": "4a17550d8b101c5aafc56c9950149aa189b8402d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": ">=2.1,<2.3-dev",
+                "gedmo/doctrine-extensions": "2.3.*"
+            },
+            "suggest": {
+                "doctrine/doctrine-bundle": "*",
+                "doctrine/mongodb-odm-bundle": "2.1.*"
+            },
+            "time": "2012-12-13 17:58:07",
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Stof\\DoctrineExtensionsBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christophe Coevoet",
+                    "email": "stof@notk.org"
+                }
+            ],
+            "description": "Integration of the gedmo/doctrine-extensions with Symfony2",
+            "homepage": "https://github.com/stof/StofDoctrineExtensionsBundle",
+            "keywords": [
+                "tree",
+                "behaviors",
+                "doctrine2",
+                "extensions",
+                "gedmo",
+                "sluggable",
+                "loggable",
+                "translatable",
+                "nestedset",
+                "sortable",
+                "timestampable"
+            ]
+        },
+        {
             "name": "swiftmailer/swiftmailer",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "git://github.com/swiftmailer/swiftmailer.git",
-                "reference": "393b446c8c2e81710040e7457ee7378686d3a35a"
+                "reference": "8c5cbb3da0250295984b38911d92f89ae70f6489"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/swiftmailer/swiftmailer/archive/393b446c8c2e81710040e7457ee7378686d3a35a.zip",
-                "reference": "393b446c8c2e81710040e7457ee7378686d3a35a",
+                "url": "https://github.com/swiftmailer/swiftmailer/archive/8c5cbb3da0250295984b38911d92f89ae70f6489.zip",
+                "reference": "8c5cbb3da0250295984b38911d92f89ae70f6489",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2.4"
             },
-            "time": "2013-01-11 07:18:43",
+            "time": "2013-01-16 07:36:41",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1415,12 +1546,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/symfony/symfony.git",
-                "reference": "fb526a480938c97d561985a676165dd48235cd7e"
+                "reference": "d72355ff7e5f0d042d9495b94e11ce5f69b8ba48"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/symfony/archive/fb526a480938c97d561985a676165dd48235cd7e.zip",
-                "reference": "fb526a480938c97d561985a676165dd48235cd7e",
+                "url": "https://github.com/symfony/symfony/archive/d72355ff7e5f0d042d9495b94e11ce5f69b8ba48.zip",
+                "reference": "d72355ff7e5f0d042d9495b94e11ce5f69b8ba48",
                 "shasum": ""
             },
             "require": {
@@ -1474,7 +1605,7 @@
             "suggest": {
                 "doctrine/data-fixtures": "1.0.*"
             },
-            "time": "2013-01-14 14:59:38",
+            "time": "2013-01-16 22:09:43",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1563,18 +1694,18 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/fabpot/Twig.git",
-                "reference": "3111e1265db1026323c589a5bd2d152871d7bbab"
+                "reference": "3225226e0be466395414da4b362013531eedb580"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/fabpot/Twig/archive/3111e1265db1026323c589a5bd2d152871d7bbab.zip",
-                "reference": "3111e1265db1026323c589a5bd2d152871d7bbab",
+                "url": "https://github.com/fabpot/Twig/archive/3225226e0be466395414da4b362013531eedb580.zip",
+                "reference": "3225226e0be466395414da4b362013531eedb580",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2.4"
             },
-            "time": "2013-01-08 16:56:12",
+            "time": "2013-01-16 13:37:25",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1607,274 +1738,14 @@
             ]
         }
     ],
-    "packages-dev": [
-        {
-            "name": "benjam1/symfttpd",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/benja-M-1/symfttpd",
-                "reference": "bbb47c159b122ea4f9ff486223ea058d2ba5d470"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/benja-M-1/symfttpd/archive/bbb47c159b122ea4f9ff486223ea058d2ba5d470.zip",
-                "reference": "bbb47c159b122ea4f9ff486223ea058d2ba5d470",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2",
-                "symfony/console": "2.2.*",
-                "symfony/process": "2.2.*",
-                "symfony/finder": "2.2.*",
-                "symfony/filesystem": "2.2.*",
-                "symfony/config": "2.2.*",
-                "twig/twig": ">=1.10,<2.0-dev",
-                "pimple/pimple": "dev-master",
-                "monolog/monolog": "dev-master"
-            },
-            "time": "2013-01-08 08:29:13",
-            "bin": [
-                "bin/symfttpd"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Symfttpd": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "Benjamin Grandfond",
-                    "email": "benjamin.grandfond@gmail.com",
-                    "homepage": "http://benjamingrandfond.fr"
-                },
-                {
-                    "name": "Laurent Bachelier",
-                    "email": "laurent@bachelier.name",
-                    "homepage": "http://laurent.bachelier.name"
-                }
-            ],
-            "description": "PHP webserver",
-            "keywords": [
-                "symfony",
-                "server",
-                "webserver",
-                "lighttpd",
-                "nginx",
-                "php-fpm"
-            ]
-        },
-        {
-            "name": "mockery/mockery",
-            "version": "0.7.2",
-            "source": {
-                "type": "git",
-                "url": "git://github.com/padraic/mockery.git",
-                "reference": "0.7.2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/padraic/mockery/zipball/0.7.2",
-                "reference": "0.7.2",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2"
-            },
-            "suggest": {
-                "Hamcrest": "1.0.0"
-            },
-            "time": "2012-01-24 12:22:39",
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Mockery": "library/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "New BSD"
-            ],
-            "authors": [
-                {
-                    "name": "Pádraic Brady",
-                    "email": "padraic.brady@gmail.com",
-                    "homepage": "http://blog.astrumfutura.com"
-                }
-            ],
-            "description": "Mockery is a simple yet flexible PHP mock object framework for use in unit testing with PHPUnit, PHPSpec or any other testing framework. Its core goal is to offer a test double framework with a succint API capable of clearly defining all possible object operations and interactions using a human readable Domain Specific Language (DSL). Designed as a drop in alternative to PHPUnit's phpunit-mock-objects library, Mockery is easy to integrate with PHPUnit and can operate alongside phpunit-mock-objects without the World ending.",
-            "homepage": "http://github.com/padraic/mockery",
-            "keywords": [
-                "testing",
-                "library",
-                "BDD",
-                "TDD",
-                "test",
-                "mockery",
-                "mock",
-                "stub",
-                "test double",
-                "mock objects"
-            ]
-        },
-        {
-            "name": "phpspec/php-diff",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpspec/php-diff.git",
-                "reference": "8d82ac415225fac373a4073ba14b1fe286aa2312"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/phpspec/php-diff/archive/8d82ac415225fac373a4073ba14b1fe286aa2312.zip",
-                "reference": "8d82ac415225fac373a4073ba14b1fe286aa2312",
-                "shasum": ""
-            },
-            "time": "2012-11-08 08:55:45",
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Diff": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Chris Boulton",
-                    "homepage": "http://github.com/chrisboulton"
-                }
-            ],
-            "description": "A comprehensive library for generating differences between two hashable objects (strings or arrays)."
-        },
-        {
-            "name": "phpspec/phpspec2",
-            "version": "dev-develop",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpspec/phpspec2.git",
-                "reference": "a66ff2b37efa5a8f3df83496daf6ac6dbcd899c6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/phpspec/phpspec2/archive/a66ff2b37efa5a8f3df83496daf6ac6dbcd899c6.zip",
-                "reference": "a66ff2b37efa5a8f3df83496daf6ac6dbcd899c6",
-                "shasum": ""
-            },
-            "require": {
-                "mockery/mockery": "0.7.*",
-                "phpspec/php-diff": "*@dev",
-                "php": ">=5.3.3",
-                "symfony/console": ">=2.1,<3.0",
-                "symfony/event-dispatcher": ">=2.1,<3.0",
-                "symfony/finder": ">=2.1,<3.0",
-                "symfony/yaml": ">=2.1,<3.0"
-            },
-            "time": "2013-01-14 09:52:39",
-            "bin": [
-                "bin/phpspec"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-develop": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "PHPSpec2": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Konstantin Kudryashov",
-                    "email": "ever.zet@gmail.com",
-                    "homepage": "http://everzet.com"
-                },
-                {
-                    "name": "Marcello Duarte",
-                    "homepage": "http://marcelloduarte.net/"
-                }
-            ],
-            "description": "Specification-oriented BDD framework for PHP 5.3+",
-            "homepage": "http://phpspec.net/",
-            "keywords": [
-                "testing",
-                "BDD",
-                "TDD",
-                "spec",
-                "tests",
-                "SpecBDD",
-                "specification"
-            ]
-        },
-        {
-            "name": "pimple/pimple",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "git://github.com/fabpot/Pimple.git",
-                "reference": "d58cec632dfdd3305d6b4f2563a5cf2a75b4d978"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/fabpot/Pimple/archive/d58cec632dfdd3305d6b4f2563a5cf2a75b4d978.zip",
-                "reference": "d58cec632dfdd3305d6b4f2563a5cf2a75b4d978",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "time": "2013-01-07 10:39:26",
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Pimple": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                }
-            ],
-            "description": "Pimple is a simple Dependency Injection Container for PHP 5.3",
-            "homepage": "http://pimple.sensiolabs.org",
-            "keywords": [
-                "dependency injection",
-                "container"
-            ]
-        }
-    ],
+    "packages-dev": null,
     "aliases": [
 
     ],
     "minimum-stability": "dev",
     "stability-flags": {
         "doctrine/doctrine-fixtures-bundle": 20,
+        "stof/doctrine-extensions-bundle": 20,
         "benjam1/symfttpd": 20,
         "phpspec/phpspec2": 20
     }
