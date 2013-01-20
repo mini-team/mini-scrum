@@ -1,3 +1,78 @@
-Project {{ projectName }}!
+{% extends '::base.html.twig' %}
 
-Title: {{ title }}
+{% block body %}
+
+    {{ render(controller('MiniTeamScrumBundle:Project:scrumBar', { 'projectName': projectName ,'activeTab':'us'})) }}
+
+    <div class="well">
+        <div class="row">
+            <div class="span12">
+                <p class="lead">
+                    <span class="gray-text">#{{ userStory.number }}</span>
+                    {{ userStory.title }}
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span6 offset1">
+                {{ userStory.details }}
+            </div>
+            <div class="span1 offset3">
+                <p class="lead text-info">{{ userStory.points }} pts</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- gestion du statut de la user story -->
+    {#
+    <div class="row">
+        <div class="span2">
+            <div class="btn btn-danger">Blocked</div>
+        </div>
+        <div class="span8 centered">
+            <span class="label label-info">Doing</span>
+            <br>
+            (Benjamin)
+        </div>
+        <div class="span2 align-right">
+            <div class="btn btn-success">To validate</div>
+        </div>
+    </div>
+    #}
+    <hr>
+
+    <!--fil de commentaires -->
+    {#
+    <div class="row">
+        <div class="span6">
+            <div class="alert alert-info dev-comment">
+                <strong>Benjamin: </strong>Mais c'est pas très clair les précisions sur cette user story non ?
+            </div>
+            <div class="alert alert-success po-comment">
+                <strong>Edouard: </strong>ouais j'avoue
+            </div>
+            <div class="alert alert-info dev-comment">
+                <strong>Matthieu: </strong> ^^
+            </div>
+            <div class="alert alert-info dev-comment">
+                <strong>Benjamin: </strong>Bon ok je me base sur ta réponse dans IRC
+            </div>
+        </div>
+
+        <div class="span6">
+            <div class="alert alert-danger very-close">
+                Ne fonctionne pas avec Thunderbird comme client de messagerie
+            </div>
+            <hr>
+            <div class="alert very-close">
+                Le lien ne fonctionne pas sous ipad (disabled)
+            </div>
+            <div class="alert very-close">
+                Problème de formattage html de l'email
+            </div>
+        </div>
+    </div>
+    #}
+
+
+{% endblock %}

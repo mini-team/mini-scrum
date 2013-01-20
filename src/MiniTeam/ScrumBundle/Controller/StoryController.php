@@ -20,11 +20,17 @@ class StoryController extends Controller
     }
 
     /**
-     * @Extra\Route("/{projectName}/{title}")
+     * @Extra\Route("/{projectName}/us/{id}")
      * @Extra\Template()
      */
-    public function showAction($projectName, $title)
+    public function showAction($projectName, $id)
     {
-        return array('projectName' => $projectName, 'title' => $title);
+
+        //get corresponding user story
+        $em = $this->getDoctrine()->getManager();
+        $userStory = $em->getRepository('MiniTeamScrumBundle:UserStory')->find($id);
+
+        //display user story
+        return array('projectName' => $projectName, 'userStory' => $userStory);
     }
 }
