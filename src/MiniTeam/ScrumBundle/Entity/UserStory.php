@@ -12,6 +12,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class UserStory
 {
+	
+	const PRODUCT_BACKLOG = 'product_backlog';
+    const SPRINT_BACKLOG  = 'sprint_backlog';
+    const DOING     	  = 'doing';
+    const BLOCKED         = 'blocked';
+    const TO_VALIDATE	  = 'to_validate';
+    const DONE			  = 'done';
+    
     /**
      * @var integer
      *
@@ -52,11 +60,11 @@ class UserStory
     /**
      * @var integer
      *
-     * @ORM\Column(name="status", type="integer")
+     * @ORM\Column(name="status", type="string",length=20)
      */
     private $status;
 
-
+    
     /**
      * Get id
      *
