@@ -14,6 +14,9 @@ app/config/parameters.yml
 app/cache/*
 app/logs/*
 
+# Data
+data/*
+
 # Vendors
 vendor
 
@@ -23,6 +26,7 @@ bin
 # Symfttpd, Composer
 composer.phar
 symfttpd/
+symfttpd.conf.php
 
 # IDEs
 .DS_Store
