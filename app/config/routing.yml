@@ -19,7 +19,7 @@ fos_user_change_password:
 
 homepage:
     pattern:  /
-    defaults: { _controller: MiniTeamScrumBundle:Project:show, projectName: "mini-scrum" }
+    defaults: { _controller: MiniTeamScrumBundle:Project:show }
 
 _proxy:
     resource: "@FrameworkBundle/Resources/config/routing/proxy.xml"
