@@ -26,7 +26,7 @@ class LoadUserStoryData extends AbstractFixture implements OrderedFixtureInterfa
 		$user_story->setTitle('ETQ user ceci est une user story fixture');
 		$user_story->setDetails('plein de détails croustillants');
 		$user_story->setPoints(3);
-		$user_story->setStatus('product_backlog');
+		$user_story->setStatus(UserStory::PRODUCT_BACKLOG);
 		$user_story->setNumber(12);
 		
 		$manager->persist($user_story);
@@ -35,7 +35,7 @@ class LoadUserStoryData extends AbstractFixture implements OrderedFixtureInterfa
 		$user_story_2->setTitle('ETQ user je peux avoir accès à mini-scrum');
 		$user_story_2->setDetails('depuis n\'importe où (entre autres)');
 		$user_story_2->setPoints(2);
-		$user_story_2->setStatus('sprint_backlog');
+		$user_story_2->setStatus(UserStory::SPRINT_BACKLOG);
 		$user_story_2->setNumber(2);
 
 		$manager->persist($user_story_2);
