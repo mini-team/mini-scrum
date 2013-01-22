@@ -26,6 +26,8 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
         $project->setProductOwner($this->getReference('product-owner'));
         $project->setScrumMaster($this->getReference('scrum-master'));
 
+		$this->addReference('main-project', $project);
+
         $manager->persist($project);
         $manager->flush();
     }

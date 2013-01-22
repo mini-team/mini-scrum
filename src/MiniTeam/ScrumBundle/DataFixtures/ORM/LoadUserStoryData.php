@@ -28,6 +28,7 @@ class LoadUserStoryData extends AbstractFixture implements OrderedFixtureInterfa
 		$user_story->setPoints(3);
 		$user_story->setStatus(UserStory::PRODUCT_BACKLOG);
 		$user_story->setNumber(12);
+		$user_story->setProject($this->getReference('main-project'));
 		
 		$manager->persist($user_story);
 		
@@ -37,6 +38,7 @@ class LoadUserStoryData extends AbstractFixture implements OrderedFixtureInterfa
 		$user_story_2->setPoints(2);
 		$user_story_2->setStatus(UserStory::SPRINT_BACKLOG);
 		$user_story_2->setNumber(2);
+		$user_story_2->setProject($this->getReference('main-project'));
 
 		$manager->persist($user_story_2);
 

@@ -30,6 +30,14 @@ class UserStory
     private $id;
 
     /**
+     * @var Project
+     *
+     * @ORM\ManyToOne(targetEntity="MiniTeam\ScrumBundle\Entity\Project")
+     * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
+     */
+    protected $project;
+    
+    /**
      * @var string
      *
      * @ORM\Column(name="title", type="text")
@@ -75,6 +83,22 @@ class UserStory
         return $this->id;
     }
 
+    /**
+     * @param \MiniTeam\ScrumBundle\Entity\Project $project
+     */
+    public function setProject(Project $project)
+    {
+        $this->project = $project;
+    }
+
+    /**
+     * @return \MiniTeam\ScrumBundle\Entity\Project
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+    
     /**
      * Set title
      *
