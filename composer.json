@@ -31,7 +31,8 @@
         "behat/gherkin": "dev-custom",
         "behat/mink-extension": "*@dev",
         "behat/symfony2-extension": "*@dev",
-        "behat/mink-goutte-driver": "*@dev"
+        "behat/mink-goutte-driver": "*@dev",
+        "beberlei/assert": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

@@ -1,5 +1,5 @@
 {
-    "hash": "933a4b2a83d68d3d379349f97062206d",
+    "hash": "a176dd548315ce540db9796d817b3fe0",
     "packages": [
         {
             "name": "doctrine/common",
@@ -1793,6 +1793,44 @@
     ],
     "packages-dev": [
         {
+            "name": "beberlei/assert",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/beberlei/assert.git",
+                "reference": "e06051a9fffee49e5a29678319e0e32e590b3168"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/beberlei/assert/archive/e06051a9fffee49e5a29678319e0e32e590b3168.zip",
+                "reference": "e06051a9fffee49e5a29678319e0e32e590b3168",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*"
+            },
+            "time": "2012-10-25 08:38:00",
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Assert": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                }
+            ],
+            "description": "Thin assertion library for input validation in business models.",
+            "keywords": [
+                "validation",
+                "assert",
+                "assertion"
+            ]
+        },
+        {
             "name": "behat/behat",
             "version": "v2.4.4",
             "source": {
@@ -2505,6 +2543,7 @@
         "behat/gherkin": 20,
         "behat/mink-extension": 20,
         "behat/symfony2-extension": 20,
-        "behat/mink-goutte-driver": 20
+        "behat/mink-goutte-driver": 20,
+        "beberlei/assert": 20
     }
 }
