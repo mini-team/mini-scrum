@@ -7,4 +7,6 @@ php:
 
 before_script: composer install --dev -n
 
-script: bin/phpspec
+script:
+  - bin/phpspec
+  - bin/behat -p ci @MiniTeamUserBundle
