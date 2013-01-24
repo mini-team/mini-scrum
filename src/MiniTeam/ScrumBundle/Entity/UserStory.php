@@ -7,6 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * UserStory
  *
+ * @author Edouard Garnier de Labareyre <edouard@melix.net>
+ *
  * @ORM\Table(name="miniscrum_userstory")
  * @ORM\Entity(repositoryClass="MiniTeam\ScrumBundle\Entity\UserStoryRepository")
  */
@@ -15,10 +17,10 @@ class UserStory
 	
 	const PRODUCT_BACKLOG = 'product_backlog';
     const SPRINT_BACKLOG  = 'sprint_backlog';
-    const DOING     	  = 'doing';
+    const DOING           = 'doing';
     const BLOCKED         = 'blocked';
-    const TO_VALIDATE	  = 'to_validate';
-    const DONE			  = 'done';
+    const TO_VALIDATE     = 'to_validate';
+    const DONE            = 'done';
     
     /**
      * @var integer
@@ -89,6 +91,8 @@ class UserStory
     public function setProject(Project $project)
     {
         $this->project = $project;
+
+        return $this;
     }
 
     /**
