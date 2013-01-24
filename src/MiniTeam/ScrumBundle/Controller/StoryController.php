@@ -4,6 +4,7 @@ namespace MiniTeam\ScrumBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
+use MiniTeam\ScrumBundle\Entity\UserStory;
 
 /**
  * @author Benjamin Grandfond <benjamin.grandfond@gmail.com>
@@ -20,11 +21,13 @@ class StoryController extends Controller
     }
 
     /**
-     * @Extra\Route("/{projectName}/{title}")
+     * @Extra\Route("/{projectName}/us/{id}")
      * @Extra\Template()
      */
-    public function showAction($projectName, $title)
+    public function showAction(UserStory $story)
     {
-        return array('projectName' => $projectName, 'title' => $title);
+        return array('projectName' => $story->getProject(), 'story' => $story);
     }
+
+
 }
