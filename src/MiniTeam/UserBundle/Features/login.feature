@@ -9,8 +9,7 @@ Feature: Login
     And I fill in "username" with "mini"
     And I fill in "password" with "test"
     When I press "Login"
-    Then I should be authenticated
-    And I should be on "Mini Scrum" project
+    And I should see "mini" in the ".navbar-text" element
 
   Scenario: Failed authentication
     If the user failed to login he is asked to refill

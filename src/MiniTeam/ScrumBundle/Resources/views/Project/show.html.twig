@@ -4,7 +4,7 @@
     {{ render(controller('MiniTeamScrumBundle:Project:scrumBar', { 'projectName': project.name ,'activeTab':'home'})) }}
 
     <div class="row-fluid">
-        <div class="span4 well">
+        <div class="span4 well" id="members">
             <h3>Members</h3>
             <ul>
             {% for membership in project.memberships %}

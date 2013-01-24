@@ -13,3 +13,15 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   "%database_test_driver%"
+        host:     "%database_test_host%"
+        port:     "%database_test_port%"
+        dbname:   "%database_test_name%"
+        user:     "%database_test_user%"
+        password: "%database_test_password%"
+        charset:  UTF8
+        path:     "%database_test_path%"

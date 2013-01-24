@@ -24,14 +24,15 @@
         "incenteev/composer-parameter-handler": "1.0.*"
     },
     "require-dev": {
-        "benjaM1/symfttpd": "dev-master",
+        "benjaM1/symfttpd": "2.1.*@dev",
         "phpspec/phpspec2": "dev-develop",
         "behat/behat": "2.4.*@dev",
         "behat/mink": "1.4.*@dev",
         "behat/gherkin": "dev-custom",
         "behat/mink-extension": "*@dev",
+        "behat/mink-browserkit-driver": "dev-master",
         "behat/symfony2-extension": "*@dev",
-        "behat/mink-goutte-driver": "*@dev",
+        "behat/common-contexts": "dev-master",
         "beberlei/assert": "dev-master"
     },
     "scripts": {

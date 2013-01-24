@@ -1,20 +1,18 @@
 <?php
 
-namespace MiniTeam\UserBundle\Features\Context;
+namespace MiniTeam\ScrumBundle\Features\Context;
 
 use Behat\Behat\Context\BehatContext,
-    Behat\Behat\Context\Step,
     Behat\Behat\Exception\PendingException;
 use Behat\Gherkin\Node\PyStringNode,
     Behat\Gherkin\Node\TableNode;
 
-use Assert\Assertion;
 use Behat\CommonContexts\SymfonyDoctrineContext;
 use Behat\MinkExtension\Context\MinkContext;
 use Behat\Symfony2Extension\Context\KernelAwareInterface;
 use MiniTeam\Features\Context\MiniScrumContext;
+use MiniTeam\UserBundle\Features\Context\FeatureContext as UserBundleContext;
 use Symfony\Component\HttpKernel\KernelInterface;
-
 
 /**
  * Features context.
@@ -24,7 +22,6 @@ class FeatureContext extends BehatContext
 {
     private $kernel;
     private $parameters;
-    private $assertion;
 
     /**
      * Initializes context with parameters from behat.yml.
@@ -34,11 +31,9 @@ class FeatureContext extends BehatContext
     public function __construct(array $parameters)
     {
         $this->parameters = $parameters;
-        $this->assertion = new Assertion();
-
         $this->useContext('symfony_doctrine', new SymfonyDoctrineContext());
-        $this->useContext('mink', new MinkContext());
         $this->useContext('mini_scrum', new MiniScrumContext());
+        $this->useContext('user', new UserBundleContext(array()));
     }
 
     /**
@@ -50,30 +45,5 @@ class FeatureContext extends BehatContext
     public function setKernel(KernelInterface $kernel)
     {
         $this->kernel = $kernel;
-    }
-
-    /**
-     * Return a service contained in the container.
-     *
-     * @param $service
-     *
-     * @return mixed
-     */
-    public function get($service)
-    {
-        return $this->kernel->getContainer()->get($service);
-    }
-
-    /**
-     * @Given /^I am authenticated as "([^"]*)" with "([^"]*)"$/
-     */
-    public function iAmAuthenticatedAs($username, $password)
-    {
-        return array(
-            new Step\When('I am on "/login"'),
-            new Step\When('I fill in "Username" with "'.$username.'"'),
-            new Step\When('I fill in "Password" with "'.$password.'"'),
-            new Step\When('I press "Login"'),
-        );
     }
 }

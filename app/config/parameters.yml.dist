@@ -2,10 +2,18 @@ parameters:
     database_driver:   pdo_mysql
     database_host:     127.0.0.1
     database_port:     ~
-    database_name:     symfony
+    database_name:     miniscrum
     database_user:     root
     database_password: ~
     database_path:     ~
+
+    database_test_driver:   pdo_sqlite
+    database_test_host:     127.0.0.1
+    database_test_port:     ~
+    database_test_name:     miniscrum
+    database_test_user:     root
+    database_test_password: ~
+    database_test_path:     "%kernel.root_dir%/cache/test/miniscrum.db"
 
     mailer_transport:  smtp
     mailer_host:       127.0.0.1
