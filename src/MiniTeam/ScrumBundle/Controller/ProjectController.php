@@ -36,12 +36,12 @@ class ProjectController extends Controller
         $usRepo = $this->getDoctrine()->getManager()->getRepository('MiniTeamScrumBundle:UserStory');
 
 
-        $nb_product_backlog = $usRepo->countUserStoriesWithStatus('product_backlog');
-        $nb_sprint_backlog = $usRepo->countUserStoriesWithStatus('sprint_backlog');
-        $nb_doing = $usRepo->countUserStoriesWithStatus('doing');
-        $nb_blocked = $usRepo->countUserStoriesWithStatus('blocked');
-        $nb_to_validate = $usRepo->countUserStoriesWithStatus('to_validate');
-        $nb_done = $usRepo->countUserStoriesWithStatus('done');
+        $nb_product_backlog = $usRepo->countUserStoriesWithStatus($projectName,'product_backlog');
+        $nb_sprint_backlog = $usRepo->countUserStoriesWithStatus($projectName,'sprint_backlog');
+        $nb_doing = $usRepo->countUserStoriesWithStatus($projectName,'doing');
+        $nb_blocked = $usRepo->countUserStoriesWithStatus($projectName,'blocked');
+        $nb_to_validate = $usRepo->countUserStoriesWithStatus($projectName,'to_validate');
+        $nb_done = $usRepo->countUserStoriesWithStatus($projectName,'done');
 
         return array(
             'projectName' => $projectName,
