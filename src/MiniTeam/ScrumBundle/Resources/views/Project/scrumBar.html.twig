@@ -30,17 +30,17 @@
                     
         <div class="pagination pagination-large pagination-centered">
             <ul>
-                {{ menu.item('Backlog', path('miniteam_scrum_story_backlog', { 'projectName': app.user.selectedProject }),'',24,'backlog', activeTab) }}
+                {{ menu.item('Backlog', path('miniteam_scrum_story_backlog', { 'projectName': app.user.selectedProject }),'',nb_product_backlog,'backlog', activeTab) }}
                 
-                {{ menu.item('Sprint backlog','#','badge-warning',12,'sprintBacklog',activeTab) }}
+                {{ menu.item('Sprint backlog','#','badge-warning',nb_sprint_backlog,'sprintBacklog',activeTab) }}
                 
-                {{ menu.item('Doing','#','badge-info',3,'doing',activeTab) }}
+                {{ menu.item('Doing','#','badge-info',nb_doing,'doing',activeTab) }}
                 
-                {{ menu.item('Blocked','#','badge-important',1,'blocked',activeTab) }}
+                {{ menu.item('Blocked','#','badge-important',nb_blocked,'blocked',activeTab) }}
                 
-                {{ menu.item('To validate','#','badge-success',2,'toValidate',activeTab) }}
+                {{ menu.item('To validate','#','badge-success',nb_to_validate,'toValidate',activeTab) }}
                 
-                {{ menu.item('Done','#','',8,'done',activeTab) }}
+                {{ menu.item('Done','#','',nb_done,'done',activeTab) }}
  
             </ul>
         </div>

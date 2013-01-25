@@ -32,8 +32,27 @@ class ProjectController extends Controller
      */
     public function scrumBarAction($projectName,$activeTab)
     {
-        //TODO get real scrum bar information
-        return array('projectName' => $projectName,'activeTab'=>$activeTab);
+
+        $usRepo = $this->getDoctrine()->getManager()->getRepository('MiniTeamScrumBundle:UserStory');
+
+
+        $nb_product_backlog = $usRepo->countUserStoriesWithStatus('product_backlog');
+        $nb_sprint_backlog = $usRepo->countUserStoriesWithStatus('sprint_backlog');
+        $nb_doing = $usRepo->countUserStoriesWithStatus('doing');
+        $nb_blocked = $usRepo->countUserStoriesWithStatus('blocked');
+        $nb_to_validate = $usRepo->countUserStoriesWithStatus('to_validate');
+        $nb_done = $usRepo->countUserStoriesWithStatus('done');
+
+        return array(
+            'projectName' => $projectName,
+            'activeTab'=>$activeTab,
+            'nb_product_backlog'=>$nb_product_backlog,
+            'nb_sprint_backlog'=>$nb_sprint_backlog,
+            'nb_doing'=>$nb_doing,
+            'nb_blocked'=>$nb_blocked,
+            'nb_to_validate'=>$nb_to_validate,
+            'nb_done'=>$nb_done,
+        );
     }
     
 
