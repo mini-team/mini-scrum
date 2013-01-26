@@ -25,9 +25,9 @@ class StoryController extends Controller
      * @Extra\Route("/{projectName}/us/{id}")
      * @Extra\Template()
      */
-    public function showAction(UserStory $story)
+    public function showAction($projectName,UserStory $story)
     {
-        return array('projectName' => $story->getProject(), 'story' => $story);
+        return array('projectName' => $projectName, 'story' => $story);
     }
 
     /**
