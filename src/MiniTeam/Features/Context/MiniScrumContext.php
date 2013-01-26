@@ -3,62 +3,26 @@
 namespace MiniTeam\Features\Context;
 
 use Behat\Behat\Context\BehatContext;
-use Behat\CommonContexts\DoctrineFixturesContext;
-use Behat\Symfony2Extension\Context\KernelAwareInterface;
-use Symfony\Component\HttpKernel\KernelInterface;
-use Symfony\Bridge\Doctrine\DataFixtures\ContainerAwareLoader;
-use Doctrine\Common\DataFixtures\Purger\ORMPurger;
-use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+use Behat\CommonContexts\SymfonyDoctrineContext;
+use Behat\MinkExtension\Context\MinkContext;
+use MiniTeam\Features\Context\MiniScrumDoctrineFixturesContext;
+use MiniTeam\ScrumBundle\Features\Context\FeatureContext as ScrumBundleContext;
+use MiniTeam\UserBundle\Features\Context\FeatureContext as UserBundleContext;
 
 /**
  * MiniScrumContext description
  *
  * @author Benjamin Grandfond <benjamin.grandfond@gmail.com>
  */
-class MiniScrumContext extends BehatContext implements KernelAwareInterface
+class MiniScrumContext extends BehatContext
 {
-    /**
-     * @var KernelInterface
-     */
-    protected $kernel;
 
     public function __construct()
     {
-        $this->useContext('doctrine_fixtures', new DoctrineFixturesContext());
+        $this->useContext('mink', new MinkContext());
+        $this->useContext('symfony_doctrine', new SymfonyDoctrineContext());
+        $this->useContext('doctrine_fixtures', new MiniScrumDoctrineFixturesContext());
+        $this->useContext('scrum_bundle', new ScrumBundleContext(array()));
+        $this->useContext('user_bundle', new UserBundleContext(array()));
     }
-
-    /**
-     * @BeforeScenario
-     */
-    public function beforeScenario()
-    {
-        $loader = new ContainerAwareLoader($this->kernel->getContainer());
-
-        $this->getSubcontext('doctrine_fixtures')
-            ->loadFixtureClasses($loader, array(
-                'MiniTeam\UserBundle\DataFixtures\ORM\LoadUserData',
-                'MiniTeam\ScrumBundle\DataFixtures\ORM\LoadProjectData',
-                'MiniTeam\ScrumBundle\DataFixtures\ORM\LoadUserStoryData',
-            ));
-
-        /** @var $em \Doctrine\ORM\EntityManager */
-        $em = $this->kernel->getContainer()->get('doctrine.orm.entity_manager');
-
-        $purger = new ORMPurger();
-        $executor = new ORMExecutor($em, $purger);
-        $executor->purge();
-        $executor->execute($loader->getFixtures(), true);
-    }
-
-    /**
-     * Sets Kernel instance.
-     *
-     * @param KernelInterface $kernel HttpKernel instance
-     */
-    public function setKernel(KernelInterface $kernel)
-    {
-        $this->kernel = $kernel;
-    }
-
-
 }
