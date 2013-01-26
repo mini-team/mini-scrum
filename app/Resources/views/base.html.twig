@@ -31,7 +31,7 @@
                 <div class="pull-right">
                     <a href="{{ path('miniteam_scrum_project_show', {'name': app.user.selectedProject.name}) }}">{{ app.user.selectedProject ~ ' (' ~ app.user.projectRole ~ ')' }}</a>
                     {# later on, action button here could depend on user role #}
-                    <a class="btn btn-success"><i class="icon-pencil icon-white"></i> Add user story</a>
+                    <a href="{{ path('story_new', { 'projectName': app.user.selectedProject.name }) }}" class="btn btn-success"><i class="icon-pencil icon-white"></i> Add user story</a>
                 </div>
 
                 <p class="navbar-text"><i class="icon-user"></i> {{ app.user.username }}</p>

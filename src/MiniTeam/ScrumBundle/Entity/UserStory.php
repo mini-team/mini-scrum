@@ -14,8 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class UserStory
 {
-	
-	const PRODUCT_BACKLOG = 'product_backlog';
+    const PRODUCT_BACKLOG = 'product_backlog';
     const SPRINT_BACKLOG  = 'sprint_backlog';
     const DOING           = 'doing';
     const BLOCKED         = 'blocked';

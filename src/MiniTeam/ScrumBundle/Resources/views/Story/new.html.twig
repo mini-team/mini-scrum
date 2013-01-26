@@ -1,0 +1,10 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+    {{ render(controller('MiniTeamScrumBundle:Project:scrumBar', { 'projectName': projectName ,'activeTab':'us'})) }}
+
+    <form action="" method="post">
+        <h3>New story</h3>
+    </form>
+{% endblock %}

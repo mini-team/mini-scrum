@@ -8,11 +8,13 @@ use MiniTeam\ScrumBundle\Entity\UserStory;
 
 /**
  * @author Benjamin Grandfond <benjamin.grandfond@gmail.com>
+ *
+ * @Extra\Route("/{projectName}")
  */
 class StoryController extends Controller
 {
     /**
-     * @Extra\Route("/{projectName}/backlog")
+     * @Extra\Route("/backlog")
      * @Extra\Template()
      */
     public function backlogAction($projectName)
@@ -21,7 +23,7 @@ class StoryController extends Controller
     }
 
     /**
-     * @Extra\Route("/{projectName}/us/{id}")
+     * @Extra\Route("/us/{id}", requirements={"id" = "\d+"})
      * @Extra\Template()
      */
     public function showAction(UserStory $story)
@@ -29,5 +31,12 @@ class StoryController extends Controller
         return array('projectName' => $story->getProject(), 'story' => $story);
     }
 
-
+    /**
+     * @Extra\Route("/us/new", name="story_new")
+     * @Extra\Template()
+     */
+    public function newAction($projectName)
+    {
+        return array('projectName' => $projectName);
+    }
 }
