@@ -21,10 +21,6 @@ homepage:
     pattern:  /
     defaults: { _controller: MiniTeamScrumBundle:Project:show }
 
-_proxy:
-    resource: "@FrameworkBundle/Resources/config/routing/proxy.xml"
-    prefix:   /_proxy
-
 mini_team_scrum:
     resource: "@MiniTeamScrumBundle/Controller/"
     type:     annotation
