@@ -1,6 +1,6 @@
 <?php
 
-namespace MiniTeam\UserBundle\DataFixtures\ORM;
+namespace MiniTeam\ScrumBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -21,26 +21,25 @@ class LoadUserStoryData extends AbstractFixture implements OrderedFixtureInterfa
      */
     public function load(ObjectManager $manager)
     {
-		
-		$user_story = new UserStory();
-		$user_story->setTitle('ETQ user ceci est une user story fixture');
-		$user_story->setDetails('plein de détails croustillants');
-		$user_story->setPoints(3);
-		$user_story->setStatus(UserStory::PRODUCT_BACKLOG);
-		$user_story->setNumber(12);
-		$user_story->setProject($this->getReference('main-project'));
-		
-		$manager->persist($user_story);
-		
-		$user_story_2 = new UserStory();
-		$user_story_2->setTitle('ETQ user je peux avoir accès à mini-scrum');
-		$user_story_2->setDetails('depuis n\'importe où (entre autres)');
-		$user_story_2->setPoints(2);
-		$user_story_2->setStatus(UserStory::SPRINT_BACKLOG);
-		$user_story_2->setNumber(2);
-		$user_story_2->setProject($this->getReference('main-project'));
+        $user_story = new UserStory();
+        $user_story->setTitle('ETQ user ceci est une user story fixture');
+        $user_story->setDetails('plein de détails croustillants');
+        $user_story->setPoints(3);
+        $user_story->setStatus(UserStory::PRODUCT_BACKLOG);
+        $user_story->setNumber(12);
+        $user_story->setProject($this->getReference('main-project'));
 
-		$manager->persist($user_story_2);
+        $manager->persist($user_story);
+
+        $user_story_2 = new UserStory();
+        $user_story_2->setTitle('ETQ user je peux avoir accès à mini-scrum');
+        $user_story_2->setDetails('depuis n\'importe où (entre autres)');
+        $user_story_2->setPoints(2);
+        $user_story_2->setStatus(UserStory::SPRINT_BACKLOG);
+        $user_story_2->setNumber(2);
+        $user_story_2->setProject($this->getReference('main-project'));
+
+        $manager->persist($user_story_2);
 
         $manager->flush();
     }

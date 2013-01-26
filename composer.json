@@ -24,8 +24,16 @@
         "incenteev/composer-parameter-handler": "1.0.*"
     },
     "require-dev": {
-        "benjaM1/symfttpd": "dev-master",
-        "phpspec/phpspec2": "dev-develop"
+        "benjaM1/symfttpd": "2.1.*@dev",
+        "phpspec/phpspec2": "dev-develop",
+        "behat/behat": "2.4.*@dev",
+        "behat/mink": "1.4.*@dev",
+        "behat/gherkin": "dev-custom",
+        "behat/mink-extension": "*@dev",
+        "behat/mink-browserkit-driver": "dev-master",
+        "behat/symfony2-extension": "*@dev",
+        "behat/common-contexts": "dev-master",
+        "beberlei/assert": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
@@ -53,5 +61,38 @@
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "behat/behat",
+                "version": "v2.4.4",
+                "source": {
+                    "url": "https://github.com/Behat/Behat.git",
+                    "type": "git",
+                    "reference": "develop"
+                },
+                "autoload": {
+                    "psr-0": {"Behat\\Behat": "src/"}
+                },
+                "bin": ["bin/behat"]
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "behat/gherkin",
+                "version": "dev-custom",
+                "source": {
+                    "url": "https://github.com/Behat/Gherkin.git",
+                    "type": "git",
+                    "reference": "develop"
+                },
+                "autoload": {
+                    "psr-0": {"Behat\\Gherkin": "src/"}
+                }
+            }
+        }
+    ]
 }
