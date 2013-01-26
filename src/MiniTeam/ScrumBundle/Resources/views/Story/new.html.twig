@@ -2,9 +2,11 @@
 
 {% block body %}
 
-    {{ render(controller('MiniTeamScrumBundle:Project:scrumBar', { 'projectName': projectName ,'activeTab':'us'})) }}
+    {{ render(controller('MiniTeamScrumBundle:Project:scrumBar', { 'projectName': project.name ,'activeTab':'us'})) }}
 
     <form action="" method="post">
         <h3>New story</h3>
+        {{ form_widget(form) }}
+        <button type="submit">Save</button>
     </form>
 {% endblock %}
