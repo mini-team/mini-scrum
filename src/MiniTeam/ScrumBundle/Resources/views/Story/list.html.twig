@@ -1,0 +1,45 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+    {{ render(controller('MiniTeamScrumBundle:Project:scrumBar', { 'projectName': projectName ,'activeTab':status})) }}
+
+    {% set offset = '' %}
+    {% if status == 'sprintBacklog' %}
+        {% set offset = 'offset1' %}
+    {% elseif status == 'doing' %}
+        {% set offset = 'offset2' %}
+    {% elseif status == 'blocked' %}
+        {% set offset = 'offset3' %}
+    {% elseif status == 'toValidate' %}
+        {% set offset = 'offset4' %}
+    {% elseif status == 'done' %}
+        {% set offset = 'offset5' %}
+    {% endif %}
+
+
+    <div class="row">
+        <div class="span7 {{ offset }}">
+
+            <div class="centered">
+                <h3>{{ status }}</h3>
+            </div>
+
+            {%  for story in usList %}
+
+            <a href="#">
+                <div class="well">
+                    <p class="text-info pull-right">{{ story.points }} pts</p>
+                    <span class="gray-text">#{{ story.number }}</span>
+                    <span class="black-text">{{ story.title }}</span>
+                    </p>
+                </div>
+            </a>
+
+            {% endfor %}
+        </div>
+
+    </div>
+
+
+{% endblock %}
