@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Form;
 
+
 /**
  * @author Benjamin Grandfond <benjamin.grandfond@gmail.com>
  * @author Edouard de Labareyre <edouard@melix.net>
@@ -31,11 +32,30 @@ class StoryController extends Controller
 
     /**
      * @Extra\Route("/us/{id}", name="story_show", requirements={"id" = "\d+"})
+     * @Extra\ParamConverter("project", options={"mapping": {"project": "slug"}})
      * @Extra\Template()
      */
-    public function showAction(UserStory $story)
+    public function showAction( Project $project, UserStory $story)
     {
-        return array('project' => $story->getProject(), 'story' => $story);
+
+        return array('project' => $project, 'story' => $story);
+    }
+
+    /**
+     * @Extra\Route("/us-list/{status}")
+     * @Extra\ParamConverter("project", options={"mapping": {"project": "slug"}})
+     * @Extra\Template()
+     */
+    public function listAction(Project $project, $status){
+
+        //retrieve list of user stories of this project with the given status
+        $usRepo = $this->getDoctrine()->getRepository('MiniTeamScrumBundle:UserStory');
+        $stories = $usRepo->findBy(
+            array('status' => $status,'project' => $project),
+            array('number' => 'asc')
+        );
+
+        return array('project' => $project, 'stories' => $stories,'status'=>$status);
     }
 
     /**

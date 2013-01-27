@@ -1,9 +1,11 @@
-{% macro item(label, path, badgeClass,ticketNumber, tabName, activeTab) %}
+{% macro item(label, badgeClass,ticketNumber, tabName, activeTab) %}
+
     <li class="{% if tabName == activeTab %}active{% endif %}">
-        <a href="{{ path }}" class="centered">
+        <a href="{{ path('miniteam_scrum_story_list', { 'project': app.user.selectedProject,'status':tabName }) }}"
+           class="centered">
             {{ label }}
             <br>
-            <span class="badge {% if ticketNumber >0 %}{{badgeClass}}{% endif %}">{{ ticketNumber }}</span>
+            <span class="badge {% if ticketNumber >0 %}{{ badgeClass }}{% endif %}">{{ ticketNumber }}</span>
         </a>
     </li>
 {% endmacro %}
@@ -29,18 +31,17 @@
 
         <div class="pagination pagination-large pagination-centered">
             <ul>
-                {{ menu.item('Backlog', path('project_backlog', { 'project': project.slug }),'',24,'backlog', activeTab) }}
+                {{ menu.item('Backlog', path('project_backlog', { 'project': project.slug }), nb_product_backlog, 'product-backlog', activeTab) }}
 
-                {{ menu.item('Sprint backlog','#','badge-warning',12,'sprintBacklog',activeTab) }}
+                {{ menu.item('Sprint backlog', 'badge-warning', nb_sprint_backlog, 'sprint-backlog', activeTab) }}
 
-                {{ menu.item('Doing','#','badge-info',3,'doing',activeTab) }}
+                {{ menu.item('Doing', 'badge-info', nb_doing, 'doing', activeTab) }}
 
-                {{ menu.item('Blocked','#','badge-important',1,'blocked',activeTab) }}
+                {{ menu.item('Blocked', 'badge-important', nb_blocked, 'blocked', activeTab) }}
 
-                {{ menu.item('To validate','#','badge-success',2,'toValidate',activeTab) }}
+                {{ menu.item('To validate', 'badge-success', nb_to_validate, 'to-validate', activeTab) }}
 
-                {{ menu.item('Done','#','',8,'done',activeTab) }}
-
+                {{ menu.item('Done', '', nb_done, 'done', activeTab) }}
             </ul>
         </div>
 
