@@ -33,12 +33,14 @@
             <span class="label label-info" id="status">{{ story.status }}</span>
             {% if story.isAssigned %}
                 <br><span id="assignee">{{ story.assignee.username }}</span>
-            {% elseif story.isAssignable %}
-                <a class="btn btn-primary" href="{{ path('story_start', { 'project': project.slug, 'id': story.id }) }}">Start</a>
             {% endif %}
         </div>
         <div class="span2 align-right">
-            <div class="btn btn-success">To validate</div>
+            {% if story.isAssignable %}
+                <a class="btn btn-primary" id="start" href="{{ path('story_start', { 'project': project.slug, 'id': story.id }) }}">Start</a>
+            {% elseif story.isInProgress %}
+                <a class="btn btn-success" id="deliver" href="{{ path('story_deliver', { 'project': project.slug, 'id': story.id }) }}">To validate</a>
+            {% endif %}
         </div>
     </div>
 

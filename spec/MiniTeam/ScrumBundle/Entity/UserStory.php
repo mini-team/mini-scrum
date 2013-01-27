@@ -16,4 +16,18 @@ class UserStory extends ObjectBehavior
         $this->getAssignee()->shouldReturn($user);
         $this->getStatus()->shouldReturn(\MiniTeam\ScrumBundle\Entity\UserStory::DOING);
     }
+
+    /**
+     * @param \MiniTeam\ScrumBundle\Entity\Project $project
+     * @param \MiniTeam\UserBundle\Entity\User $user
+     */
+    function it_should_deliver_the_story($project, $user)
+    {
+        $project->getProductOwner()->willReturn($user);
+        $this->setProject($project);
+
+        $this->deliver();
+        $this->getAssignee()->shouldReturn($user);
+        $this->getStatus()->shouldReturn(\MiniTeam\ScrumBundle\Entity\UserStory::TO_VALIDATE);
+    }
 }

@@ -76,7 +76,7 @@ class UserStory
     protected $number;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="status", type="string",length=20)
      */
@@ -239,7 +239,7 @@ class UserStory
     /**
      * Set status
      *
-     * @param  integer   $status
+     * @param  string    $status
      * @return UserStory
      */
     public function setStatus($status)
@@ -252,7 +252,7 @@ class UserStory
     /**
      * Get status
      *
-     * @return integer
+     * @return string
      */
     public function getStatus()
     {
@@ -302,6 +302,14 @@ class UserStory
     }
 
     /**
+     * @return bool
+     */
+    public function isInProgress()
+    {
+        return $this->status == self::DOING;
+    }
+
+    /**
      * The user story starts, and it is assigned to a user.
      *
      * @param \MiniTeam\UserBundle\Entity\User $user
@@ -310,5 +318,19 @@ class UserStory
     {
         $this->setAssignee($user);
         $this->setStatus(self::DOING);
+    }
+
+    /**
+     * Deliver the user story.
+     * The status changes to "to validate"
+     * and it is assigned to the product owner
+     */
+    public function deliver()
+    {
+        if (null !== ($user = $this->getProject()->getProductOwner())) {
+            $this->setAssignee($user);
+        }
+
+        $this->setStatus(self::TO_VALIDATE);
     }
 }

@@ -100,4 +100,12 @@ class Membership
     {
         return $this->role;
     }
+
+    /**
+     * @return bool
+     */
+    public function isProductOwner()
+    {
+        return $this->getRole() == Membership::PRODUCT_OWNER;
+    }
 }

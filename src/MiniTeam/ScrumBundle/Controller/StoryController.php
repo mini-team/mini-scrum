@@ -93,15 +93,24 @@ class StoryController extends Controller
     }
 
     /**
-     * @Extra\Route("/us/{id}/start", name="story_start")
+     * @Extra\Route("/us/{id}/start", name="story_start", defaults={"status": "start"})
+     * @Extra\Route("/us/{id}/deliver", name="story_deliver", defaults={"status": "deliver"}))
      *
      * @param \MiniTeam\ScrumBundle\Entity\UserStory $story
+     * @param                                        $status
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function startAction(UserStory $story)
+    public function updateStatusAction(UserStory $story, $status)
     {
-        $story->starts($this->getUser());
+        switch ($status) {
+            case 'start':
+                $story->starts($this->getUser());
+                break;
+            case 'deliver':
+                $story->deliver();
+                break;
+        }
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($story);

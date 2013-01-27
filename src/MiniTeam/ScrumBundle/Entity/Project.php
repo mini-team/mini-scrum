@@ -200,6 +200,16 @@ class Project
      */
     public function getProductOwner()
     {
+        if (null == $this->productOwner) {
+            $this->productOwner = $this->getMemberships()
+                ->filter(function ($membership) {
+                    return $membership->isProductOwner();
+                })
+                ->first()
+                ->getUser()
+            ;
+        }
+
         return $this->productOwner;
     }
 
