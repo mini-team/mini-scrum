@@ -33,8 +33,9 @@ class ProjectController extends Controller
     public function scrumBarAction($projectName,$activeTab)
     {
 
-        $usRepo = $this->getDoctrine()->getManager()->getRepository('MiniTeamScrumBundle:UserStory');
+        $usRepo = $this->getDoctrine()->getRepository('MiniTeamScrumBundle:UserStory');
 
+        //TODO do it in one request
         $nb_product_backlog = $usRepo->countUserStoriesWithStatus($projectName,'product-backlog');
         $nb_sprint_backlog = $usRepo->countUserStoriesWithStatus($projectName,'sprint-backlog');
         $nb_doing = $usRepo->countUserStoriesWithStatus($projectName,'doing');

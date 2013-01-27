@@ -219,5 +219,4 @@ class UserStory
         return $this->status;
     }
 
-
 }

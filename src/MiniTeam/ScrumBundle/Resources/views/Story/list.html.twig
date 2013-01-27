@@ -5,15 +5,15 @@
     {{ render(controller('MiniTeamScrumBundle:Project:scrumBar', { 'projectName': projectName ,'activeTab':status})) }}
 
     {% set offset = '' %}
-    {% if status == 'sprintBacklog' %}
+    {% if status == constant('MiniTeam\\ScrumBundle\\Entity\\UserStory::SPRINT_BACKLOG') %}
         {% set offset = 'offset1' %}
-    {% elseif status == 'doing' %}
+    {% elseif status == constant('MiniTeam\\ScrumBundle\\Entity\\UserStory::DOING') %}
         {% set offset = 'offset2' %}
-    {% elseif status == 'blocked' %}
+    {% elseif status == constant('MiniTeam\\ScrumBundle\\Entity\\UserStory::BLOCKED') %}
         {% set offset = 'offset3' %}
-    {% elseif status == 'toValidate' %}
+    {% elseif status == constant('MiniTeam\\ScrumBundle\\Entity\\UserStory::TO_VALIDATE') %}
         {% set offset = 'offset4' %}
-    {% elseif status == 'done' %}
+    {% elseif status == constant('MiniTeam\\ScrumBundle\\Entity\\UserStory::DONE') %}
         {% set offset = 'offset5' %}
     {% endif %}
 
@@ -25,7 +25,7 @@
                 <h3>{{ status }}</h3>
             </div>
 
-            {%  for story in usList %}
+            {%  for story in stories %}
 
             <a href="{{ path('miniteam_scrum_story_show', { 'projectName': projectName,'id': story.id }) }}">
                 <div class="well">
