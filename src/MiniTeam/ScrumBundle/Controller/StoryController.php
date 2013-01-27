@@ -20,15 +20,6 @@ use Symfony\Component\Form\Form;
  */
 class StoryController extends Controller
 {
-    /**
-     * @Extra\Route("/backlog", name="project_backlog")
-     * @Extra\ParamConverter("project", options={"mapping": {"project": "slug"}})
-     * @Extra\Template()
-     */
-    public function backlogAction(Project $project)
-    {
-        return array('project' => $project);
-    }
 
     /**
      * @Extra\Route("/us/{id}", name="story_show", requirements={"id" = "\d+"})

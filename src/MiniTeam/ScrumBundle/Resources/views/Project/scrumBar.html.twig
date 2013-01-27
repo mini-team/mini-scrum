@@ -31,7 +31,7 @@
 
         <div class="pagination pagination-large pagination-centered">
             <ul>
-                {{ menu.item('Backlog', path('project_backlog', { 'project': project.slug }), nb_product_backlog, 'product-backlog', activeTab) }}
+                {{ menu.item('Backlog', '', nb_product_backlog, 'product-backlog', activeTab) }}
 
                 {{ menu.item('Sprint backlog', 'badge-warning', nb_sprint_backlog, 'sprint-backlog', activeTab) }}
 
@@ -51,11 +51,9 @@
         <div class="pagination pagination-large">
             <ul>
                 <li class="{% if activeTab == 'us' %}active{% endif %}">
-                    <a href="#" class="centered">
                         User
                         <br>
                         Story
-                    </a>
                 </li>
             </ul>
         </div>
