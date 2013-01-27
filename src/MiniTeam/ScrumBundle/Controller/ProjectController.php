@@ -12,14 +12,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 class ProjectController extends Controller
 {
     /**
-     * @Extra\Route("/{name}")
+     * @Extra\Route("/{project}", name="project_show")
+     * @Extra\ParamConverter("project", options={ "mapping": { "project": "slug" } })
      * @Extra\Template()
      */
     public function showAction(Project $project = null)
     {
         if (null == $project) {
             $project = $this->getUser()->getSelectedProject();
-            $url     = $this->generateUrl('miniteam_scrum_project_show', array('name' => $project->getName()));
+            $url     = $this->generateUrl('project_show', array('project' => $project->getSlug()));
 
             return $this->redirect($url);
         }
@@ -30,21 +31,21 @@ class ProjectController extends Controller
     /**
      * @Extra\Template()
      */
-    public function scrumBarAction($projectName,$activeTab)
+    public function scrumBarAction($project, $activeTab)
     {
 
         $usRepo = $this->getDoctrine()->getRepository('MiniTeamScrumBundle:UserStory');
 
         //TODO do it in one request
-        $nb_product_backlog = $usRepo->countUserStoriesWithStatus($projectName,'product-backlog');
-        $nb_sprint_backlog = $usRepo->countUserStoriesWithStatus($projectName,'sprint-backlog');
-        $nb_doing = $usRepo->countUserStoriesWithStatus($projectName,'doing');
-        $nb_blocked = $usRepo->countUserStoriesWithStatus($projectName,'blocked');
-        $nb_to_validate = $usRepo->countUserStoriesWithStatus($projectName,'to-validate');
-        $nb_done = $usRepo->countUserStoriesWithStatus($projectName,'done');
+        $nb_product_backlog = $usRepo->countUserStoriesWithStatus($project,'product-backlog');
+        $nb_sprint_backlog = $usRepo->countUserStoriesWithStatus($project,'sprint-backlog');
+        $nb_doing = $usRepo->countUserStoriesWithStatus($project,'doing');
+        $nb_blocked = $usRepo->countUserStoriesWithStatus($project,'blocked');
+        $nb_to_validate = $usRepo->countUserStoriesWithStatus($project,'to-validate');
+        $nb_done = $usRepo->countUserStoriesWithStatus($project,'done');
 
         return array(
-            'projectName' => $projectName,
+            'projectName' => $project,
             'activeTab'=>$activeTab,
             'nb_product_backlog'=>$nb_product_backlog,
             'nb_sprint_backlog'=>$nb_sprint_backlog,
@@ -53,6 +54,7 @@ class ProjectController extends Controller
             'nb_to_validate'=>$nb_to_validate,
             'nb_done'=>$nb_done,
         );
+
     }
     
 

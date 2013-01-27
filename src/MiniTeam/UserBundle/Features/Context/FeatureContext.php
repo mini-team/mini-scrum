@@ -9,10 +9,7 @@ use Behat\Gherkin\Node\PyStringNode,
     Behat\Gherkin\Node\TableNode;
 
 use Assert\Assertion;
-use Behat\CommonContexts\SymfonyDoctrineContext;
-use Behat\MinkExtension\Context\MinkContext;
 use Behat\Symfony2Extension\Context\KernelAwareInterface;
-use MiniTeam\Features\Context\MiniScrumContext;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 
@@ -35,10 +32,6 @@ class FeatureContext extends BehatContext
     {
         $this->parameters = $parameters;
         $this->assertion = new Assertion();
-
-        $this->useContext('symfony_doctrine', new SymfonyDoctrineContext());
-        $this->useContext('mink', new MinkContext());
-        $this->useContext('mini_scrum', new MiniScrumContext());
     }
 
     /**

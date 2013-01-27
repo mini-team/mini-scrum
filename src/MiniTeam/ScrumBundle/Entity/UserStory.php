@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class UserStory
 {
-	
+
 	const PRODUCT_BACKLOG = 'product-backlog';
     const SPRINT_BACKLOG  = 'sprint-backlog';
     const DOING           = 'doing';
@@ -38,6 +38,13 @@ class UserStory
      * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      */
     protected $project;
+
+    /**
+     * @var Integer
+     *
+     * @ORM\Column(name="project_id", type="integer")
+     */
+    protected $projectId;
     
     /**
      * @var string
@@ -49,21 +56,21 @@ class UserStory
     /**
      * @var string
      *
-     * @ORM\Column(name="details", type="text")
+     * @ORM\Column(name="details", type="text", nullable=true)
      */
     private $details;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="points", type="integer")
+     * @ORM\Column(name="points", type="integer", nullable=true)
      */
     private $points;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="number", type="integer")
+     * @ORM\Column(name="number", type="integer", nullable=true)
      */
     private $number;
 
@@ -86,8 +93,15 @@ class UserStory
     }
 
     /**
+<<<<<<< HEAD
      * Set project
+=======
+     * Set the project
+     *
+>>>>>>> add-user-story
      * @param \MiniTeam\ScrumBundle\Entity\Project $project
+     *
+     * @return UserStory
      */
     public function setProject(Project $project)
     {
@@ -97,11 +111,33 @@ class UserStory
     }
 
     /**
+     * Get the project
+     *
      * @return \MiniTeam\ScrumBundle\Entity\Project
      */
     public function getProject()
     {
         return $this->project;
+    }
+
+    /**
+     * @param int $projectId
+     *
+     * @return UserStory
+     */
+    public function setProjectId($projectId)
+    {
+        $this->projectId = $projectId;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getProjectId()
+    {
+        return $this->projectId;
     }
     
     /**

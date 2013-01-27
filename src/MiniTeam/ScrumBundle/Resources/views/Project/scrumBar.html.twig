@@ -1,7 +1,8 @@
 
 {% macro item(label, badgeClass,ticketNumber, tabName, activeTab) %}
+
     <li class="{% if tabName == activeTab %}active{% endif %}">
-        <a href="{{ path('miniteam_scrum_story_list', { 'name': app.user.selectedProject,'status':tabName }) }}" class="centered">
+        <a href="{{ path('miniteam_scrum_story_list', { 'project': app.user.selectedProject,'status':tabName }) }}" class="centered">
             {{ label }}
             <br>
             <span class="badge {% if ticketNumber >0 %}{{badgeClass}}{% endif %}">{{ ticketNumber }}</span>
@@ -31,7 +32,7 @@
         <div class="pagination pagination-large pagination-centered">
             <ul>
                 {{ menu.item( 'Backlog','',nb_product_backlog,'product-backlog', activeTab) }}
-                
+
                 {{ menu.item( 'Sprint backlog', 'badge-warning',nb_sprint_backlog,'sprint-backlog',activeTab) }}
                 
                 {{ menu.item( 'Doing', 'badge-info',nb_doing,'doing',activeTab) }}

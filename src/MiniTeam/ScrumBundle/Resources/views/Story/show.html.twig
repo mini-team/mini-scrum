@@ -2,7 +2,7 @@
 
 {% block body %}
 
-    {{ render(controller('MiniTeamScrumBundle:Project:scrumBar', { 'projectName': projectName ,'activeTab':'us'})) }}
+    {{ render(controller('MiniTeamScrumBundle:Project:scrumBar', { 'project': project.slug, 'activeTab': 'us'})) }}
 
     <div class="well">
         <div class="row">

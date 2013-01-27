@@ -2,7 +2,7 @@
 
 {% block body %}
 
-    {{ render(controller('MiniTeamScrumBundle:Project:scrumBar', { 'projectName': projectName ,'activeTab':status})) }}
+    {{ render(controller('MiniTeamScrumBundle:Project:scrumBar', { 'project': project.slug, 'activeTab': status })) }}
 
     {% set offset = '' %}
     {% if status == constant('MiniTeam\\ScrumBundle\\Entity\\UserStory::SPRINT_BACKLOG') %}
@@ -27,7 +27,7 @@
 
             {%  for story in stories %}
 
-            <a href="{{ path('miniteam_scrum_story_show', { 'projectName': projectName,'id': story.id }) }}">
+            <a href="{{ path('story_show', { 'project': project.slug,'id': story.id }) }}">
                 <div class="well">
                     <p class="text-info pull-right">{{ story.points }} pts</p>
                     <span class="gray-text">#{{ story.number }}</span>
