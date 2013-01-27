@@ -38,5 +38,5 @@ Feature: User story features
     And I am working on the story "2"
     And I am on "/mini-scrum/us/2"
     When I deliver the user story
-    Then I should see "to_validate" in the "#status" element
+    Then I should see "to-validate" in the "#status" element
     And I should see "mini" in the "#assignee" element
