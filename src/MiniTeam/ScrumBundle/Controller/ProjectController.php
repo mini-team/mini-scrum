@@ -12,14 +12,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 class ProjectController extends Controller
 {
     /**
-     * @Extra\Route("/{name}")
+     * @Extra\Route("/{project}", name="project_show")
+     * @Extra\ParamConverter("project", options={ "mapping": { "project": "slug" } })
      * @Extra\Template()
      */
     public function showAction(Project $project = null)
     {
         if (null == $project) {
             $project = $this->getUser()->getSelectedProject();
-            $url     = $this->generateUrl('miniteam_scrum_project_show', array('name' => $project->getName()));
+            $url     = $this->generateUrl('project_show', array('project' => $project->getSlug()));
 
             return $this->redirect($url);
         }
@@ -30,10 +31,14 @@ class ProjectController extends Controller
     /**
      * @Extra\Template()
      */
-    public function scrumBarAction($projectName,$activeTab)
+    public function scrumBarAction($project, $activeTab)
     {
+        $project = $this->getDoctrine()
+            ->getRepository('MiniTeamScrumBundle:Project')
+            ->findOneBySlug($project);
+
         //TODO get real scrum bar information
-        return array('projectName' => $projectName,'activeTab'=>$activeTab);
+        return array('project' => $project, 'activeTab'=>$activeTab);
     }
     
 

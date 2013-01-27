@@ -20,12 +20,13 @@ use Symfony\Component\Form\Form;
 class StoryController extends Controller
 {
     /**
-     * @Extra\Route("/backlog")
+     * @Extra\Route("/backlog", name="project_backlog")
+     * @Extra\ParamConverter("project", options={"mapping": {"project": "slug"}})
      * @Extra\Template()
      */
-    public function backlogAction($projectName)
+    public function backlogAction(Project $project)
     {
-        return array('projectName' => $projectName);
+        return array('project' => $project);
     }
 
     /**
@@ -34,7 +35,7 @@ class StoryController extends Controller
      */
     public function showAction(UserStory $story)
     {
-        return array('projectName' => $story->getProject(), 'story' => $story);
+        return array('project' => $story->getProject(), 'story' => $story);
     }
 
     /**
