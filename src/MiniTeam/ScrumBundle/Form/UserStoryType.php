@@ -47,8 +47,9 @@ class UserStoryType extends AbstractType
     public function getStatuses()
     {
         $class = new \ReflectionClass('MiniTeam\ScrumBundle\Entity\UserStory');
+        $constants = $class->getConstants();
 
-        return $class->getConstants();
+        return array_combine($constants, $constants);
     }
 
     /**
