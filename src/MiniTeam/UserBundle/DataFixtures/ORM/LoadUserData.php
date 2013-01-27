@@ -48,7 +48,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $manager->persist($edouard);
         $manager->persist($benjamin);
         $manager->flush();
-        
+
         $this->addReference('product-owner', $productOwner);
         $this->addReference('scrum-master', $scrumMaster);
         $this->addReference('first-developer', $edouard);

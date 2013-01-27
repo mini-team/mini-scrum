@@ -5,6 +5,7 @@ namespace MiniTeam\ScrumBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use MiniTeam\ScrumBundle\Entity\Project;
 use MiniTeam\ScrumBundle\Entity\UserStory;
 
 /**
@@ -21,25 +22,26 @@ class LoadUserStoryData extends AbstractFixture implements OrderedFixtureInterfa
      */
     public function load(ObjectManager $manager)
     {
-        $user_story = new UserStory();
-        $user_story->setTitle('ETQ user ceci est une user story fixture');
-        $user_story->setDetails('plein de détails croustillants');
-        $user_story->setPoints(3);
-        $user_story->setStatus(UserStory::PRODUCT_BACKLOG);
-        $user_story->setNumber(12);
-        $user_story->setProject($this->getReference('main-project'));
+        $firstStory = $this->createStory(
+            'ETQ user ceci est une user story fixture',
+            $this->getReference('main-project'),
+            'plein de détails croustillants',
+            3,
+            UserStory::PRODUCT_BACKLOG,
+            12
+        );
 
-        $manager->persist($user_story);
+        $secondStory = $this->createStory(
+            'ETQ user je peux avoir accès à mini-scrum',
+            $this->getReference('main-project'),
+            'depuis n\'importe où (entre autres)',
+            2,
+            UserStory::SPRINT_BACKLOG,
+            2
+        );
 
-        $user_story_2 = new UserStory();
-        $user_story_2->setTitle('ETQ user je peux avoir accès à mini-scrum');
-        $user_story_2->setDetails('depuis n\'importe où (entre autres)');
-        $user_story_2->setPoints(2);
-        $user_story_2->setStatus(UserStory::SPRINT_BACKLOG);
-        $user_story_2->setNumber(2);
-        $user_story_2->setProject($this->getReference('main-project'));
-
-        $manager->persist($user_story_2);
+        $manager->persist($firstStory);
+        $manager->persist($secondStory);
 
         $user_story_3 = new UserStory();
         $user_story_3->setTitle('ETQ user cette user story est à valider');
@@ -52,6 +54,32 @@ class LoadUserStoryData extends AbstractFixture implements OrderedFixtureInterfa
         $manager->persist($user_story_3);
 
         $manager->flush();
+    }
+
+    /**
+     * Create a user story
+     *
+     * @param                                      $title
+     * @param \MiniTeam\ScrumBundle\Entity\Project $project
+     * @param null                                 $details
+     * @param null                                 $points
+     * @param null                                 $status
+     * @param null                                 $number
+     *
+     * @return \MiniTeam\ScrumBundle\Entity\UserStory
+     */
+    protected function createStory($title, Project $project, $details = null, $points = null, $status = null, $number = null)
+    {
+        $story = new UserStory();
+        $story->setTitle($title)
+            ->setProject($project)
+            ->setDetails($details)
+            ->setPoints($points)
+            ->setStatus($status)
+            ->setNumber($number)
+        ;
+
+        return $story;
     }
 
     /**

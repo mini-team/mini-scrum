@@ -26,4 +26,17 @@ class Project extends ObjectBehavior
         $this->getScrumMaster()->shoudReturnAnInstanceOf('\MiniTeam\UserBundle\Entity\User');
         $this->getUsers()->shouldHaveCount(1);
     }
+
+    /**
+     * @param \MiniTeam\UserBundle\Entity\User $firstDeveloper
+     * @param \MiniTeam\UserBundle\Entity\User $secondeDeveloper
+     */
+    function it_shoud_add_a_developer($firstDeveloper, $secondeDeveloper)
+    {
+        $this->addDeveloper($firstDeveloper);
+        $this->getDevelopers()->shouldHaveCount(1);
+
+        $this->addDeveloper($secondeDeveloper);
+        $this->getDevelopers()->shouldHaveCount(2);
+    }
 }

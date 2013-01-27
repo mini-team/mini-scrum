@@ -3,6 +3,8 @@
 namespace MiniTeam\ScrumBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use MiniTeam\ScrumBundle\Entity\Project;
+use MiniTeam\UserBundle\Entity\User;
 
 /**
  * UserStory
@@ -14,14 +16,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class UserStory
 {
-
-	const PRODUCT_BACKLOG = 'product-backlog';
+    const PRODUCT_BACKLOG = 'product-backlog';
     const SPRINT_BACKLOG  = 'sprint-backlog';
     const DOING           = 'doing';
     const BLOCKED         = 'blocked';
     const TO_VALIDATE     = 'to-validate';
     const DONE            = 'done';
-    
+
     /**
      * @var integer
      *
@@ -29,7 +30,7 @@ class UserStory
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var Project
@@ -45,47 +46,54 @@ class UserStory
      * @ORM\Column(name="project_id", type="integer")
      */
     protected $projectId;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="title", type="text")
      */
-    private $title;
+    protected $title;
 
     /**
      * @var string
      *
      * @ORM\Column(name="details", type="text", nullable=true)
      */
-    private $details;
+    protected $details;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="points", type="integer", nullable=true)
      */
-    private $points;
+    protected $points;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="number", type="integer", nullable=true)
      */
-    private $number;
+    protected $number;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="status", type="string",length=20)
      */
-    private $status;
+    protected $status;
 
-    
+    /**
+     * @var \MiniTeam\UserBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="MiniTeam\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    protected $assignee;
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -93,12 +101,8 @@ class UserStory
     }
 
     /**
-<<<<<<< HEAD
-     * Set project
-=======
      * Set the project
      *
->>>>>>> add-user-story
      * @param \MiniTeam\ScrumBundle\Entity\Project $project
      *
      * @return UserStory
@@ -139,24 +143,24 @@ class UserStory
     {
         return $this->projectId;
     }
-    
+
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string    $title
      * @return UserStory
      */
     public function setTitle($title)
     {
         $this->title = $title;
-    
+
         return $this;
     }
 
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -166,20 +170,20 @@ class UserStory
     /**
      * Set details
      *
-     * @param string $details
+     * @param  string    $details
      * @return UserStory
      */
     public function setDetails($details)
     {
         $this->details = $details;
-    
+
         return $this;
     }
 
     /**
      * Get details
      *
-     * @return string 
+     * @return string
      */
     public function getDetails()
     {
@@ -189,20 +193,20 @@ class UserStory
     /**
      * Set points
      *
-     * @param integer $points
+     * @param  integer   $points
      * @return UserStory
      */
     public function setPoints($points)
     {
         $this->points = $points;
-    
+
         return $this;
     }
 
     /**
      * Get points
      *
-     * @return integer 
+     * @return integer
      */
     public function getPoints()
     {
@@ -212,20 +216,20 @@ class UserStory
     /**
      * Set number
      *
-     * @param integer $number
+     * @param  integer   $number
      * @return UserStory
      */
     public function setNumber($number)
     {
         $this->number = $number;
-    
+
         return $this;
     }
 
     /**
      * Get number
      *
-     * @return integer 
+     * @return integer
      */
     public function getNumber()
     {
@@ -235,24 +239,98 @@ class UserStory
     /**
      * Set status
      *
-     * @param integer $status
+     * @param  string    $status
      * @return UserStory
      */
     public function setStatus($status)
     {
         $this->status = $status;
-    
+
         return $this;
     }
 
     /**
      * Get status
      *
-     * @return integer 
+     * @return string
      */
     public function getStatus()
     {
         return $this->status;
     }
 
+    /**
+     * @param \MiniTeam\UserBundle\Entity\User $assignee
+     *
+     * @return UserStory
+     */
+    public function setAssignee(User $assignee)
+    {
+        $this->assignee = $assignee;
+
+        return $this;
+    }
+
+    /**
+     * @return \MiniTeam\UserBundle\Entity\User
+     */
+    public function getAssignee()
+    {
+        return $this->assignee;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAssigned()
+    {
+        return $this->assignee instanceof User;
+    }
+
+    /**
+     * Check if the US is assignable.
+     * The user story is assignable if it is in the sprint backlog,
+     * if it is in the product backlog or done it's not possible
+     * to assign it, if it is already in progress or to validate
+     * it's not possible to assign it either has it is already done.
+     *
+     * @return bool
+     */
+    public function isAssignable()
+    {
+        return $this->status == self::SPRINT_BACKLOG;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isInProgress()
+    {
+        return $this->status == self::DOING;
+    }
+
+    /**
+     * The user story starts, and it is assigned to a user.
+     *
+     * @param \MiniTeam\UserBundle\Entity\User $user
+     */
+    public function starts(User $user)
+    {
+        $this->setAssignee($user);
+        $this->setStatus(self::DOING);
+    }
+
+    /**
+     * Deliver the user story.
+     * The status changes to "to validate"
+     * and it is assigned to the product owner
+     */
+    public function deliver()
+    {
+        if (null !== ($user = $this->getProject()->getProductOwner())) {
+            $this->setAssignee($user);
+        }
+
+        $this->setStatus(self::TO_VALIDATE);
+    }
 }

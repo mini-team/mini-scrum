@@ -27,35 +27,37 @@ class ProjectController extends Controller
 
         return array('project' => $project);
     }
-    
+
     /**
      * @Extra\Template()
      */
     public function scrumBarAction($project, $activeTab)
     {
+        $project = $this->getDoctrine()
+            ->getRepository('MiniTeamScrumBundle:Project')
+            ->findOneBySlug($project);
 
         $usRepo = $this->getDoctrine()->getRepository('MiniTeamScrumBundle:UserStory');
 
         //TODO do it in one request
-        $nb_product_backlog = $usRepo->countUserStoriesWithStatus($project,'product-backlog');
-        $nb_sprint_backlog = $usRepo->countUserStoriesWithStatus($project,'sprint-backlog');
-        $nb_doing = $usRepo->countUserStoriesWithStatus($project,'doing');
-        $nb_blocked = $usRepo->countUserStoriesWithStatus($project,'blocked');
-        $nb_to_validate = $usRepo->countUserStoriesWithStatus($project,'to-validate');
-        $nb_done = $usRepo->countUserStoriesWithStatus($project,'done');
+        $nb_product_backlog = $usRepo->countUserStoriesWithStatus($project, 'product-backlog');
+        $nb_sprint_backlog  = $usRepo->countUserStoriesWithStatus($project, 'sprint-backlog');
+        $nb_doing           = $usRepo->countUserStoriesWithStatus($project, 'doing');
+        $nb_blocked         = $usRepo->countUserStoriesWithStatus($project, 'blocked');
+        $nb_to_validate     = $usRepo->countUserStoriesWithStatus($project, 'to-validate');
+        $nb_done            = $usRepo->countUserStoriesWithStatus($project, 'done');
 
         return array(
-            'projectName' => $project,
-            'activeTab'=>$activeTab,
-            'nb_product_backlog'=>$nb_product_backlog,
-            'nb_sprint_backlog'=>$nb_sprint_backlog,
-            'nb_doing'=>$nb_doing,
-            'nb_blocked'=>$nb_blocked,
-            'nb_to_validate'=>$nb_to_validate,
-            'nb_done'=>$nb_done,
+            'project'            => $project,
+            'activeTab'          => $activeTab,
+            'nb_product_backlog' => $nb_product_backlog,
+            'nb_sprint_backlog'  => $nb_sprint_backlog,
+            'nb_doing'           => $nb_doing,
+            'nb_blocked'         => $nb_blocked,
+            'nb_to_validate'     => $nb_to_validate,
+            'nb_done'            => $nb_done,
         );
 
     }
-    
 
 }
