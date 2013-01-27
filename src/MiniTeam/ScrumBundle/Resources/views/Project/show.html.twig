@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    {{ render(controller('MiniTeamScrumBundle:Project:scrumBar', { 'projectName': project.name ,'activeTab':'home'})) }}
+    {{ render(controller('MiniTeamScrumBundle:Project:scrumBar', { 'project': project.slug, 'activeTab': 'home'})) }}
 
     <div class="row-fluid">
         <div class="span4 well" id="members">
