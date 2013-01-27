@@ -12,7 +12,6 @@ use Assert\Assertion;
 use Behat\Symfony2Extension\Context\KernelAwareInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 
-
 /**
  * Features context.
  */

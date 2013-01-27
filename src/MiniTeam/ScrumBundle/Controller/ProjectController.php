@@ -27,7 +27,7 @@ class ProjectController extends Controller
 
         return array('project' => $project);
     }
-    
+
     /**
      * @Extra\Template()
      */
@@ -40,6 +40,5 @@ class ProjectController extends Controller
         //TODO get real scrum bar information
         return array('project' => $project, 'activeTab' => $activeTab);
     }
-    
 
 }

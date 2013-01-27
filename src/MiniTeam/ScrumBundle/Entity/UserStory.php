@@ -22,7 +22,7 @@ class UserStory
     const BLOCKED         = 'blocked';
     const TO_VALIDATE     = 'to_validate';
     const DONE            = 'done';
-    
+
     /**
      * @var integer
      *
@@ -46,7 +46,7 @@ class UserStory
      * @ORM\Column(name="project_id", type="integer")
      */
     protected $projectId;
-    
+
     /**
      * @var string
      *
@@ -93,7 +93,7 @@ class UserStory
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -143,24 +143,24 @@ class UserStory
     {
         return $this->projectId;
     }
-    
+
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string    $title
      * @return UserStory
      */
     public function setTitle($title)
     {
         $this->title = $title;
-    
+
         return $this;
     }
 
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -170,20 +170,20 @@ class UserStory
     /**
      * Set details
      *
-     * @param string $details
+     * @param  string    $details
      * @return UserStory
      */
     public function setDetails($details)
     {
         $this->details = $details;
-    
+
         return $this;
     }
 
     /**
      * Get details
      *
-     * @return string 
+     * @return string
      */
     public function getDetails()
     {
@@ -193,20 +193,20 @@ class UserStory
     /**
      * Set points
      *
-     * @param integer $points
+     * @param  integer   $points
      * @return UserStory
      */
     public function setPoints($points)
     {
         $this->points = $points;
-    
+
         return $this;
     }
 
     /**
      * Get points
      *
-     * @return integer 
+     * @return integer
      */
     public function getPoints()
     {
@@ -216,20 +216,20 @@ class UserStory
     /**
      * Set number
      *
-     * @param integer $number
+     * @param  integer   $number
      * @return UserStory
      */
     public function setNumber($number)
     {
         $this->number = $number;
-    
+
         return $this;
     }
 
     /**
      * Get number
      *
-     * @return integer 
+     * @return integer
      */
     public function getNumber()
     {
@@ -239,20 +239,20 @@ class UserStory
     /**
      * Set status
      *
-     * @param integer $status
+     * @param  integer   $status
      * @return UserStory
      */
     public function setStatus($status)
     {
         $this->status = $status;
-    
+
         return $this;
     }
 
     /**
      * Get status
      *
-     * @return integer 
+     * @return integer
      */
     public function getStatus()
     {

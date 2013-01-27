@@ -7,10 +7,7 @@ use Behat\Behat\Context\BehatContext,
 use Behat\Gherkin\Node\PyStringNode,
     Behat\Gherkin\Node\TableNode;
 
-use Behat\CommonContexts\SymfonyDoctrineContext;
 use Behat\Symfony2Extension\Context\KernelAwareInterface;
-use MiniTeam\Features\Context\MiniScrumContext;
-use MiniTeam\UserBundle\Features\Context\FeatureContext as UserBundleContext;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 /**

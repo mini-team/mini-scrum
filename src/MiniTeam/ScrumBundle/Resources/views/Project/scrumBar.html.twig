@@ -24,28 +24,28 @@
             </ul>
         </div>
     </div>
-        
+
     <div class="span10">
-                    
+
         <div class="pagination pagination-large pagination-centered">
             <ul>
                 {{ menu.item('Backlog', path('project_backlog', { 'project': project.slug }),'',24,'backlog', activeTab) }}
-                
+
                 {{ menu.item('Sprint backlog','#','badge-warning',12,'sprintBacklog',activeTab) }}
-                
+
                 {{ menu.item('Doing','#','badge-info',3,'doing',activeTab) }}
-                
+
                 {{ menu.item('Blocked','#','badge-important',1,'blocked',activeTab) }}
-                
+
                 {{ menu.item('To validate','#','badge-success',2,'toValidate',activeTab) }}
-                
+
                 {{ menu.item('Done','#','',8,'done',activeTab) }}
- 
+
             </ul>
         </div>
 
     </div>
-    
+
     <div class="span1">
         <div class="pagination pagination-large">
             <ul>
@@ -60,4 +60,3 @@
         </div>
     </div>
 </div>
-
