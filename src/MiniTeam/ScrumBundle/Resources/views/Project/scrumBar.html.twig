@@ -17,7 +17,7 @@
         <div class="pagination pagination-large pagination-centered">
             <ul>
                 <li class="{% if activeTab == 'home' %}active{% endif %}">
-                    <a href="#" class="centered">
+                    <a href="{{ path('project_show', {'project':project}) }}" class="centered">
                         Home
                         <br>
                         <i class="icon-home"></i>
