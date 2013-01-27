@@ -1,0 +1,44 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+    {{ render(controller('MiniTeamScrumBundle:Project:scrumBar', { 'project': project.slug,'activeTab':'us'})) }}
+
+    <form action="" method="post" class="form-horizontal">
+        <h3>New story</h3>
+
+        <div class="control-group">
+            {{ form_label(form.title, 'Title', { 'label_attr': { 'class': 'control-label' } }) }}
+            <div class="controls">
+                {{ form_widget(form.title) }}
+            </div>
+        </div>
+
+        <div class="control-group">
+            {{ form_label(form.details, 'Details', { 'label_attr': { 'class': 'control-label' } }) }}
+            <div class="controls">
+                {{ form_widget(form.details) }}
+            </div>
+        </div>
+
+        <div class="control-group">
+            {{ form_label(form.points, 'Estimated complexity', { 'label_attr': { 'class': 'control-label' } }) }}
+            <div class="controls">
+                {{ form_widget(form.points) }}
+            </div>
+        </div>
+
+        <div class="control-group">
+            {{ form_label(form.status, 'Status', { 'label_attr': { 'class': 'control-label' } }) }}
+            <div class="controls">
+                {{ form_widget(form.status) }}
+            </div>
+        </div>
+
+        {{ form_rest(form) }}
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn">Cancel</button>
+        </div>
+    </form>
+{% endblock %}

@@ -8,7 +8,6 @@ use Behat\Gherkin\Node\PyStringNode,
     Behat\Gherkin\Node\TableNode;
 
 use Behat\CommonContexts\SymfonyDoctrineContext;
-use Behat\MinkExtension\Context\MinkContext;
 use Behat\Symfony2Extension\Context\KernelAwareInterface;
 use MiniTeam\Features\Context\MiniScrumContext;
 use MiniTeam\UserBundle\Features\Context\FeatureContext as UserBundleContext;
@@ -31,9 +30,6 @@ class FeatureContext extends BehatContext
     public function __construct(array $parameters)
     {
         $this->parameters = $parameters;
-        $this->useContext('symfony_doctrine', new SymfonyDoctrineContext());
-        $this->useContext('mini_scrum', new MiniScrumContext());
-        $this->useContext('user', new UserBundleContext(array()));
     }
 
     /**
