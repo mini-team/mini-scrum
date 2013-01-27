@@ -76,6 +76,11 @@ class Project
     protected $scrumMaster;
 
     /**
+     * @var ArrayCollection
+     */
+    protected $developers;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -214,5 +219,26 @@ class Project
     public function getScrumMaster()
     {
         return $this->scrumMaster;
+    }
+
+    /**
+     * @param \MiniTeam\UserBundle\Entity\User $user
+     */
+    public function addDeveloper(User $user)
+    {
+        $this->getDevelopers()->add($user);
+        $this->addUser($user, Membership::DEVELOPER);
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection|\Doctrine\Common\Collections\Collection
+     */
+    public function getDevelopers()
+    {
+        if (null === $this->developers) {
+            $this->developers = $this->memberships->map(function ($membership) { return $membership->getRole() == Membership::DEVELOPER; });
+        }
+
+        return $this->developers;
     }
 }
