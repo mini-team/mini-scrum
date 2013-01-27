@@ -15,11 +15,11 @@ use Doctrine\ORM\Mapping as ORM;
 class UserStory
 {
 	
-	const PRODUCT_BACKLOG = 'product_backlog';
-    const SPRINT_BACKLOG  = 'sprint_backlog';
+	const PRODUCT_BACKLOG = 'product-backlog';
+    const SPRINT_BACKLOG  = 'sprint-backlog';
     const DOING           = 'doing';
     const BLOCKED         = 'blocked';
-    const TO_VALIDATE     = 'to_validate';
+    const TO_VALIDATE     = 'to-validate';
     const DONE            = 'done';
     
     /**
@@ -86,6 +86,7 @@ class UserStory
     }
 
     /**
+     * Set project
      * @param \MiniTeam\ScrumBundle\Entity\Project $project
      */
     public function setProject(Project $project)
@@ -217,4 +218,5 @@ class UserStory
     {
         return $this->status;
     }
+
 }

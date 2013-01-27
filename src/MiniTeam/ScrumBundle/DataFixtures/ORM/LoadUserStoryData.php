@@ -41,6 +41,16 @@ class LoadUserStoryData extends AbstractFixture implements OrderedFixtureInterfa
 
         $manager->persist($user_story_2);
 
+        $user_story_3 = new UserStory();
+        $user_story_3->setTitle('ETQ user cette user story est à valider');
+        $user_story_3->setDetails('bien regarder la définition du done');
+        $user_story_3->setPoints(5);
+        $user_story_3->setStatus(UserStory::TO_VALIDATE);
+        $user_story_3->setNumber(3);
+        $user_story_3->setProject($this->getReference('main-project'));
+
+        $manager->persist($user_story_3);
+
         $manager->flush();
     }
 
