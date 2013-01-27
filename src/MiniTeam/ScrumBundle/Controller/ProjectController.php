@@ -38,7 +38,7 @@ class ProjectController extends Controller
             ->findOneBySlug($project);
 
         //TODO get real scrum bar information
-        return array('project' => $project, 'activeTab'=>$activeTab);
+        return array('project' => $project, 'activeTab' => $activeTab);
     }
     
 

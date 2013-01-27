@@ -2,7 +2,7 @@
 
 {% block body %}
 
-    {{ render(controller('MiniTeamScrumBundle:Project:scrumBar', { 'projectName': project.name ,'activeTab':'us'})) }}
+    {{ render(controller('MiniTeamScrumBundle:Project:scrumBar', { 'project': project.slug,'activeTab':'us'})) }}
 
     <form action="" method="post" class="form-horizontal">
         <h3>New story</h3>

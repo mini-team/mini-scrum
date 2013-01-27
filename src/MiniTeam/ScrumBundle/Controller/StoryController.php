@@ -15,7 +15,7 @@ use Symfony\Component\Form\Form;
  * @author Benjamin Grandfond <benjamin.grandfond@gmail.com>
  * @author Edouard de Labareyre <edouard@melix.net>
  *
- * @Extra\Route("/{projectName}")
+ * @Extra\Route("/{project}")
  */
 class StoryController extends Controller
 {
@@ -40,7 +40,7 @@ class StoryController extends Controller
 
     /**
      * @Extra\Route("/us/new", name="story_new")
-     * @Extra\ParamConverter("project", options={"mapping": {"projectName": "name"}})
+     * @Extra\ParamConverter("project", options={"mapping": {"project": "name"}})
      * @Extra\Template()
      */
     public function newAction(Project $project, Request $request)
@@ -84,7 +84,7 @@ class StoryController extends Controller
                 $this->generateUrl(
                     'story_show',
                     array(
-                        'projectName' => $story->getProject()->getName(),
+                        'project' => $story->getProject()->getSlug(),
                         'id' => $story->getId()
                     )
                 )

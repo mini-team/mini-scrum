@@ -31,7 +31,7 @@
                 <div class="pull-right">
                     <a href="{{ path('project_show', {'project': app.user.selectedProject.slug}) }}">{{ app.user.selectedProject ~ ' (' ~ app.user.projectRole ~ ')' }}</a>
                     {# later on, action button here could depend on user role #}
-                    <a href="{{ path('story_new', { 'projectName': app.user.selectedProject.name }) }}" class="btn btn-success"><i class="icon-pencil icon-white"></i> Add user story</a>
+                    <a href="{{ path('story_new', { 'project': app.user.selectedProject.name }) }}" class="btn btn-success"><i class="icon-pencil icon-white"></i> Add user story</a>
                 </div>
 
                 <p class="navbar-text"><i class="icon-user"></i> {{ app.user.username }}</p>
