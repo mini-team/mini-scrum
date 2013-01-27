@@ -3,6 +3,8 @@
 namespace MiniTeam\ScrumBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use MiniTeam\ScrumBundle\Entity\Project;
+use MiniTeam\UserBundle\Entity\User;
 
 /**
  * UserStory
@@ -28,7 +30,7 @@ class UserStory
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var Project
@@ -50,37 +52,44 @@ class UserStory
      *
      * @ORM\Column(name="title", type="text")
      */
-    private $title;
+    protected $title;
 
     /**
      * @var string
      *
      * @ORM\Column(name="details", type="text", nullable=true)
      */
-    private $details;
+    protected $details;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="points", type="integer", nullable=true)
      */
-    private $points;
+    protected $points;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="number", type="integer", nullable=true)
      */
-    private $number;
+    protected $number;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="status", type="string",length=20)
      */
-    private $status;
+    protected $status;
 
-    
+    /**
+     * @var \MiniTeam\UserBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="MiniTeam\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    protected $assignee;
+
     /**
      * Get id
      *
@@ -248,5 +257,58 @@ class UserStory
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * @param \MiniTeam\UserBundle\Entity\User $assignee
+     *
+     * @return UserStory
+     */
+    public function setAssignee(User $assignee)
+    {
+        $this->assignee = $assignee;
+
+        return $this;
+    }
+
+    /**
+     * @return \MiniTeam\UserBundle\Entity\User
+     */
+    public function getAssignee()
+    {
+        return $this->assignee;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAssigned()
+    {
+        return $this->assignee instanceof User;
+    }
+
+    /**
+     * Check if the US is assignable.
+     * The user story is assignable if it is in the sprint backlog,
+     * if it is in the product backlog or done it's not possible
+     * to assign it, if it is already in progress or to validate
+     * it's not possible to assign it either has it is already done.
+     *
+     * @return bool
+     */
+    public function isAssignable()
+    {
+        return $this->status == self::SPRINT_BACKLOG;
+    }
+
+    /**
+     * The user story starts, and it is assigned to a user.
+     *
+     * @param \MiniTeam\UserBundle\Entity\User $user
+     */
+    public function starts(User $user)
+    {
+        $this->setAssignee($user);
+        $this->setStatus(self::DOING);
     }
 }

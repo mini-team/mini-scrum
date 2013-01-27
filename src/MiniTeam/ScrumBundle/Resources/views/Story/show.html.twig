@@ -24,21 +24,24 @@
     </div>
 
     <!-- gestion du statut de la user story -->
-    {#
+
     <div class="row">
         <div class="span2">
             <div class="btn btn-danger">Blocked</div>
         </div>
         <div class="span8 centered">
-            <span class="label label-info">Doing</span>
-            <br>
-            (Benjamin)
+            <span class="label label-info" id="status">{{ story.status }}</span>
+            {% if story.isAssigned %}
+                <br><span id="assignee">{{ story.assignee.username }}</span>
+            {% elseif story.isAssignable %}
+                <a class="btn btn-primary" href="{{ path('story_start', { 'project': project.slug, 'id': story.id }) }}">Start</a>
+            {% endif %}
         </div>
         <div class="span2 align-right">
             <div class="btn btn-success">To validate</div>
         </div>
     </div>
-    #}
+
     <hr>
 
     <!--fil de commentaires -->

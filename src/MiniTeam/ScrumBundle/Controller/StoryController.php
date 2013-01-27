@@ -91,4 +91,25 @@ class StoryController extends Controller
             );
         }
     }
+
+    /**
+     * @Extra\Route("/us/{id}/start", name="story_start")
+     *
+     * @param \MiniTeam\ScrumBundle\Entity\UserStory $story
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function startAction(UserStory $story)
+    {
+        $story->starts($this->getUser());
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($story);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('story_show', array(
+            'project' => $story->getProject()->getSlug(),
+            'id' => $story->getId()
+        )));
+    }
 }
