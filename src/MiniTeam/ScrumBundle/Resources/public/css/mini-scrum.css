@@ -40,3 +40,10 @@
 .full-width{
     width: 100%;
 }
+
+/** Forms **/
+input[type="text"].input-large {
+    font-size: 25px;
+    height: 45px;
+    line-height: 45px;
+}
