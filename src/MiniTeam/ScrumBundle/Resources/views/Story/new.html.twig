@@ -15,6 +15,7 @@
                 {{ form_widget(
                     form.title,
                     {'attr': {'class':'input-block-level','style':'font-size:25px;height:45px','placeholder':'Your user story'} }
+                    {# TODO avoid hard coded styles (because of bootstrap) #}}
                 ) }}
             </div>
 
@@ -25,7 +26,7 @@
             <div class="span7 offset2">
                 {{ form_widget(
                     form.details,
-                    {'attr': {'style':'width:100%','placeholder':'More details','rows':'5'} }
+                    {'attr': {'class':'full-width','placeholder':'More details','rows':'5'} }
                 ) }}
             </div>
 
