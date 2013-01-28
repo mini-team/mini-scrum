@@ -4,8 +4,7 @@
 
     {{ render(controller('MiniTeamScrumBundle:Project:scrumBar', { 'project': project.slug,'activeTab':'us'})) }}
 
-    <form action="" method="post">
-
+    <form action="{{ path('story_new',{'project':project}) }}" method="post">
 
         <div class="row" style="margin-top: 50px;">
 
