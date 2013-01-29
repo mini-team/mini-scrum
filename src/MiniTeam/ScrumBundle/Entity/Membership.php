@@ -33,7 +33,7 @@ class Membership
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="MiniTeam\UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="MiniTeam\UserBundle\Entity\User", inversedBy="memberships")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;
@@ -41,7 +41,7 @@ class Membership
     /**
      * @var Project
      *
-     * @ORM\ManyToOne(targetEntity="MiniTeam\ScrumBundle\Entity\Project")
+     * @ORM\ManyToOne(targetEntity="MiniTeam\ScrumBundle\Entity\Project", inversedBy="memberships")
      * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      */
     protected $project;
