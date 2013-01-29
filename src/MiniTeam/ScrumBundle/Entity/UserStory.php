@@ -310,6 +310,22 @@ class UserStory
     }
 
     /**
+     * @return bool
+     */
+    public function isInBacklog()
+    {
+        return $this->status == self::PRODUCT_BACKLOG;
+    }
+
+    /**
+     * Plan the story for the next sprint.
+     */
+    public function plan()
+    {
+        $this->setStatus(self::SPRINT_BACKLOG);
+    }
+
+    /**
      * The user story starts, and it is assigned to a user.
      *
      * @param \MiniTeam\UserBundle\Entity\User $user

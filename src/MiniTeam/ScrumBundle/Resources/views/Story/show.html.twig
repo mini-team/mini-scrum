@@ -36,7 +36,9 @@
             {% endif %}
         </div>
         <div class="span2 align-right">
-            {% if story.isAssignable %}
+            {% if story.isInBacklog %}
+                <a class="btn btn-primary" id="plan" href="{{ path('story_plan', { 'project': project.slug, 'id': story.id }) }}">Add to sprint</a>
+            {% elseif story.isAssignable %}
                 <a class="btn btn-primary" id="start" href="{{ path('story_start', { 'project': project.slug, 'id': story.id }) }}">Start</a>
             {% elseif story.isInProgress %}
                 <a class="btn btn-success" id="deliver" href="{{ path('story_deliver', { 'project': project.slug, 'id': story.id }) }}">To validate</a>
