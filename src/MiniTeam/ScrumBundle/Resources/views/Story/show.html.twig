@@ -27,7 +27,11 @@
 
     <div class="row">
         <div class="span2">
-            <div class="btn btn-danger">Blocked</div>
+            {% if story.isPlanned %}
+                <a class="btn btn-danger" id="unplan" href="{{ path('story_unplan', { 'project': project.slug, 'id': story.id }) }}">Unplan</a>
+            {% elseif story.isInProgress %}
+                <a class="btn btn-danger" id="blocked" href="{#{ path('story_deliver', { 'project': project.slug, 'id': story.id }) }#}">Blocked</a>
+            {% endif %}
         </div>
         <div class="span8 centered">
             <span class="label label-info" id="status">{{ story.status }}</span>
@@ -38,7 +42,7 @@
         <div class="span2 align-right">
             {% if story.isInBacklog %}
                 <a class="btn btn-primary" id="plan" href="{{ path('story_plan', { 'project': project.slug, 'id': story.id }) }}">Add to sprint</a>
-            {% elseif story.isAssignable %}
+            {% elseif story.isPlanned %}
                 <a class="btn btn-primary" id="start" href="{{ path('story_start', { 'project': project.slug, 'id': story.id }) }}">Start</a>
             {% elseif story.isInProgress %}
                 <a class="btn btn-success" id="deliver" href="{{ path('story_deliver', { 'project': project.slug, 'id': story.id }) }}">To validate</a>

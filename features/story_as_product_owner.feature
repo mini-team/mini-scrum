@@ -23,5 +23,13 @@ Feature: User story features
     for the new sprint.
 
     Given I am on "/mini-scrum/us/1"
-    When I follow "Add to sprint"
+    When I plan the user story
     Then I should see "sprint-backlog" in the "#status" element
+
+  Scenario: Unplan a user story
+    As a product owner I unplan a user story.
+
+    Given I planned the story "1"
+    And I am on "/mini-scrum/us/1"
+    When I unplan the user story
+    Then I should see "product-backlog" in the "#status" element

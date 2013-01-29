@@ -42,26 +42,43 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^I am working on the story "([^"]*)"$/
-     */
-    public function iAmWorkingOnTheStory($id)
-    {
-        $em = $this->kernel->getContainer()->get('doctrine.orm.entity_manager');
-
-        $story = $em->getRepository('MiniTeamScrumBundle:UserStory')->find($id);
-        $story->setStatus(\MiniTeam\ScrumBundle\Entity\UserStory::DOING);
-
-        $em->persist($story);
-        $em->flush();
-    }
-
-    /**
-     * @When /^I (:?start|deliver) the user story$/
+     * @When /^I (:?plan|unplan|start|deliver) the user story$/
      */
     public function changeStateOfUserStory($status)
     {
         $link = "#$status";
 
         return new Step\When(sprintf('I follow "%s"', $status));
+    }
+
+    /**
+     * @Given /^I am working on the story "([^"]*)"$/
+     */
+    public function iAmWorkingOnTheStory($id)
+    {
+        $this->updateStory($id, \MiniTeam\ScrumBundle\Entity\UserStory::DOING);
+    }
+
+    /**
+     * @Given /^I planned the story "([^"]*)"$/
+     */
+    public function iPlannedTheStory($id)
+    {
+        $this->updateStory($id, \MiniTeam\ScrumBundle\Entity\UserStory::SPRINT_BACKLOG);
+    }
+
+    /**
+     * @param $id
+     * @param $status
+     */
+    protected function updateStory($id, $status)
+    {
+        $em = $this->kernel->getContainer()->get('doctrine.orm.entity_manager');
+
+        $story = $em->getRepository('MiniTeamScrumBundle:UserStory')->find($id);
+        $story->setStatus($status);
+
+        $em->persist($story);
+        $em->flush();
     }
 }
