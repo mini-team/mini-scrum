@@ -1,0 +1,84 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <h1>How does the workflow work ?</h1>
+        <p>This page recapitulates the different actions that you can perform at each step of the life of a user story, depending on your role.</p>
+        <hr>
+    </div>
+
+    <div class="row">
+        <table class="table table-bordered" align="center">
+            <thead>
+                <td><b>Product owner's view</b></td>
+                <td style="text-align:center">status</td>
+                <td><b>Developer's view</b></td>
+            </thead>
+
+            <tr class="warning">
+                <td>
+                    <div class="btn btn-danger"><i class="icon-trash icon-white"></i> Delete from backlog</div>
+                    <div class="btn btn btn-info pull-right"><i class="icon-plus icon-white"></i> Plan for next sprint</div>
+                </td>
+                <td style="text-align:center"><b>Product backlog</b></td>
+                <td>
+                    <div class="btn btn-info pull-right"><i class="icon-plus icon-white"></i> Plan for next sprint</div>
+                </td>
+            </tr>
+
+            <tr class="warning">
+                <td>
+                    <div class="btn btn-inverse"><i class="icon-fast-backward icon-white"></i> Remove from sprint</div>
+                </td>
+                <td style="text-align:center"><b>Sprint backlog</b></td>
+                <td>
+                    <div class="btn btn-info pull-right"><i class="icon-play icon-white"></i> Start</div>
+                </td>
+            </tr>
+
+            <tr class="info">
+                <td></td>
+                <td style="text-align:center"><b>Doing</b></td>
+                <td>
+                    <div class="btn btn-danger"><i class="icon-ban-circle icon-white"></i> Blocked</div>
+                    <div class="btn btn-success pull-right"><i class="icon-ok icon-white"></i> Deliver</div>
+                </td>
+            </tr>
+
+            <tr class="error">
+                <td>
+                    <div class="btn btn-info pull-right"><i class="icon-hand-down icon-white"></i> Deblock</div>
+                </td>
+                <td style="text-align:center"><b>Blocked</b></td>
+                <td>
+                    <div class="btn btn-info pull-right"><i class="icon-hand-down icon-white"></i> Deblock</div>
+                </td>
+            </tr>
+
+            <tr class="success">
+                <td>
+                    <div class="btn btn-danger"><i class="icon-thumbs-down icon-white"></i> Refuse</div>
+                    <div class="btn btn-success pull-right"><i class="icon-thumbs-up icon-white"></i> Accept</div>
+                </td>
+                <td style="text-align:center"><b>To validate</b></td>
+                <td>
+                    <div class="btn btn-inverse"><i class="icon-hand-up icon-white"></i> Take back</div>
+                </td>
+            </tr>
+
+            <tr class="warning">
+                <td>
+                    <div class="btn btn-inverse"><i class="icon-hand-up icon-white"></i> Oops</div>
+                </td>
+                <td style="text-align:center"><b>Done</b></td>
+                <td>
+                    <div class="btn btn-inverse"><i class="icon-hand-up icon-white"></i> Take back</div>
+                </td>
+            </tr>
+
+        </table>
+
+
+    </div>
+
+{% endblock %}
