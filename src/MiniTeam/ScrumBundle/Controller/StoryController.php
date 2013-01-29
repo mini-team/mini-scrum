@@ -40,11 +40,27 @@ class StoryController extends Controller
     public function listAction(Project $project, $status){
 
         //retrieve list of user stories of this project with the given status
-        $usRepo = $this->getDoctrine()->getRepository('MiniTeamScrumBundle:UserStory');
-        $stories = $usRepo->findBy(
-            array('status' => $status,'project' => $project),
-            array('number' => 'asc')
-        );
+        $stories = $this->getDoctrine()
+            ->getRepository('MiniTeamScrumBundle:UserStory')
+            ->findBy(
+                array('status' => $status,'project' => $project),
+                array('number' => 'asc')
+            )
+        ;
+
+        if (count($stories) == 1) {
+            $story = reset($stories);
+
+            return $this->redirect(
+                $this->generateUrl(
+                    'story_show',
+                    array(
+                        'project' => $story->getProject()->getSlug(),
+                        'id'      => $story->getId()
+                    )
+                )
+            );
+        }
 
         return array('project' => $project, 'stories' => $stories,'status'=>$status);
     }
