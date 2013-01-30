@@ -25,3 +25,8 @@ mini_team_scrum:
     resource: "@MiniTeamScrumBundle/Controller/"
     type:     annotation
     prefix:   /
+
+
+about_workflow: { pattern: /about/workflow, defaults: { _controller: FrameworkBundle:Template:template, template: 'MiniTeamScrumBundle:About:workflow.html.twig' } }
+
+
