@@ -8,8 +8,7 @@ Feature: User story features
     Then I should see "Add story" in the "form" element
 
   Scenario: Add a user story
-    As a product owner
-    I add a user story to my project
+    As a product owner I add a user story to my project.
 
     Given I am on "/mini-scrum/us/new"
     When I fill in the following:
@@ -18,3 +17,19 @@ Feature: User story features
       | story_points  | 3                                                 |
     And I press "Save"
     Then I should see "As a product owner I add a story in the backlog" in the "p.lead" element
+
+  Scenario: Plan a user story
+    As a product owner I plan a user story
+    for the new sprint.
+
+    Given I am on "/mini-scrum/us/1"
+    When I plan the user story
+    Then I should see "sprint-backlog" in the "#status" element
+
+  Scenario: Unplan a user story
+    As a product owner I unplan a user story.
+
+    Given I planned the story "1"
+    And I am on "/mini-scrum/us/1"
+    When I unplan the user story
+    Then I should see "product-backlog" in the "#status" element

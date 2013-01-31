@@ -27,7 +27,17 @@
 
     <div class="row">
         <div class="span2">
-            <div class="btn btn-danger">Blocked</div>
+            <!--<a class="btn btn-danger"><i class="icon-trash icon-white"></i> Delete from backlog</a>-->
+            {% if story.isPlanned %}
+                <a class="btn btn-inverse" id="unplan" href="{{ path('story_unplan', { 'project': project.slug, 'id': story.id }) }}"><i class="icon-fast-backward icon-white"></i> Remove from sprint</a>
+            {% elseif story.isInProgress %}
+                <a class="btn btn-danger" id="blocked"><i class="icon-ban-circle icon-white"></i> Blocked</a>
+            {% endif %}
+            <!--
+            <a class="btn btn-danger"><i class="icon-thumbs-down icon-white"></i> Refuse</a>
+            <a class="btn btn-inverse"><i class="icon-hand-up icon-white"></i> Take back</a>
+            <a class="btn btn-inverse"><i class="icon-hand-up icon-white"></i> Oops</a>
+            -->
         </div>
         <div class="span8 centered">
             <span class="label label-info" id="status">{{ story.status }}</span>
@@ -36,10 +46,12 @@
             {% endif %}
         </div>
         <div class="span2 align-right">
-            {% if story.isAssignable %}
-                <a class="btn btn-primary" id="start" href="{{ path('story_start', { 'project': project.slug, 'id': story.id }) }}">Start</a>
+            {% if story.isInBacklog %}
+                <a class="btn btn-info" id="plan" href="{{ path('story_plan', { 'project': project.slug, 'id': story.id }) }}"><i class="icon-plus icon-white"></i> Plan for next sprint</a>
+            {% elseif story.isPlanned %}
+                <a class="btn btn-info" id="start" href="{{ path('story_start', { 'project': project.slug, 'id': story.id }) }}"><i class="icon-play icon-white"></i> Start</a>
             {% elseif story.isInProgress %}
-                <a class="btn btn-success" id="deliver" href="{{ path('story_deliver', { 'project': project.slug, 'id': story.id }) }}">To validate</a>
+                <a class="btn btn-success" id="deliver" href="{{ path('story_deliver', { 'project': project.slug, 'id': story.id }) }}"><i class="icon-ok icon-white"></i> Deliver</a>
             {% endif %}
         </div>
     </div>

@@ -30,4 +30,19 @@ class UserStory extends ObjectBehavior
         $this->getAssignee()->shouldReturn($user);
         $this->getStatus()->shouldReturn(\MiniTeam\ScrumBundle\Entity\UserStory::TO_VALIDATE);
     }
+
+    function it_should_plan_the_story()
+    {
+        $this->plan();
+        $this->getStatus()->shouldReturn(\MiniTeam\ScrumBundle\Entity\UserStory::SPRINT_BACKLOG);
+        $this->isPlanned()->shouldBe(true);
+    }
+
+    function it_should_unplan_the_story()
+    {
+        $this->unplan();
+        $this->getStatus()->shouldReturn(\MiniTeam\ScrumBundle\Entity\UserStory::PRODUCT_BACKLOG);
+        $this->isPlanned()->shouldBe(false);
+        $this->isInBacklog()->shouldBe(true);
+    }
 }
