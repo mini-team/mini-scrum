@@ -58,24 +58,18 @@
 
     <hr>
 
-    <!--fil de commentaires -->
-    {#
+    <!--comments thread -->
+
     <div class="row">
         <div class="span6">
-            <div class="alert alert-info dev-comment">
-                <strong>Benjamin: </strong>Mais c'est pas très clair les précisions sur cette user story non ?
-            </div>
-            <div class="alert alert-success po-comment">
-                <strong>Edouard: </strong>ouais j'avoue
-            </div>
-            <div class="alert alert-info dev-comment">
-                <strong>Matthieu: </strong> ^^
-            </div>
-            <div class="alert alert-info dev-comment">
-                <strong>Benjamin: </strong>Bon ok je me base sur ta réponse dans IRC
-            </div>
+            {%  for comment in story.comments %}
+                <div class="alert alert-info dev-comment">{# TODO apply class "po-comment" if role product owner #}
+                    <strong>{{ comment.author.username }}: </strong>{{ comment.content }}
+                </div>
+            {% endfor %}
         </div>
 
+        {#
         <div class="span6">
             <div class="alert alert-danger very-close">
                 Ne fonctionne pas avec Thunderbird comme client de messagerie
@@ -88,8 +82,9 @@
                 Problème de formattage html de l'email
             </div>
         </div>
+        #}
     </div>
-    #}
+
 
 
 {% endblock %}
