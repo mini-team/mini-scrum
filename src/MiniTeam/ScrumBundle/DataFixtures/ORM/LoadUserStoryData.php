@@ -28,7 +28,7 @@ class LoadUserStoryData extends AbstractFixture implements OrderedFixtureInterfa
             'plein de détails croustillants',
             3,
             UserStory::PRODUCT_BACKLOG,
-            12
+            11
         );
 
         $secondStory = $this->createStory(
@@ -37,21 +37,31 @@ class LoadUserStoryData extends AbstractFixture implements OrderedFixtureInterfa
             'depuis n\'importe où (entre autres)',
             2,
             UserStory::SPRINT_BACKLOG,
-            2
+            12
+        );
+
+        $thirdStory = $this->createStory(
+            'ETQ user je peux poster des commentaires sur une user story',
+            $this->getReference('main-project'),
+            'uniquement si la story est entre les statuts sprint backlog et done',
+            2,
+            UserStory::DOING,
+            13
+        );
+
+        $fourthStory = $this->createStory(
+            'ETQ user cette user story est à valider',
+            $this->getReference('main-project'),
+            'bien regarder la définition du done',
+            5,
+            UserStory::TO_VALIDATE,
+            14
         );
 
         $manager->persist($firstStory);
         $manager->persist($secondStory);
-
-        $user_story_3 = new UserStory();
-        $user_story_3->setTitle('ETQ user cette user story est à valider');
-        $user_story_3->setDetails('bien regarder la définition du done');
-        $user_story_3->setPoints(5);
-        $user_story_3->setStatus(UserStory::TO_VALIDATE);
-        $user_story_3->setNumber(3);
-        $user_story_3->setProject($this->getReference('main-project'));
-
-        $manager->persist($user_story_3);
+        $manager->persist($thirdStory);
+        $manager->persist($fourthStory);
 
         $manager->flush();
     }
