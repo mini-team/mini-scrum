@@ -120,6 +120,8 @@ class StoryController extends Controller
     }
 
     /**
+     * @Extra\Route("/us/{id}/unplan", name="story_unplan", defaults={"status": "unplan"})
+     * @Extra\Route("/us/{id}/plan", name="story_plan", defaults={"status": "plan"})
      * @Extra\Route("/us/{id}/start", name="story_start", defaults={"status": "start"})
      * @Extra\Route("/us/{id}/deliver", name="story_deliver", defaults={"status": "deliver"}))
      *
@@ -131,6 +133,12 @@ class StoryController extends Controller
     public function updateStatusAction(UserStory $story, $status)
     {
         switch ($status) {
+            case 'plan':
+                $story->plan();
+                break;
+            case 'unplan':
+                $story->unplan();
+                break;
             case 'start':
                 $story->starts($this->getUser());
                 break;

@@ -288,15 +288,9 @@ class UserStory
     }
 
     /**
-     * Check if the US is assignable.
-     * The user story is assignable if it is in the sprint backlog,
-     * if it is in the product backlog or done it's not possible
-     * to assign it, if it is already in progress or to validate
-     * it's not possible to assign it either has it is already done.
-     *
      * @return bool
      */
-    public function isAssignable()
+    public function isPlanned()
     {
         return $this->status == self::SPRINT_BACKLOG;
     }
@@ -307,6 +301,30 @@ class UserStory
     public function isInProgress()
     {
         return $this->status == self::DOING;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isInBacklog()
+    {
+        return $this->status == self::PRODUCT_BACKLOG;
+    }
+
+    /**
+     * Plan the story for the next sprint.
+     */
+    public function plan()
+    {
+        $this->setStatus(self::SPRINT_BACKLOG);
+    }
+
+    /**
+     * Unplan the story. It goes back to the backlog.
+     */
+    public function unplan()
+    {
+        $this->setStatus(self::PRODUCT_BACKLOG);
     }
 
     /**
