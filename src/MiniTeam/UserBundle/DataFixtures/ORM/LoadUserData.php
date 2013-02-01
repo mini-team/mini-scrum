@@ -38,10 +38,10 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      */
     public function load(ObjectManager $manager)
     {
-        $productOwner = $this->createUser('mini@miniscrum.net', 'mini', 'test');
-        $scrumMaster  = $this->createUser('julien@miniscrum.net', 'julien', 'test');
-        $edouard      = $this->createUser('edouard@miniscrum.net', 'edouard', 'test');
-        $benjamin     = $this->createUser('benjamin@miniscrum.net', 'benjamin', 'test');
+        $productOwner = $this->createUser('mini@miniscrum.net', 'Mini', 'test');
+        $scrumMaster  = $this->createUser('julien@miniscrum.net', 'Julien', 'test');
+        $edouard      = $this->createUser('edouard@miniscrum.net', 'Edouard', 'test');
+        $benjamin     = $this->createUser('benjamin@miniscrum.net', 'Benjamin', 'test');
 
         $manager->persist($productOwner);
         $manager->persist($scrumMaster);
@@ -59,15 +59,16 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      * @param $email
      * @param $username
      * @param $password
+     * @param $name
      *
      * @return \MiniTeam\UserBundle\Entity\User
      */
     protected function createUser($email, $username, $password)
     {
         $user = new User();
-        $user->setEnabled(true);
-        $user->setEmail($email);
-        $user->setUsername($username);
+        $user->setEnabled(true)
+             ->setEmail($email)
+             ->setUsername($username);
 
         $encoder = $this->container
             ->get('security.encoder_factory')
