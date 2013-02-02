@@ -53,6 +53,13 @@ class Comment
      */
     protected $story;
 
+    /**
+     * @var Integer
+     *
+     * @ORM\Column(name="story_id", type="integer")
+     */
+    protected $storyId;
+
 
     public function __construct()
     {
@@ -139,7 +146,6 @@ class Comment
         return $this->author;
     }
 
-
     /**
      * Set story
      *
@@ -161,5 +167,25 @@ class Comment
     public function getStory()
     {
         return $this->story;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStoryId()
+    {
+        return $this->storyId;
+    }
+
+    /**
+     * @param int $storyId
+     *
+     * @return Comment
+     */
+    public function setStoryId($storyId)
+    {
+        $this->storyId = $storyId;
+
+        return $this;
     }
 }

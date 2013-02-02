@@ -4,7 +4,9 @@ namespace MiniTeam\ScrumBundle\Controller;
 
 use MiniTeam\ScrumBundle\Entity\Project;
 use MiniTeam\ScrumBundle\Entity\UserStory;
+use MiniTeam\ScrumBundle\Entity\Comment;
 use MiniTeam\ScrumBundle\Form\UserStoryType;
+use MiniTeam\ScrumBundle\Form\CommentType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -29,7 +31,13 @@ class StoryController extends Controller
     public function showAction( Project $project, UserStory $story)
     {
 
-        return array('project' => $project, 'story' => $story);
+        //create comment form
+        $comment = new Comment();
+        $comment->setStoryId($story->getId());
+        $comment->setStory($story);
+        $commentForm = $this->createForm(new CommentType(), $comment);
+
+        return array('project' => $project, 'story' => $story, 'commentForm'=> $commentForm->createView() );
     }
 
     /**
@@ -72,6 +80,7 @@ class StoryController extends Controller
      */
     public function newAction(Project $project, Request $request)
     {
+
         $story = new UserStory();
         $story->setProject($project);
 
