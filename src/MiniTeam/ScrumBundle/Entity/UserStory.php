@@ -12,7 +12,7 @@ use MiniTeam\UserBundle\Entity\User;
  * @author Edouard Garnier de Labareyre <edouard@melix.net>
  *
  * @ORM\Table(name="miniscrum_userstory")
- * @ORM\Entity(repositoryClass="MiniTeam\ScrumBundle\Entity\UserStoryRepository")
+ * @ORM\Entity(repositoryClass="MiniTeam\ScrumBundle\Repository\UserStoryRepository")
  */
 class UserStory
 {
