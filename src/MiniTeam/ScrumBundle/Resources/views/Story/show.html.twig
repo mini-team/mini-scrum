@@ -27,17 +27,11 @@
 
     <div class="row">
         <div class="span2">
-            <!--<a class="btn btn-danger"><i class="icon-trash icon-white"></i> Delete from backlog</a>-->
-            {% if story.isPlanned %}
-                <a class="btn btn-inverse" id="unplan" href="{{ path('story_unplan', { 'project': project.slug, 'id': story.id }) }}"><i class="icon-fast-backward icon-white"></i> Remove from sprint</a>
-            {% elseif story.isInProgress %}
-                <a class="btn btn-danger" id="blocked"><i class="icon-ban-circle icon-white"></i> Blocked</a>
+            {% if project.productOwner == app.user %}
+                {{ block('product_owner_left_buttons') }}
+            {% elseif app.user in project.developers %}
+                {{ block('developer_left_buttons') }}
             {% endif %}
-            <!--
-            <a class="btn btn-danger"><i class="icon-thumbs-down icon-white"></i> Refuse</a>
-            <a class="btn btn-inverse"><i class="icon-hand-up icon-white"></i> Take back</a>
-            <a class="btn btn-inverse"><i class="icon-hand-up icon-white"></i> Oops</a>
-            -->
         </div>
         <div class="span8 centered">
             <span class="label label-info" id="status">{{ story.status }}</span>
@@ -46,12 +40,10 @@
             {% endif %}
         </div>
         <div class="span2 align-right">
-            {% if story.isInBacklog %}
-                <a class="btn btn-info" id="plan" href="{{ path('story_plan', { 'project': project.slug, 'id': story.id }) }}"><i class="icon-plus icon-white"></i> Plan for next sprint</a>
-            {% elseif story.isPlanned %}
-                <a class="btn btn-info" id="start" href="{{ path('story_start', { 'project': project.slug, 'id': story.id }) }}"><i class="icon-play icon-white"></i> Start</a>
-            {% elseif story.isInProgress %}
-                <a class="btn btn-success" id="deliver" href="{{ path('story_deliver', { 'project': project.slug, 'id': story.id }) }}"><i class="icon-ok icon-white"></i> Deliver</a>
+            {% if project.productOwner == app.user %}
+                {{ block('product_owner_right_buttons') }}
+            {% elseif app.user in project.developers %}
+                {{ block('developer_right_buttons') }}
             {% endif %}
         </div>
     </div>
@@ -93,3 +85,49 @@
 
 
 {% endblock %}
+
+{% block product_owner_left_buttons %}
+    {% if story.isInBacklog %}
+        <a class="btn btn-danger"><i class="icon-trash icon-white"></i> Delete</a>
+    {% elseif story.isPlanned %}
+        <a class="btn btn-inverse" id="unplan" href="{{ path('story_unplan', { 'project': project.slug, 'id': story.id }) }}"><i class="icon-fast-backward icon-white"></i> Remove from sprint</a>
+    {% elseif story.isInProgress %}
+        <a class="btn btn-danger" id="blocked"><i class="icon-ban-circle icon-white"></i> Blocked</a>
+    {% elseif story.isDelivered %}
+        <a class="btn btn-danger"><i class="icon-thumbs-down icon-white"></i> Refuse</a>
+    {% elseif story.isDone %}
+        <a class="btn btn-inverse"><i class="icon-hand-up icon-white"></i> Oops</a>
+    {% endif %}
+{% endblock %}
+
+{% block product_owner_right_buttons %}
+    {% if story.isInBacklog %}
+        <a class="btn btn-info" id="plan" href="{{ path('story_plan', { 'project': project.slug, 'id': story.id }) }}"><i class="icon-plus icon-white"></i> Plan for next sprint</a>
+    {% elseif story.isBlocked %}
+        <a class="btn btn-success" id="deliver" href=""><i class="icon-hand-down icon-white"></i> Deblock</a>
+    {% elseif story.isDelivered %}
+        <a class="btn btn-success" id="deliver" href="{{ path('story_deliver', { 'project': project.slug, 'id': story.id }) }}"><i class="icon-thumbs-up icon-white"></i> Accept</a>
+    {% endif %}
+{% endblock %}
+
+{% block developer_left_buttons %}
+    {% if story.isInProgress %}
+        <a class="btn btn-danger" id="blocked"><i class="icon-ban-circle icon-white"></i> Blocked</a>
+    {% elseif story.isDone or story.isDelivered %}
+        <a class="btn btn-inverse"><i class="icon-hand-up icon-white"></i> Take back</a>
+    {% endif %}
+{% endblock %}
+
+{% block developer_right_buttons %}
+    {% if story.isInBacklog %}
+        <a class="btn btn-info" id="plan" href="{{ path('story_plan', { 'project': project.slug, 'id': story.id }) }}"><i class="icon-plus icon-white"></i> Plan for next sprint</a>
+    {% elseif story.isPlanned %}
+        <a class="btn btn-info" id="start" href="{{ path('story_start', { 'project': project.slug, 'id': story.id }) }}"><i class="icon-play icon-white"></i> Start</a>
+    {% elseif story.isInProgress %}
+        <a class="btn btn-success" id="deliver" href="{{ path('story_deliver', { 'project': project.slug, 'id': story.id }) }}"><i class="icon-ok icon-white"></i> Deliver</a>
+    {% elseif story.isBlocked %}
+        <a class="btn btn-success" id="deblock" href=""><i class="icon-hand-down icon-white"></i> Deblock</a>
+    {% endif %}
+{% endblock %}
+
+

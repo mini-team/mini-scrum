@@ -306,9 +306,33 @@ class UserStory
     /**
      * @return bool
      */
+    public function isBlocked()
+    {
+        return $this->getStatus() == static::BLOCKED;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDelivered()
+    {
+        return $this->getStatus() == static::TO_VALIDATE;
+    }
+
+    /**
+     * @return bool
+     */
     public function isInBacklog()
     {
         return $this->status == self::PRODUCT_BACKLOG;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDone()
+    {
+        return $this->getStatus() == static::DONE;
     }
 
     /**
