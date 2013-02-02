@@ -69,7 +69,7 @@
             {% endfor %}
 
             {# TODO improve form style #}
-            <form action="{{ path('comment_new',{ 'project': project.slug }) }}" method="post">
+            <form action="{{ path('comment_new',{ 'project': project.slug, 'story': story.id }) }}" method="post">
                 {{ form_widget(
                     commentForm.content
                 ) }}

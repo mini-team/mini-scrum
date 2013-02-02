@@ -2,7 +2,6 @@
 
 namespace MiniTeam\ScrumBundle\Controller;
 
-use MiniTeam\ScrumBundle\Entity\Project;
 use MiniTeam\ScrumBundle\Entity\UserStory;
 use MiniTeam\ScrumBundle\Entity\Comment;
 use MiniTeam\ScrumBundle\Form\CommentType;
@@ -16,21 +15,22 @@ use Symfony\Component\Form\Form;
 /**
  * @author Edouard de Labareyre <edouard@melix.net>
  *
- * @Extra\Route("/{project}")
+ * @Extra\Route("/{project}/{story}")
  */
 class CommentController extends Controller
 {
 
     /**
      * @Extra\Route("/comment/new", name="comment_new")
-     * @Extra\ParamConverter("project", options={"mapping": {"project": "name"}})
+     * @Extra\ParamConverter("story", options={"mapping": {"story": "id"}})
      * @Extra\Template()
      */
-    public function newAction(Project $project, Request $request)
+    public function newAction(UserStory $story, Request $request)
     {
-
+        $user = $this->container->get('security.context')->getToken()->getUser();
         $comment = new Comment();
-        $comment->setAuthor($this->container->get('security.context')->getToken()->getUser());
+        $comment->setAuthor($user);
+        $comment->setStory($story);
         $commentForm = $this->createForm(new CommentType(), $comment);
 
         if ($request->isMethod('post')) {

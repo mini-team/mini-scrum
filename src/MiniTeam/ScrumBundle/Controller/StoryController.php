@@ -33,7 +33,6 @@ class StoryController extends Controller
 
         //create comment form
         $comment = new Comment();
-        $comment->setStoryId($story->getId());
         $comment->setStory($story);
         $commentForm = $this->createForm(new CommentType(), $comment);
 

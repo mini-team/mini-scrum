@@ -19,7 +19,6 @@ class CommentType extends AbstractType
     {
         $builder
             ->add('content', 'text')
-            ->add('storyId', 'text')
         ;
     }
 
