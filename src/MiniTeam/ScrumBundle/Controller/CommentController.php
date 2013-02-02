@@ -4,7 +4,6 @@ namespace MiniTeam\ScrumBundle\Controller;
 
 use MiniTeam\ScrumBundle\Entity\UserStory;
 use MiniTeam\ScrumBundle\Entity\Comment;
-use MiniTeam\ScrumBundle\Form\CommentType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -15,7 +14,7 @@ use Symfony\Component\Form\Form;
 /**
  * @author Edouard de Labareyre <edouard@melix.net>
  *
- * @Extra\Route("/{project}/{story}")
+ * @Extra\Route("/{project}/us/{story}")
  */
 class CommentController extends Controller
 {
@@ -31,7 +30,10 @@ class CommentController extends Controller
         $comment = new Comment();
         $comment->setAuthor($user);
         $comment->setStory($story);
-        $commentForm = $this->createForm(new CommentType(), $comment);
+
+        $commentForm = $this->createFormBuilder($comment)
+                            ->add('content', 'text')
+                            ->getForm();
 
         if ($request->isMethod('post')) {
             $response = $this->processCommentForm($request, $commentForm);
@@ -64,7 +66,6 @@ class CommentController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($comment);
             $em->flush();
-            //erreur ici, car story = null
 
             return $this->redirect(
                 $this->generateUrl(

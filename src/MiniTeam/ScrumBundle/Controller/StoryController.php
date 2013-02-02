@@ -6,11 +6,9 @@ use MiniTeam\ScrumBundle\Entity\Project;
 use MiniTeam\ScrumBundle\Entity\UserStory;
 use MiniTeam\ScrumBundle\Entity\Comment;
 use MiniTeam\ScrumBundle\Form\UserStoryType;
-use MiniTeam\ScrumBundle\Form\CommentType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Form;
 
 
@@ -34,7 +32,9 @@ class StoryController extends Controller
         //create comment form
         $comment = new Comment();
         $comment->setStory($story);
-        $commentForm = $this->createForm(new CommentType(), $comment);
+        $commentForm = $this->createFormBuilder($comment)
+                            ->add('content', 'text')
+                            ->getForm();
 
         return array('project' => $project, 'story' => $story, 'commentForm'=> $commentForm->createView() );
     }
