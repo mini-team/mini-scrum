@@ -1,6 +1,6 @@
 {% macro item(label, badgeClass,ticketNumber, tabName, activeTab) %}
 
-    <li class="{% if tabName == activeTab %}active{% endif %}">
+    <li{% if tabName == activeTab %} class="active"{% endif %}>
         <a href="{{ path('miniteam_scrum_story_list', { 'project': app.user.selectedProject,'status':tabName }) }}"
            class="centered">
             {{ label }}
