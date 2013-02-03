@@ -1,0 +1,28 @@
+<div class="navbar">
+    <div class="navbar-inner">
+        <a class="brand" href="#">Mini Scrum</a>
+
+    {% if app.user != null and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <div class="nav pull-center">
+            <a href="{{ path('project_show', {'project': app.user.selectedProject.slug}) }}">{{ app.user.selectedProject }}</a>
+        </div>
+
+        <ul class="nav pull-right">
+            <li>
+<div>
+    <a href="{{ path('story_new', { 'project': app.user.selectedProject.name }) }}" class="btn btn-success"><i class="icon-pencil icon-white"></i> Add user story</a>
+</div>
+            </li>
+            <li class="divider-vertical"></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> {{ app.user.username }}<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ path('fos_user_profile_edit') }}">Update my profile</a></li>
+                    <li class="divider"></li>
+                    <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    {% endif %}
+    </div>
+</div>
