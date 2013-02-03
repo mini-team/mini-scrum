@@ -8,10 +8,10 @@
         <title>
             {% block title %}mini-scrum{% endblock %}
         </title>
-        
+
         <link href="{{ asset('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
-        <link href="{{ asset('bootstrap/css/bootstrap-responsive.css') }}" rel="stylesheet">          
-        
+        <link href="{{ asset('bootstrap/css/bootstrap-responsive.css') }}" rel="stylesheet">
+
         {% stylesheets '@MiniTeamScrumBundle/Resources/public/css/*' %}
             <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
@@ -22,33 +22,18 @@
     </head>
     
     <body>
-
-        <div class="navbar">
-            <div class="navbar-inner">
-                 <a class="brand" href="#">Mini Scrum</a>
-                 
-            {% if app.user != null %}
-                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                <div class="pull-right">
-                    <a href="{{ path('project_show', {'project': app.user.selectedProject.slug}) }}">{{ app.user.selectedProject ~ ' (' ~ app.user.projectRole ~ ')' }}</a>
-                    {# later on, action button here could depend on user role #}
-                    <a href="{{ path('story_new', { 'project': app.user.selectedProject.name }) }}" class="btn btn-success"><i class="icon-pencil icon-white"></i> Add user story</a>
-                </div>
-
-                <p class="navbar-text"><i class="icon-user"></i> {{ app.user.username }}</p>
-                {% endif %}
-            {% endif %}
-            </div>
-        </div>
+        {% include "::navbar.html.twig" %}
         
         <div class="container">
-        
-        {% block body %}
-        {% endblock %}
-        
+            {% block body %}{% endblock %}
         </div>
         
-        {% block javascripts %}
-        {% endblock %}
+        {% block javascripts %}{% endblock %}
+        {% javascripts
+            "http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"
+            "bootstrap/js/bootstrap.min.js"
+        %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
     </body>
 </html>
