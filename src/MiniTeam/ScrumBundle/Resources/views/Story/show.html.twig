@@ -4,7 +4,8 @@
 
     {{ render(controller('MiniTeamScrumBundle:Project:scrumBar', { 'project': project.slug, 'activeTab': story.status })) }}
 
-    <div class="well">
+    <div class="well story-description">
+        <span class="label label-info" id="status">{{ story.status }}</span>
         <div class="row">
             <div class="span12">
                 <p class="lead">
@@ -21,6 +22,10 @@
                 <p class="lead text-info">{{ story.points }} pts</p>
             </div>
         </div>
+        {% if story.isAssigned %}
+            <span id="assignee">{{ story.assignee.username }} is working on it</span>
+        {% endif %}
+
     </div>
 
     <!-- gestion du statut de la user story -->
@@ -39,13 +44,7 @@
             <a class="btn btn-inverse"><i class="icon-hand-up icon-white"></i> Oops</a>
             -->
         </div>
-        <div class="span8 centered">
-            <span class="label label-info" id="status">{{ story.status }}</span>
-            {% if story.isAssigned %}
-                <br><span id="assignee">{{ story.assignee.username }}</span>
-            {% endif %}
-        </div>
-        <div class="span2 align-right">
+        <div class="span2 pull-right align-right">
             {% if story.isInBacklog %}
                 <a class="btn btn-info" id="plan" href="{{ path('story_plan', { 'project': project.slug, 'id': story.id }) }}"><i class="icon-plus icon-white"></i> Plan for next sprint</a>
             {% elseif story.isPlanned %}

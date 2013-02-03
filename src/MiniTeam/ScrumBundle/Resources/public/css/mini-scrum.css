@@ -41,6 +41,17 @@
     width: 100%;
 }
 
+.story-description {
+    position: relative;
+    padding-top: 25px;
+}
+
+.story-description #status {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
 /** Forms **/
 input[type="text"].input-large {
     font-size: 25px;
