@@ -68,16 +68,22 @@
                 </div>
             {% endfor %}
 
-            {# TODO improve form style #}
-            <form action="{{ path('comment_new',{ 'project': project.slug, 'story': story.id }) }}" method="post">
-                {{ form_widget(
-                    commentForm.content
-                ) }}
+            {# TODO how to make name + input +button occupy the whole length ? #}
+            <form action="{{ path('comment_new',{ 'project': project.slug, 'story': story.id }) }}" method="post" class="form-inline">
+                <div class="alert alert-info dev-comment">
+                    <strong>{{ app.user.username }}: </strong>
+                    {{ form_widget(
+                        commentForm.content,
+                        {'attr': {'class':'input-xlarge'} }
+                    ) }}
+                    <button type="submit" class="btn comment-button"><i class="icon-ok"></i></button>
+                    {{ form_rest(commentForm) }}
+                </div>
 
-                {{ form_rest(commentForm) }}
-                <button type="submit" class="btn btn-primary">Add</button>
             </form>
+
         </div>
+
 
 
         {#
