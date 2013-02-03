@@ -5,6 +5,8 @@ namespace MiniTeam\UserBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Entity\User as BaseUser;
+use MiniTeam\ScrumBundle\Entity\Membership;
+use MiniTeam\ScrumBundle\Entity\Project;
 
 /**
  * User description
@@ -98,8 +100,7 @@ class User extends BaseUser
      *
      * @param null $project
      *
-     * @return mixed
-     * @throws \RuntimeException
+     * @return Membership
      */
     public function getProjectRole($project = null)
     {
@@ -107,12 +108,23 @@ class User extends BaseUser
             $project = $this->getSelectedProject();
         }
 
+        return $this->getMembership($project)->getRole();
+    }
+
+    /**
+     * @param \MiniTeam\ScrumBundle\Entity\Project $project
+     *
+     * @return Membership
+     * @throws \RuntimeException
+     */
+    public function getMembership(Project $project)
+    {
         foreach ($this->memberships as $membership) {
             if ($membership->getProject() !== $project) {
                 continue;
             }
 
-            return $membership->getRole();
+            return $membership;
         }
 
         throw new \RuntimeException(sprintf('The user has no role on the project "%s".', $project->getName()));
