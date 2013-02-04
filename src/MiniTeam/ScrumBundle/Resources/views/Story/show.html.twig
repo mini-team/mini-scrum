@@ -63,20 +63,33 @@
     <div class="row">
         <div class="span6">
             {%  for comment in story.comments %}
-                <div class="alert alert-info dev-comment">{# TODO apply class "po-comment" if role product owner #}
+
+                {% if project.productOwner == comment.author %}
+                    {% set commentClass='alert alert-success po-comment'  %}
+                {% else %}
+                    {% set commentClass='alert alert-info dev-comment' %}
+                {% endif %}
+
+                <div class="{{ commentClass }}">
                     <strong>{{ comment.author.username }}: </strong>{{ comment.content }}
                 </div>
             {% endfor %}
 
+            {% if project.productOwner == app.user %}
+                {% set commentClass='alert alert-success po-comment'  %}
+            {% else %}
+                {% set commentClass='alert alert-info dev-comment' %}
+            {% endif %}
+            
             {# TODO how to make name + input +button occupy the whole length ? #}
             <form action="{{ path('comment_new',{ 'project': project.slug, 'story': story.id }) }}" method="post" class="form-inline">
-                <div class="alert alert-info dev-comment">
+                <div class="{{ commentClass }}">
                     <strong>{{ app.user.username }}: </strong>
                     {{ form_widget(
                         commentForm.content,
                         {'attr': {'class':'input-xlarge'} }
                     ) }}
-                    <button type="submit" class="btn comment-button"><i class="icon-ok"></i></button>
+                    <button type="submit" class="btn comment-button" id="comment-submit-button""><i class="icon-ok"></i></button>
                     {{ form_rest(commentForm) }}
                 </div>
 
