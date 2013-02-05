@@ -23,12 +23,11 @@ class LoadCommentData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-
         $dev = $this->getReference('first-developer');
         $po = $this->getReference('product-owner');
 
-        $comment1 = $this->createComment('Possible d\'avoir plus d\'infos là dessus ?',$dev,$this->getReference('story-3'));
-        $comment2 = $this->createComment('suivant le role du commentateur, le commentaire s\'aligne à droite (PO) ou à gauche (DEV)',$po,$this->getReference('story-3'));
+        $comment1 = $this->createComment('Possible d\'avoir plus d\'infos là dessus ?', $dev, $this->getReference('story-3'));
+        $comment2 = $this->createComment('suivant le role du commentateur, le commentaire s\'aligne à droite (PO) ou à gauche (DEV)', $po, $this->getReference('story-3'));
 
         $manager->persist($comment1);
         $manager->persist($comment2);

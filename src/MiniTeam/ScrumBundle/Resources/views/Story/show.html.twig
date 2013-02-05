@@ -80,7 +80,7 @@
             {% else %}
                 {% set commentClass='alert alert-info dev-comment' %}
             {% endif %}
-            
+
             {# TODO how to make name + input +button occupy the whole length ? #}
             <form action="{{ path('comment_new',{ 'project': project.slug, 'story': story.id }) }}" method="post" class="form-inline">
                 <div class="{{ commentClass }}">

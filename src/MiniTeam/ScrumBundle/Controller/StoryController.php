@@ -28,7 +28,6 @@ class StoryController extends Controller
      */
     public function showAction( Project $project, UserStory $story)
     {
-
         //create comment form
         $comment = new Comment();
         $comment->setStory($story);
@@ -44,8 +43,8 @@ class StoryController extends Controller
      * @Extra\ParamConverter("project", options={"mapping": {"project": "slug"}})
      * @Extra\Template()
      */
-    public function listAction(Project $project, $status){
-
+    public function listAction(Project $project, $status)
+    {
         //retrieve list of user stories of this project with the given status
         $stories = $this->getDoctrine()
             ->getRepository('MiniTeamScrumBundle:UserStory')
@@ -79,7 +78,6 @@ class StoryController extends Controller
      */
     public function newAction(Project $project, Request $request)
     {
-
         $story = new UserStory();
         $story->setProject($project);
 

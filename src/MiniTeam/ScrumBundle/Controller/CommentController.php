@@ -44,7 +44,6 @@ class CommentController extends Controller
         }
 
         $this->redirect($this->generateUrl('project_show'));
-
     }
 
     /**
@@ -57,7 +56,6 @@ class CommentController extends Controller
      */
     protected function processCommentForm(Request $request, Form $form)
     {
-
         $form->bind($request);
 
         if ($form->isValid()) {
@@ -77,8 +75,5 @@ class CommentController extends Controller
                 )
             );
         }
-
     }
-
-
 }

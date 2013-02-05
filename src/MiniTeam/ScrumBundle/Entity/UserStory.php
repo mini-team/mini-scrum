@@ -287,14 +287,16 @@ class UserStory
     /**
      * Get all the comments on this story
      */
-    public function getComments(){
+    public function getComments()
+    {
         return $this->comments;
     }
 
     /**
      * Add a comment for this story
      */
-    public function addComment(\MiniTeam\ScrumBundle\Entity\Comment $comment){
+    public function addComment(\MiniTeam\ScrumBundle\Entity\Comment $comment)
+    {
         $this->comments[] = $comment;
         $comment->setPost($this);
     }
