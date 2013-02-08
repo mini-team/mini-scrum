@@ -9,7 +9,7 @@ Feature: Login
     And I fill in "username" with "mini"
     And I fill in "password" with "test"
     When I press "Login"
-    And I should see "mini" in the ".navbar-text" element
+    And I should see "Mini" in the ".nav.pull-right" element
 
   Scenario: Failed authentication
     If the user failed to login he is asked to refill
