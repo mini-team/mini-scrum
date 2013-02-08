@@ -18,7 +18,14 @@ Feature: User story features
     The story should be assigned to the product owner
 
     Given I am working on the story "2"
-    And I am on "/mini-scrum/us/2"
-    When I deliver the user story
+    When I deliver the user story "2"
     Then I should see "to-validate" in the "#status" element
     And I should see "mini" in the "#assignee" element
+
+  Scenario: Block a user story
+    As a developer
+    I block a user story when something is missing and blocks its' implementation
+
+    Given I am working on the story "2"
+    When I block the user story "2"
+    Then it should be blocked

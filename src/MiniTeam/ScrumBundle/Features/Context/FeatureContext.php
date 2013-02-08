@@ -96,6 +96,14 @@ class FeatureContext extends BehatContext
     }
 
     /**
+     * @Then /^it should be blocked$/
+     */
+    public function itShouldBeBlocked()
+    {
+        return new Step\Then('I should see "blocked" in the "#status" element');
+    }
+
+    /**
      * @Then /^it should be in the product backlog$/
      */
     public function isShouldBeInProductBacklog()

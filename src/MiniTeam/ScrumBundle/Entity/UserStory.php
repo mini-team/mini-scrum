@@ -393,4 +393,13 @@ class UserStory
     {
         $this->setStatus(self::DONE);
     }
+
+    /**
+     * Block the user story.
+     * The status is changed to "blocked"
+     */
+    public function block()
+    {
+        $this->setStatus(self::BLOCKED);
+    }
 }

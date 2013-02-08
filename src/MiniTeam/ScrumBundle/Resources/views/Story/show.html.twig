@@ -112,7 +112,7 @@
 
 {% block developer_left_buttons %}
     {% if story.isInProgress %}
-        <a class="btn btn-danger" id="blocked"><i class="icon-ban-circle icon-white"></i> Blocked</a>
+        <a class="btn btn-danger" id="block" href="{{ path('story_block', { 'project': project.slug, 'id': story.id }) }}"><i class="icon-ban-circle icon-white"></i> Block</a>
     {% elseif story.isDone or story.isDelivered %}
         <a class="btn btn-inverse"><i class="icon-hand-up icon-white"></i> Take back</a>
     {% endif %}

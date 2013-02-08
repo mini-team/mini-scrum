@@ -126,6 +126,7 @@ class StoryController extends Controller
      * @Extra\Route("/us/{id}/deliver", name="story_deliver", defaults={"status": "deliver"}))
      * @Extra\Route("/us/{id}/refuse", name="story_refuse", defaults={"status": "refuse"}))
      * @Extra\Route("/us/{id}/accept", name="story_accept", defaults={"status": "accept"}))
+     * @Extra\Route("/us/{id}/block", name="story_block", defaults={"status": "block"}))
      *
      * @param \MiniTeam\ScrumBundle\Entity\UserStory $story
      * @param                                        $status
@@ -152,6 +153,9 @@ class StoryController extends Controller
                 break;
             case 'accept':
                 $story->accept();
+                break;
+            case 'block':
+                $story->block();
                 break;
         }
 
