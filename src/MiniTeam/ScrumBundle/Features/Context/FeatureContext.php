@@ -42,17 +42,18 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * @When /^I (:?plan|unplan|start|deliver) the user story$/
+     * @When /^I (?P<action>:?\w+) the user story "(?P<id>[^"]*)"$/
      */
-    public function changeStateOfUserStory($status)
+    public function changeStateOfUserStory($action, $id)
     {
-        $link = "#$status";
-
-        return new Step\When(sprintf('I follow "%s"', $status));
+        return array(
+            new Step\When(sprintf('I am on "/mini-scrum/us/%s"', $id)),
+            new Step\When(sprintf('I follow "%s"', $action)),
+        );
     }
 
     /**
-     * @Given /^I am working on the story "([^"]*)"$/
+     * @Given /^I am working on the story "(?P<id>[^"]*)"$/
      */
     public function iAmWorkingOnTheStory($id)
     {
@@ -60,11 +61,46 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^I planned the story "([^"]*)"$/
+     * @Given /^the story "(?P<id>[^"]*)" is (?P<status>[^"]*)$/
      */
-    public function iPlannedTheStory($id)
+    public function setStoryStatus($id, $status)
     {
-        $this->updateStory($id, \MiniTeam\ScrumBundle\Entity\UserStory::SPRINT_BACKLOG);
+        if ('planned' == $status) {
+            $status = \MiniTeam\ScrumBundle\Entity\UserStory::SPRINT_BACKLOG;
+        } elseif ('delivered' == $status) {
+            $status = \MiniTeam\ScrumBundle\Entity\UserStory::TO_VALIDATE;
+        } else {
+            $status = \MiniTeam\ScrumBundle\Entity\UserStory::PRODUCT_BACKLOG;
+        }
+
+        $this->updateStory($id, $status);
+    }
+
+    /**
+     * @Given /^a developer delivered the story "(?P<id>[^"]*)"$/
+     */
+    public function aDeveloperDeliveredTheStory($id)
+    {
+        $this->updateStory($id, \MiniTeam\ScrumBundle\Entity\UserStory::TO_VALIDATE);
+    }
+
+    /**
+     * @Given /^it should be in progress$/
+     */
+    public function itShouldBeInProgress()
+    {
+        return array(
+            //new Step\Then("I should see \"is working on it\" in the \"#assignee\" element"),
+            new Step\Then('I should see "doing" in the "#status" element'),
+        );
+    }
+
+    /**
+     * @Then /^it should be done$/
+     */
+    public function itShouldBeDone()
+    {
+        return new Step\Then('I should see "done" in the "#status" element');
     }
 
     /**

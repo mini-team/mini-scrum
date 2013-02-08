@@ -375,4 +375,22 @@ class UserStory
 
         $this->setStatus(self::TO_VALIDATE);
     }
+
+    /**
+     * Refuse the user story.
+     * The status is changed to "doing"
+     */
+    public function refuse()
+    {
+        $this->setStatus(self::DOING);
+    }
+
+    /**
+     * Accept the user story.
+     * The status is changed to "done"
+     */
+    public function accept()
+    {
+        $this->setStatus(self::DONE);
+    }
 }
