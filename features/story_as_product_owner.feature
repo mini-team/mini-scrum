@@ -30,7 +30,7 @@ Feature: User story features
 
     Given the story "1" is planned
     When I unplan the user story "1"
-    Then I should see "product-backlog" in the "#status" element
+    Then it should be in the product backlog
 
   Scenario: Delete a user story
     As a product owner I can delete a user story

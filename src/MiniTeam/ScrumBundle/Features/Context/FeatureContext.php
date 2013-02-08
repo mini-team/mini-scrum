@@ -77,14 +77,6 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^a developer delivered the story "(?P<id>[^"]*)"$/
-     */
-    public function aDeveloperDeliveredTheStory($id)
-    {
-        $this->updateStory($id, \MiniTeam\ScrumBundle\Entity\UserStory::TO_VALIDATE);
-    }
-
-    /**
      * @Given /^it should be in progress$/
      */
     public function itShouldBeInProgress()
@@ -101,6 +93,22 @@ class FeatureContext extends BehatContext
     public function itShouldBeDone()
     {
         return new Step\Then('I should see "done" in the "#status" element');
+    }
+
+    /**
+     * @Then /^it should be in the product backlog$/
+     */
+    public function isShouldBeInProductBacklog()
+    {
+        return new Step\Then('I should see "product-backlog" in the "#status" element');
+    }
+
+    /**
+     * @Then /^(?:|it )should be assigned to (?P<assignee>[^"]*)$/
+     */
+    public function assertAssignement($assignee)
+    {
+        return new Step\Then(sprintf('I should see "%s" in the "#assignee" element', $assignee));
     }
 
     /**
