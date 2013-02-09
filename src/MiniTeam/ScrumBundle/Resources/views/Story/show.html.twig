@@ -88,13 +88,13 @@
 
 {% block product_owner_left_buttons %}
     {% if story.isInBacklog %}
-        <a class="btn btn-danger"><i class="icon-trash icon-white"></i> Delete</a>
+        <a class="btn btn-danger" href="{{ path('story_delete', { 'project': project.slug, 'id': story.id }) }}" id="delete"><i class="icon-trash icon-white"></i> Delete</a>
     {% elseif story.isPlanned %}
         <a class="btn btn-inverse" id="unplan" href="{{ path('story_unplan', { 'project': project.slug, 'id': story.id }) }}"><i class="icon-fast-backward icon-white"></i> Remove from sprint</a>
     {% elseif story.isInProgress %}
-        <a class="btn btn-danger" id="blocked"><i class="icon-ban-circle icon-white"></i> Blocked</a>
+        <a class="btn btn-danger" id="blocked" href="#"><i class="icon-ban-circle icon-white"></i> Blocked</a>
     {% elseif story.isDelivered %}
-        <a class="btn btn-danger"><i class="icon-thumbs-down icon-white"></i> Refuse</a>
+        <a class="btn btn-danger" id="refuse" href="{{ path('story_refuse', { 'project': project.slug, 'id': story.id }) }}"><i class="icon-thumbs-down icon-white"></i> Refuse</a>
     {% elseif story.isDone %}
         <a class="btn btn-inverse"><i class="icon-hand-up icon-white"></i> Oops</a>
     {% endif %}
@@ -106,13 +106,13 @@
     {% elseif story.isBlocked %}
         <a class="btn btn-success" id="deliver" href=""><i class="icon-hand-down icon-white"></i> Deblock</a>
     {% elseif story.isDelivered %}
-        <a class="btn btn-success" id="deliver" href="{{ path('story_deliver', { 'project': project.slug, 'id': story.id }) }}"><i class="icon-thumbs-up icon-white"></i> Accept</a>
+        <a class="btn btn-success" id="accept" href="{{ path('story_accept', { 'project': project.slug, 'id': story.id }) }}"><i class="icon-thumbs-up icon-white"></i> Accept</a>
     {% endif %}
 {% endblock %}
 
 {% block developer_left_buttons %}
     {% if story.isInProgress %}
-        <a class="btn btn-danger" id="blocked"><i class="icon-ban-circle icon-white"></i> Blocked</a>
+        <a class="btn btn-danger" id="block" href="{{ path('story_block', { 'project': project.slug, 'id': story.id }) }}"><i class="icon-ban-circle icon-white"></i> Block</a>
     {% elseif story.isDone or story.isDelivered %}
         <a class="btn btn-inverse"><i class="icon-hand-up icon-white"></i> Take back</a>
     {% endif %}

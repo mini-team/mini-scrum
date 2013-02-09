@@ -9,5 +9,4 @@ before_script: composer install --dev -n --prefer-source
 
 script:
   - bin/phpspec
-  - bin/behat -p ci @MiniTeamUserBundle
-  - bin/behat -p ci @MiniTeamScrumBundle
+  - bin/behat -p ci

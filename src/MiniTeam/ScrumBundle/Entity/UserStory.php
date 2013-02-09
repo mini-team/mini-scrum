@@ -375,4 +375,46 @@ class UserStory
 
         $this->setStatus(self::TO_VALIDATE);
     }
+
+    /**
+     * Refuse the user story.
+     * The status is changed to "doing"
+     */
+    public function refuse()
+    {
+        $this->setStatus(self::DOING);
+    }
+
+    /**
+     * Accept the user story.
+     * The status is changed to "done"
+     */
+    public function accept()
+    {
+        $this->setStatus(self::DONE);
+    }
+
+    /**
+     * Block the user story.
+     * The status is changed to "blocked"
+     */
+    public function block()
+    {
+        $this->setStatus(self::BLOCKED);
+    }
+
+    /**
+     * @return array
+     */
+    public static function getStatuses()
+    {
+        return array(
+            self::PRODUCT_BACKLOG,
+            self::SPRINT_BACKLOG,
+            self::DOING,
+            self::BLOCKED,
+            self::TO_VALIDATE,
+            self::DONE,
+        );
+    }
 }

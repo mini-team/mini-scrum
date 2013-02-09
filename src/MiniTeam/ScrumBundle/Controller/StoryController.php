@@ -33,7 +33,7 @@ class StoryController extends Controller
     }
 
     /**
-     * @Extra\Route("/us-list/{status}")
+     * @Extra\Route("/us-list/{status}", name="story_list")
      * @Extra\ParamConverter("project", options={"mapping": {"project": "slug"}})
      * @Extra\Template()
      */
@@ -124,6 +124,9 @@ class StoryController extends Controller
      * @Extra\Route("/us/{id}/plan", name="story_plan", defaults={"status": "plan"})
      * @Extra\Route("/us/{id}/start", name="story_start", defaults={"status": "start"})
      * @Extra\Route("/us/{id}/deliver", name="story_deliver", defaults={"status": "deliver"}))
+     * @Extra\Route("/us/{id}/refuse", name="story_refuse", defaults={"status": "refuse"}))
+     * @Extra\Route("/us/{id}/accept", name="story_accept", defaults={"status": "accept"}))
+     * @Extra\Route("/us/{id}/block", name="story_block", defaults={"status": "block"}))
      *
      * @param \MiniTeam\ScrumBundle\Entity\UserStory $story
      * @param                                        $status
@@ -145,6 +148,15 @@ class StoryController extends Controller
             case 'deliver':
                 $story->deliver();
                 break;
+            case 'refuse':
+                $story->refuse();
+                break;
+            case 'accept':
+                $story->accept();
+                break;
+            case 'block':
+                $story->block();
+                break;
         }
 
         $em = $this->getDoctrine()->getManager();
@@ -155,5 +167,32 @@ class StoryController extends Controller
             'project' => $story->getProject()->getSlug(),
             'id' => $story->getId()
         )));
+    }
+
+    /**
+     * @Extra\Route("/us/{id}/delete", name="story_delete")
+     *
+     * @param \MiniTeam\ScrumBundle\Entity\UserStory $story
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function deleteAction(UserStory $story)
+    {
+        $project = $story->getProject();
+        $status  = $story->getStatus();
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($story);
+        $em->flush();
+
+        return $this->redirect(
+            $this->generateUrl(
+                'story_list',
+                array(
+                    'status' => $status,
+                    'project' => $project,
+                )
+            )
+        );
     }
 }
