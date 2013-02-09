@@ -23,14 +23,14 @@ Feature: User story features
     for the new sprint.
 
     When I plan the user story "1"
-    Then I should see "sprint-backlog" in the "#status" element
+    Then the story should be planned
 
   Scenario: Unplan a user story
     As a product owner I unplan a user story.
 
     Given the story "1" is planned
     When I unplan the user story "1"
-    Then it should be in the product backlog
+    Then the story should be in backlog
 
   Scenario: Delete a user story
     As a product owner I can delete a user story
@@ -45,11 +45,11 @@ Feature: User story features
 
     Given the story "1" is delivered
     When I refuse the user story "1"
-    Then it should be in progress
+    Then the story should be in progress
 
   Scenario: Accept a user story
     As a product owner I can accept a user story
 
     Given the story "1" is delivered
     When I accept the user story "1"
-    Then it should be done
+    Then the story should be done

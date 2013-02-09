@@ -42,6 +42,17 @@ class FeatureContext extends BehatContext
     }
 
     /**
+     * @Given /^I am working on the story "(?P<id>[^"]*)"$/
+     * @Given /^the story "(?P<id>[^"]*)" is (?P<status>[^"]*)$/
+     */
+    public function setStoryStatus($id, $status = \MiniTeam\ScrumBundle\Entity\UserStory::DOING)
+    {
+        $status = $this->convertStateToStatus($status);
+
+        $this->updateStory($id, $status);
+    }
+
+    /**
      * @When /^I (?P<action>:?\w+) the user story "(?P<id>[^"]*)"$/
      */
     public function changeStateOfUserStory($action, $id)
@@ -53,63 +64,45 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^I am working on the story "(?P<id>[^"]*)"$/
+     * @Then /^the story should be (?:|in )(?P<state>\w*)$/
+     *
+     * @todo Use transform here
      */
-    public function iAmWorkingOnTheStory($id)
+    public function assertStoryState($state)
     {
-        $this->updateStory($id, \MiniTeam\ScrumBundle\Entity\UserStory::DOING);
+        $status = $this->convertStateToStatus($state);
+
+        return new Step\Then(sprintf('I should see "%s" in the "#status" element', $status));
     }
 
     /**
-     * @Given /^the story "(?P<id>[^"]*)" is (?P<status>[^"]*)$/
+     * @param $state
+     *
+     * @return string
      */
-    public function setStoryStatus($id, $status)
+    public function convertStateToStatus($state)
     {
-        if ('planned' == $status) {
+        if (in_array($state, \MiniTeam\ScrumBundle\Entity\UserStory::getStatuses())) {
+            return $state;
+        }
+
+        if ('planned' == $state) {
             $status = \MiniTeam\ScrumBundle\Entity\UserStory::SPRINT_BACKLOG;
-        } elseif ('delivered' == $status) {
+        } elseif ('delivered' == $state) {
             $status = \MiniTeam\ScrumBundle\Entity\UserStory::TO_VALIDATE;
+        } elseif ('progress' == $state) {
+            $status = \MiniTeam\ScrumBundle\Entity\UserStory::DOING;
+        } elseif ('blocked' == $state) {
+            $status = \MiniTeam\ScrumBundle\Entity\UserStory::BLOCKED;
+        } elseif ('done' == $state) {
+            $status = \MiniTeam\ScrumBundle\Entity\UserStory::DONE;
         } else {
             $status = \MiniTeam\ScrumBundle\Entity\UserStory::PRODUCT_BACKLOG;
         }
 
-        $this->updateStory($id, $status);
+        return $status;
     }
 
-    /**
-     * @Given /^it should be in progress$/
-     */
-    public function itShouldBeInProgress()
-    {
-        return array(
-            //new Step\Then("I should see \"is working on it\" in the \"#assignee\" element"),
-            new Step\Then('I should see "doing" in the "#status" element'),
-        );
-    }
-
-    /**
-     * @Then /^it should be done$/
-     */
-    public function itShouldBeDone()
-    {
-        return new Step\Then('I should see "done" in the "#status" element');
-    }
-
-    /**
-     * @Then /^it should be blocked$/
-     */
-    public function itShouldBeBlocked()
-    {
-        return new Step\Then('I should see "blocked" in the "#status" element');
-    }
-
-    /**
-     * @Then /^it should be in the product backlog$/
-     */
-    public function isShouldBeInProductBacklog()
-    {
-        return new Step\Then('I should see "product-backlog" in the "#status" element');
-    }
 
     /**
      * @Then /^(?:|it )should be assigned to (?P<assignee>[^"]*)$/

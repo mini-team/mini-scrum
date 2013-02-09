@@ -9,7 +9,7 @@ Feature: User story features
     and the user story is assigned to me
 
     When I start the user story "2"
-    Then it should be in progress
+    Then the story should be in progress
     And should be assigned to edouard
 
   Scenario: Deliver a user story
@@ -19,8 +19,8 @@ Feature: User story features
 
     Given I am working on the story "2"
     When I deliver the user story "2"
-    Then I should see "to-validate" in the "#status" element
-    And I should see "mini" in the "#assignee" element
+    Then the story should be delivered
+    And should be assigned to mini
 
   Scenario: Block a user story
     As a developer
@@ -28,4 +28,4 @@ Feature: User story features
 
     Given I am working on the story "2"
     When I block the user story "2"
-    Then it should be blocked
+    Then the story should be blocked

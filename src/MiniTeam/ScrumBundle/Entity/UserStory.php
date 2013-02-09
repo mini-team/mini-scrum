@@ -402,4 +402,19 @@ class UserStory
     {
         $this->setStatus(self::BLOCKED);
     }
+
+    /**
+     * @return array
+     */
+    public static function getStatuses()
+    {
+        return array(
+            self::PRODUCT_BACKLOG,
+            self::SPRINT_BACKLOG,
+            self::DOING,
+            self::BLOCKED,
+            self::TO_VALIDATE,
+            self::DONE,
+        );
+    }
 }
