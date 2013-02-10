@@ -42,6 +42,14 @@ class FeatureContext extends BehatContext
     }
 
     /**
+     * @Given /^I am viewing story (\d+)$/
+     */
+    public function viewStory($id)
+    {
+        return new Step\Given(sprintf('I am on "/mini-scrum/us/%s"', $id));
+    }
+
+    /**
      * @Given /^I am working on the story "(?P<id>[^"]*)"$/
      * @Given /^the story "(?P<id>[^"]*)" is (?P<status>[^"]*)$/
      */
@@ -125,5 +133,22 @@ class FeatureContext extends BehatContext
 
         $em->persist($story);
         $em->flush();
+    }
+
+
+    /**
+     * @When /^I write comment "([^"]*)"$/
+     */
+    public function writeComment($comment)
+    {
+        return new Step\When(sprintf('I fill in "form_content" with "%s"',$comment));
+    }
+
+    /**
+     * @Given /^I submit my comment$/
+     */
+    public function submitComment()
+    {
+        return new Step\When(sprintf('I press "comment-submit-button"'));
     }
 }
