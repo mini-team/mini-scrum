@@ -1,6 +1,6 @@
 <?php
 
-namespace MiniTeam\ScrumBundle\Entity;
+namespace MiniTeam\ScrumBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use MiniTeam\ScrumBundle\Entity\Project;

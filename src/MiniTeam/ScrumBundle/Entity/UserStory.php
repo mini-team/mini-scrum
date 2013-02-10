@@ -12,7 +12,7 @@ use MiniTeam\UserBundle\Entity\User;
  * @author Edouard Garnier de Labareyre <edouard@melix.net>
  *
  * @ORM\Table(name="miniscrum_userstory")
- * @ORM\Entity(repositoryClass="MiniTeam\ScrumBundle\Entity\UserStoryRepository")
+ * @ORM\Entity(repositoryClass="MiniTeam\ScrumBundle\Repository\UserStoryRepository")
  */
 class UserStory
 {
@@ -328,9 +328,33 @@ class UserStory
     /**
      * @return bool
      */
+    public function isBlocked()
+    {
+        return $this->getStatus() == static::BLOCKED;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDelivered()
+    {
+        return $this->getStatus() == static::TO_VALIDATE;
+    }
+
+    /**
+     * @return bool
+     */
     public function isInBacklog()
     {
         return $this->status == self::PRODUCT_BACKLOG;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDone()
+    {
+        return $this->getStatus() == static::DONE;
     }
 
     /**
@@ -372,5 +396,47 @@ class UserStory
         }
 
         $this->setStatus(self::TO_VALIDATE);
+    }
+
+    /**
+     * Refuse the user story.
+     * The status is changed to "doing"
+     */
+    public function refuse()
+    {
+        $this->setStatus(self::DOING);
+    }
+
+    /**
+     * Accept the user story.
+     * The status is changed to "done"
+     */
+    public function accept()
+    {
+        $this->setStatus(self::DONE);
+    }
+
+    /**
+     * Block the user story.
+     * The status is changed to "blocked"
+     */
+    public function block()
+    {
+        $this->setStatus(self::BLOCKED);
+    }
+
+    /**
+     * @return array
+     */
+    public static function getStatuses()
+    {
+        return array(
+            self::PRODUCT_BACKLOG,
+            self::SPRINT_BACKLOG,
+            self::DOING,
+            self::BLOCKED,
+            self::TO_VALIDATE,
+            self::DONE,
+        );
     }
 }

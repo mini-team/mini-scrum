@@ -6,7 +6,7 @@ framework:
     #esi:             ~
     translator:      { fallback: "%locale%" }
     secret:          "%secret%"
-    router_proxy:    { path: /_proxy }
+    fragments:       { path: /_proxy }
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
         strict_requirements: "%kernel.debug%"

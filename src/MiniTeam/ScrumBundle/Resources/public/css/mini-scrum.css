@@ -1,3 +1,19 @@
+.nav.pull-center {
+    position: absolute;
+    left: 50%;
+    width: 100px;
+    display: block;
+    margin-left: -50px;
+    padding: 10px 20px 10px;
+    text-align: center;
+}
+
+.pull-center a {
+    color: #777777;
+    text-decoration: none;
+    font-weight: bold;
+}
+
 .centered{
     text-align: center;
 }

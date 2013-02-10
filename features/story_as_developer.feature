@@ -8,10 +8,9 @@ Feature: User story features
     I can start working on a user story
     and the user story is assigned to me
 
-    Given I am on "/mini-scrum/us/2"
-    When I start the user story
-    Then I should see "doing" in the "#status" element
-    And I should see "edouard" in the "#assignee" element
+    When I start the user story "2"
+    Then the story should be in progress
+    And should be assigned to edouard
 
   Scenario: Deliver a user story
     As a developer
@@ -19,7 +18,14 @@ Feature: User story features
     The story should be assigned to the product owner
 
     Given I am working on the story "2"
-    And I am on "/mini-scrum/us/2"
-    When I deliver the user story
-    Then I should see "to-validate" in the "#status" element
-    And I should see "mini" in the "#assignee" element
+    When I deliver the user story "2"
+    Then the story should be delivered
+    And should be assigned to mini
+
+  Scenario: Block a user story
+    As a developer
+    I block a user story when something is missing and blocks its' implementation
+
+    Given I am working on the story "2"
+    When I block the user story "2"
+    Then the story should be blocked

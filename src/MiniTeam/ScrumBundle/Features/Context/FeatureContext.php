@@ -42,29 +42,74 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * @When /^I (:?plan|unplan|start|deliver) the user story$/
+     * @Given /^I am working on the story "(?P<id>[^"]*)"$/
+     * @Given /^the story "(?P<id>[^"]*)" is (?P<status>[^"]*)$/
      */
-    public function changeStateOfUserStory($status)
+    public function setStoryStatus($id, $status = \MiniTeam\ScrumBundle\Entity\UserStory::DOING)
     {
-        $link = "#$status";
+        $status = $this->convertStateToStatus($status);
 
-        return new Step\When(sprintf('I follow "%s"', $status));
+        $this->updateStory($id, $status);
     }
 
     /**
-     * @Given /^I am working on the story "([^"]*)"$/
+     * @When /^I (?P<action>:?\w+) the user story "(?P<id>[^"]*)"$/
      */
-    public function iAmWorkingOnTheStory($id)
+    public function changeStateOfUserStory($action, $id)
     {
-        $this->updateStory($id, \MiniTeam\ScrumBundle\Entity\UserStory::DOING);
+        return array(
+            new Step\When(sprintf('I am on "/mini-scrum/us/%s"', $id)),
+            new Step\When(sprintf('I follow "%s"', $action)),
+        );
     }
 
     /**
-     * @Given /^I planned the story "([^"]*)"$/
+     * @Then /^the story should be (?:|in )(?P<state>\w*)$/
+     *
+     * @todo Use transform here
      */
-    public function iPlannedTheStory($id)
+    public function assertStoryState($state)
     {
-        $this->updateStory($id, \MiniTeam\ScrumBundle\Entity\UserStory::SPRINT_BACKLOG);
+        $status = $this->convertStateToStatus($state);
+
+        return new Step\Then(sprintf('I should see "%s" in the "#status" element', $status));
+    }
+
+    /**
+     * @param $state
+     *
+     * @return string
+     */
+    public function convertStateToStatus($state)
+    {
+        if (in_array($state, \MiniTeam\ScrumBundle\Entity\UserStory::getStatuses())) {
+            return $state;
+        }
+
+        if ('planned' == $state) {
+            $status = \MiniTeam\ScrumBundle\Entity\UserStory::SPRINT_BACKLOG;
+        } elseif ('delivered' == $state) {
+            $status = \MiniTeam\ScrumBundle\Entity\UserStory::TO_VALIDATE;
+        } elseif ('progress' == $state) {
+            $status = \MiniTeam\ScrumBundle\Entity\UserStory::DOING;
+        } elseif ('blocked' == $state) {
+            $status = \MiniTeam\ScrumBundle\Entity\UserStory::BLOCKED;
+        } elseif ('done' == $state) {
+            $status = \MiniTeam\ScrumBundle\Entity\UserStory::DONE;
+        } else {
+            $status = \MiniTeam\ScrumBundle\Entity\UserStory::PRODUCT_BACKLOG;
+        }
+
+        return $status;
+    }
+
+
+    /**
+     * @Then /^(?:|it )should be assigned to (?P<assignee>[^"]*)$/
+     */
+    public function assertAssignement($assignee)
+    {
+        return new Step\Then(sprintf('I should see "%s" in the "#assignee" element', $assignee));
     }
 
     /**

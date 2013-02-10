@@ -228,6 +228,16 @@ class Project
      */
     public function getScrumMaster()
     {
+        if (null == $this->scrumMaster) {
+            $this->scrumMaster = $this->getMemberships()
+                ->filter(function ($membership) {
+                    return $membership->isScrumMaster();
+                })
+                ->first()
+                ->getUser()
+            ;
+        }
+
         return $this->scrumMaster;
     }
 
@@ -246,7 +256,10 @@ class Project
     public function getDevelopers()
     {
         if (null === $this->developers) {
-            $this->developers = $this->memberships->map(function ($membership) { return $membership->getRole() == Membership::DEVELOPER; });
+            $this->developers = $this->memberships
+                ->filter(function ($membership) { return $membership->getRole() == Membership::DEVELOPER; })
+                ->map(function ($membership) { return $membership->getUser(); })
+            ;
         }
 
         return $this->developers;

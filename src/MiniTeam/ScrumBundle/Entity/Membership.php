@@ -106,6 +106,30 @@ class Membership
      */
     public function isProductOwner()
     {
-        return $this->getRole() == Membership::PRODUCT_OWNER;
+        return $this->getRole() == static::PRODUCT_OWNER;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDeveloper()
+    {
+        return $this->getRole() == static::DEVELOPER;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isMember()
+    {
+        return $this->getRole() == static::MEMBER;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isScrumMaster()
+    {
+        return $this->getRole() == static::SCRUM_MASTER;
     }
 }
