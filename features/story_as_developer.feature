@@ -8,7 +8,7 @@ Feature: User story features
     I can start working on a user story
     and the user story is assigned to me
 
-    When I start the user story "2"
+    When I start the story "2"
     Then the story should be in progress
     And should be assigned to edouard
 
@@ -18,7 +18,7 @@ Feature: User story features
     The story should be assigned to the product owner
 
     Given I am working on the story "2"
-    When I deliver the user story "2"
+    When I deliver the story "2"
     Then the story should be delivered
     And should be assigned to mini
 
@@ -27,5 +27,5 @@ Feature: User story features
     I block a user story when something is missing and blocks its' implementation
 
     Given I am working on the story "2"
-    When I block the user story "2"
+    When I block the story "2"
     Then the story should be blocked

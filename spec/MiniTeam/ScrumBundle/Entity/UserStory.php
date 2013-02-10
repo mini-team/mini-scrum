@@ -63,4 +63,12 @@ class UserStory extends ObjectBehavior
         $this->block();
         $this->getStatus()->shouldReturn(\MiniTeam\ScrumBundle\Entity\UserStory::BLOCKED);
     }
+
+    function it_should_deblock_the_story()
+    {
+        $this->setStatus(\MiniTeam\ScrumBundle\Entity\UserStory::BLOCKED);
+
+        $this->deblock();
+        $this->getStatus()->shouldReturn(\MiniTeam\ScrumBundle\Entity\UserStory::SPRINT_BACKLOG);
+    }
 }

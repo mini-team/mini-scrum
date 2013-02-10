@@ -61,7 +61,7 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * @When /^I (?P<action>:?\w+) the user story "(?P<id>[^"]*)"$/
+     * @When /^I (?P<action>:?\w+) the story "(?P<id>[^"]*)"$/
      */
     public function changeStateOfUserStory($action, $id)
     {
