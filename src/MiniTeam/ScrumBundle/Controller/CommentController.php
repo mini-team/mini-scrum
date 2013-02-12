@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Form;
-
+use MiniTeam\ScrumBundle\Entity\StoryNotification;
 
 /**
  * @author Edouard de Labareyre <edouard@melix.net>
@@ -60,9 +60,31 @@ class CommentController extends Controller
 
         if ($form->isValid()) {
             $comment = $form->getData();
+            $project = $comment->getStory()->getProject();
+            $story = $comment->getStory();
+            $author = $comment->getAuthor();
 
             $em = $this->getDoctrine()->getManager();
+
+            //add comment
             $em->persist($comment);
+
+            //add story notif to all users with negative role
+
+            if( $author->getRole($project) == \MiniTeam\ScrumBundle\Entity\Membership::PRODUCT_OWNER) {
+                foreach( $project->getDevelopers() as $dev){
+                    $notification = new StoryNotification();
+                    $notification->setRecipient($dev);
+                    $notification->setStory($story);
+                    $em->persist($notification);
+                }
+            }else if ($author->getRole($project) == \MiniTeam\ScrumBundle\Entity\Membership::DEVELOPER) {
+                $notification = new StoryNotification();
+                $notification->setRecipient($project->getProductOwner());
+                $notification->setStory($story);
+                $em->persist($notification);
+            }
+
             $em->flush();
 
             return $this->redirect(
@@ -76,4 +98,5 @@ class CommentController extends Controller
             );
         }
     }
+
 }
