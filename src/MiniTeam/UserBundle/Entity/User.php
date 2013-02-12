@@ -102,7 +102,7 @@ class User extends BaseUser
      *
      * @return Membership
      */
-    public function getProjectRole($project = null)
+    public function getRole($project = null)
     {
         if (null == $project) {
             $project = $this->getSelectedProject();
@@ -112,6 +112,7 @@ class User extends BaseUser
     }
 
     /**
+     * Return the membership of the user on the selected project.
      * @param \MiniTeam\ScrumBundle\Entity\Project $project
      *
      * @return Membership
