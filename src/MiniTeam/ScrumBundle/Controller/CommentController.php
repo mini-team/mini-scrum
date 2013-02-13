@@ -69,20 +69,17 @@ class CommentController extends Controller
             //add comment
             $em->persist($comment);
 
-            //add story notif to all users with negative role
-
+            //add story notification to all users which are likely to be concerned by this comment
             if( $author->getRole($project) == \MiniTeam\ScrumBundle\Entity\Membership::PRODUCT_OWNER) {
-                foreach( $project->getDevelopers() as $dev){
-                    $notification = new StoryNotification();
-                    $notification->setRecipient($dev);
-                    $notification->setStory($story);
-                    $em->persist($notification);
+                if( $story->getAssignee() != null ){
+                    $this->addStoryNotification($story,$story->getAssignee());
+                }else{
+                    foreach( $project->getDevelopers() as $dev){
+                        $this->addStoryNotification($story,$dev);
+                    }
                 }
             }else if ($author->getRole($project) == \MiniTeam\ScrumBundle\Entity\Membership::DEVELOPER) {
-                $notification = new StoryNotification();
-                $notification->setRecipient($project->getProductOwner());
-                $notification->setStory($story);
-                $em->persist($notification);
+                $this->addStoryNotification($story,$project->getProductOwner());
             }
 
             $em->flush();
@@ -97,6 +94,21 @@ class CommentController extends Controller
                 )
             );
         }
+    }
+
+    /**
+     * Add a story notification for a given user
+     *
+     * @param \MiniTeam\ScrumBundle\Entity\UserStory $story
+     * @param \MiniTeam\UserBundle\Entity\User       $recipient
+     *
+     */
+    protected function addStoryNotification($story,$recipient){
+        $em = $this->getDoctrine()->getManager();
+        $notification = new StoryNotification();
+        $notification->setRecipient($recipient);
+        $notification->setStory($story);
+        $em->persist($notification);
     }
 
 }
