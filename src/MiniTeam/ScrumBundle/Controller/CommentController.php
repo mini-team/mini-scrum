@@ -103,7 +103,8 @@ class CommentController extends Controller
      * @param \MiniTeam\UserBundle\Entity\User       $recipient
      *
      */
-    protected function addStoryNotification($story,$recipient){
+    protected function addStoryNotification($story,$recipient)
+    {
         $em = $this->getDoctrine()->getManager();
         $notification = new StoryNotification();
         $notification->setRecipient($recipient);
