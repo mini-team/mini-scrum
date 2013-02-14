@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @author Edouard Garnier de Labareyre <edouard@melix.net>
  *
  * @ORM\Table(name="miniscrum_comment")
- * @ORM\Entity(repositoryClass="MiniTeam\ScrumBundle\Entity\CommentRepository")
+ * @ORM\Entity(repositoryClass="MiniTeam\ScrumBundle\Repository\CommentRepository")
  */
 class Comment
 {
