@@ -4,6 +4,7 @@ namespace MiniTeam\ScrumBundle\Controller;
 
 use MiniTeam\ScrumBundle\Entity\Project;
 use MiniTeam\ScrumBundle\Entity\UserStory;
+use MiniTeam\ScrumBundle\Entity\Comment;
 use MiniTeam\ScrumBundle\Form\UserStoryType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -28,8 +29,14 @@ class StoryController extends Controller
      */
     public function showAction( Project $project, UserStory $story)
     {
+        //create comment form
+        $comment = new Comment();
+        $comment->setStory($story);
+        $commentForm = $this->createFormBuilder($comment)
+                            ->add('content', 'text')
+                            ->getForm();
 
-        return array('project' => $project, 'story' => $story);
+        return array('project' => $project, 'story' => $story, 'commentForm'=> $commentForm->createView() );
     }
 
     /**
@@ -37,8 +44,8 @@ class StoryController extends Controller
      * @Extra\ParamConverter("project", options={"mapping": {"project": "slug"}})
      * @Extra\Template()
      */
-    public function listAction(Project $project, $status){
-
+    public function listAction(Project $project, $status)
+    {
         //retrieve list of user stories of this project with the given status
         $stories = $this->getDoctrine()
             ->getRepository('MiniTeamScrumBundle:UserStory')

@@ -6,6 +6,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * @author Benjamin Grandfond <benjamin.grandfond@gmail.com>
+ */
 class UserStoryType extends AbstractType
 {
     /**
