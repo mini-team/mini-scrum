@@ -60,4 +60,17 @@ class ProjectController extends Controller
 
     }
 
+    /**
+     * @Extra\Template()
+     */
+    public function needFeedbackModuleAction($project)
+    {
+        //if product owner -> list stories with comment notif
+
+        return array(
+            'project'   => $project,
+            'plop'      => 'oh yeah plop'
+        );
+    }
+
 }
