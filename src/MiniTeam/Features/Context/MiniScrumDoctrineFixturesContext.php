@@ -32,7 +32,8 @@ class MiniScrumDoctrineFixturesContext extends DoctrineFixturesContext implement
                 'MiniTeam\UserBundle\DataFixtures\ORM\LoadUserData',
                 'MiniTeam\ScrumBundle\DataFixtures\ORM\LoadProjectData',
                 'MiniTeam\ScrumBundle\DataFixtures\ORM\LoadUserStoryData',
-            ));
+                'MiniTeam\ScrumBundle\DataFixtures\ORM\LoadCommentData'
+        ));
 
         /** @var $em \Doctrine\ORM\EntityManager */
         $em = $this->kernel->getContainer()->get('doctrine.orm.entity_manager');

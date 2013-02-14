@@ -91,6 +91,11 @@ class UserStory
     protected $assignee;
 
     /**
+     * @ORM\OneToMany(targetEntity="MiniTeam\ScrumBundle\Entity\Comment", mappedBy="story")
+     */
+    protected $comments;
+
+    /**
      * Get id
      *
      * @return integer
@@ -277,6 +282,23 @@ class UserStory
     public function getAssignee()
     {
         return $this->assignee;
+    }
+
+    /**
+     * Get all the comments on this story
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * Add a comment for this story
+     */
+    public function addComment(\MiniTeam\ScrumBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+        $comment->setPost($this);
     }
 
     /**

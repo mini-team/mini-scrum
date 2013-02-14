@@ -7,6 +7,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use MiniTeam\ScrumBundle\Entity\Project;
 use MiniTeam\ScrumBundle\Entity\UserStory;
+use MiniTeam\ScrumBundle\Entity\Comment;
 
 /**
  * LoadUserStoryData description
@@ -22,36 +23,51 @@ class LoadUserStoryData extends AbstractFixture implements OrderedFixtureInterfa
      */
     public function load(ObjectManager $manager)
     {
-        $firstStory = $this->createStory(
+        $story1 = $this->createStory(
             'ETQ user ceci est une user story fixture',
             $this->getReference('main-project'),
             'plein de détails croustillants',
             3,
             UserStory::PRODUCT_BACKLOG,
-            12
+            11
         );
 
-        $secondStory = $this->createStory(
+        $story2 = $this->createStory(
             'ETQ user je peux avoir accès à mini-scrum',
             $this->getReference('main-project'),
             'depuis n\'importe où (entre autres)',
             2,
             UserStory::SPRINT_BACKLOG,
-            2
+            12
         );
 
-        $manager->persist($firstStory);
-        $manager->persist($secondStory);
+        $story3 = $this->createStory(
+            'ETQ user je peux poster des commentaires sur une user story',
+            $this->getReference('main-project'),
+            'uniquement si la story est entre les statuts sprint backlog et done',
+            2,
+            UserStory::DOING,
+            13
+        );
 
-        $user_story_3 = new UserStory();
-        $user_story_3->setTitle('ETQ user cette user story est à valider');
-        $user_story_3->setDetails('bien regarder la définition du done');
-        $user_story_3->setPoints(5);
-        $user_story_3->setStatus(UserStory::TO_VALIDATE);
-        $user_story_3->setNumber(3);
-        $user_story_3->setProject($this->getReference('main-project'));
+        $story4 = $this->createStory(
+            'ETQ user cette user story est à valider',
+            $this->getReference('main-project'),
+            'bien regarder la définition du done',
+            5,
+            UserStory::TO_VALIDATE,
+            14
+        );
 
-        $manager->persist($user_story_3);
+        $this->addReference('story-1', $story1);
+        $this->addReference('story-2', $story2);
+        $this->addReference('story-3', $story3);
+        $this->addReference('story-4', $story4);
+
+        $manager->persist($story1);
+        $manager->persist($story2);
+        $manager->persist($story3);
+        $manager->persist($story4);
 
         $manager->flush();
     }

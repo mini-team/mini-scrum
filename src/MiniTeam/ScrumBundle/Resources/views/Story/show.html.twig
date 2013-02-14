@@ -50,24 +50,48 @@
 
     <hr>
 
-    <!--fil de commentaires -->
-    {#
+    <!--comments thread -->
+
     <div class="row">
         <div class="span6">
-            <div class="alert alert-info dev-comment">
-                <strong>Benjamin: </strong>Mais c'est pas très clair les précisions sur cette user story non ?
-            </div>
-            <div class="alert alert-success po-comment">
-                <strong>Edouard: </strong>ouais j'avoue
-            </div>
-            <div class="alert alert-info dev-comment">
-                <strong>Matthieu: </strong> ^^
-            </div>
-            <div class="alert alert-info dev-comment">
-                <strong>Benjamin: </strong>Bon ok je me base sur ta réponse dans IRC
-            </div>
+            {%  for comment in story.comments %}
+
+                {% if project.productOwner == comment.author %}
+                    {% set commentClass='alert alert-success po-comment'  %}
+                {% else %}
+                    {% set commentClass='alert alert-info dev-comment' %}
+                {% endif %}
+
+                <div class="{{ commentClass }}">
+                    <strong>{{ comment.author.username }}: </strong>{{ comment.content }}
+                </div>
+            {% endfor %}
+
+            {% if project.productOwner == app.user %}
+                {% set commentClass='alert alert-success po-comment'  %}
+            {% else %}
+                {% set commentClass='alert alert-info dev-comment' %}
+            {% endif %}
+
+            {# TODO how to make name + input +button occupy the whole length ? #}
+            <form action="{{ path('comment_new',{ 'project': project.slug, 'story': story.id }) }}" method="post" class="form-inline">
+                <div class="{{ commentClass }}">
+                    <strong>{{ app.user.username }}: </strong>
+                    {{ form_widget(
+                        commentForm.content,
+                        {'attr': {'class':'input-xlarge'} }
+                    ) }}
+                    <button type="submit" class="btn comment-button" id="comment-submit-button""><i class="icon-ok"></i></button>
+                    {{ form_rest(commentForm) }}
+                </div>
+
+            </form>
+
         </div>
 
+
+
+        {#
         <div class="span6">
             <div class="alert alert-danger very-close">
                 Ne fonctionne pas avec Thunderbird comme client de messagerie
@@ -80,8 +104,9 @@
                 Problème de formattage html de l'email
             </div>
         </div>
+        #}
     </div>
-    #}
+
 
 
 {% endblock %}
