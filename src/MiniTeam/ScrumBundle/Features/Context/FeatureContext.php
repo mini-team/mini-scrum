@@ -57,7 +57,24 @@ class FeatureContext extends BehatContext
     {
         $status = $this->convertStateToStatus($status);
 
-        $this->updateStory($id, $status);
+        $this->updateStoryStatus($id, $status);
+    }
+
+    /**
+     * @Given /^the story "([^"]*)" was delivered by ([^"]*)$/
+     */
+    public function userChangedStoryStatus($id, $user)
+    {
+        $em = $this->kernel->getContainer()->get('doctrine.orm.entity_manager');
+
+        $user = $em->getRepository('MiniTeamUserBundle:User')->findOneByUsernameCanonical($user);
+
+        $story = $em->getRepository('MiniTeamScrumBundle:UserStory')->find($id);
+        $story->setAssignee($user);
+        $story->deliver();
+
+        $em->persist($story);
+        $em->flush();
     }
 
     /**
@@ -124,7 +141,7 @@ class FeatureContext extends BehatContext
      * @param $id
      * @param $status
      */
-    protected function updateStory($id, $status)
+    protected function updateStoryStatus($id, $status)
     {
         $em = $this->kernel->getContainer()->get('doctrine.orm.entity_manager');
 

@@ -96,6 +96,14 @@ class UserStory
     protected $comments;
 
     /**
+     * @var \MiniTeam\UserBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="MiniTeam\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="previous_user_id", referencedColumnName="id")
+     */
+    protected $previousAssignee;
+
+    /**
      * Construct the story
      */
     public function __construct()
@@ -310,6 +318,7 @@ class UserStory
     }
 
     /**
+<<<<<<< HEAD
      * Get all the comments on this story
      */
     public function getComments()
@@ -324,6 +333,26 @@ class UserStory
     {
         $this->comments[] = $comment;
         $comment->setPost($this);
+    }
+
+    /**
+     * @param \MiniTeam\UserBundle\Entity\User $previousAssignee
+     *
+     * @return UserStory
+     */
+    public function setPreviousAssignee(User $previousAssignee)
+    {
+        $this->previousAssignee = $previousAssignee;
+
+        return $this;
+    }
+
+    /**
+     * @return \MiniTeam\UserBundle\Entity\User
+     */
+    public function getPreviousAssignee()
+    {
+        return $this->previousAssignee;
     }
 
     /**
@@ -416,6 +445,8 @@ class UserStory
      */
     public function deliver()
     {
+        $this->setPreviousAssignee($this->getAssignee());
+
         if (null !== ($user = $this->getProject()->getProductOwner())) {
             $this->setAssignee($user);
         }
@@ -432,6 +463,7 @@ class UserStory
     public function refuse()
     {
         $this->setStatus(self::DOING);
+        $this->setAssignee($this->getPreviousAssignee());
     }
 
     /**

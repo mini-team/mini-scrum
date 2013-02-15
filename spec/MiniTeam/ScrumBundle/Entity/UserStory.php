@@ -46,10 +46,16 @@ class UserStory extends ObjectBehavior
         $this->isInBacklog()->shouldBe(true);
     }
 
-    function it_should_refuse_the_story()
+    /**
+     * @param \MiniTeam\UserBundle\Entity\User $user
+     */
+    function it_should_refuse_the_story($user)
     {
+        $this->setPreviousAssignee($user);
+
         $this->refuse();
         $this->getStatus()->shouldReturn(\MiniTeam\ScrumBundle\Entity\UserStory::DOING);
+        $this->getAssignee()->shouldEqual($user);
     }
 
     function it_should_accept_the_story()

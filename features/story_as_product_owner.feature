@@ -43,9 +43,10 @@ Feature: User story features
   Scenario: Refuse a user story
     As a product owner I can refuse a user story
 
-    Given the story "1" is delivered
+    Given the story "1" was delivered by edouard
     When I refuse the story "1"
     Then the story should be in progress
+    And it should be assigned to edouard
 
   Scenario: Accept a user story
     As a product owner I can accept a user story
