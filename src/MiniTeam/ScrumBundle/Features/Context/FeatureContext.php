@@ -159,7 +159,6 @@ class FeatureContext extends BehatContext implements KernelAwareInterface
         return $status;
     }
 
-
     /**
      * @Then /^(?:|it )should be assigned to (?P<assignee>[^"]*)$/
      */

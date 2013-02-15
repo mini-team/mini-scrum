@@ -10,7 +10,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Form;
 
-
 /**
  * @author Edouard de Labareyre <edouard@melix.net>
  *

@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Form;
 
-
 /**
  * @author Benjamin Grandfond <benjamin.grandfond@gmail.com>
  * @author Edouard de Labareyre <edouard@melix.net>
