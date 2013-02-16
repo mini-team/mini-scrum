@@ -62,9 +62,9 @@ class UserStory
     protected $details;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="points", type="integer", nullable=true)
+     * @ORM\Column(name="points", type="string", nullable=true)
      */
     protected $points;
 
