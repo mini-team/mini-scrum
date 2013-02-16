@@ -378,7 +378,7 @@ class UserStory
      *
      * @param \MiniTeam\UserBundle\Entity\User $user
      */
-    public function starts(User $user)
+    public function start(User $user)
     {
         $this->setAssignee($user);
         $this->setStatus(self::DOING);
