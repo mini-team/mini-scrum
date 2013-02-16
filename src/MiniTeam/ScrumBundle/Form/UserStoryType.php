@@ -20,8 +20,8 @@ class UserStoryType extends AbstractType
         $builder
             ->add('title', 'text')
             ->add('details', 'textarea', array('required' => false))
-            ->add('points', 'choice', array('choices' => $this->getPoints()))
-            ->add('status', 'choice', array('choices' => $this->getStatuses()))
+            ->add('points', 'story_point')
+            ->add('status', 'story_status')
             ->add('projectId', 'hidden')
         ;
     }
@@ -42,24 +42,5 @@ class UserStoryType extends AbstractType
     public function getName()
     {
         return 'story';
-    }
-
-    /**
-     * @return array
-     */
-    public function getStatuses()
-    {
-        $class = new \ReflectionClass('MiniTeam\ScrumBundle\Entity\UserStory');
-        $constants = $class->getConstants();
-
-        return array_combine($constants, $constants);
-    }
-
-    /**
-     * @return array
-     */
-    public function getPoints()
-    {
-        return array('0', '1/2', '1', '2', '3', '5', '8', '13', '20', '40', '50', '100', '?', '∞');
     }
 }
