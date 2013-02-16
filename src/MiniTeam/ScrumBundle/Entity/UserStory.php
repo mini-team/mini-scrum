@@ -318,7 +318,6 @@ class UserStory
     }
 
     /**
-<<<<<<< HEAD
      * Get all the comments on this story
      */
     public function getComments()
@@ -445,7 +444,9 @@ class UserStory
      */
     public function deliver()
     {
-        $this->setPreviousAssignee($this->getAssignee());
+        if (null !== ($assignee = $this->getAssignee())) {
+            $this->setPreviousAssignee($assignee);
+        }
 
         if (null !== ($user = $this->getProject()->getProductOwner())) {
             $this->setAssignee($user);
@@ -463,7 +464,11 @@ class UserStory
     public function refuse()
     {
         $this->setStatus(self::DOING);
-        $this->setAssignee($this->getPreviousAssignee());
+
+
+        if (null !== ($assignee = $this->getPreviousAssignee())) {
+            $this->setAssignee($assignee);
+        }
     }
 
     /**

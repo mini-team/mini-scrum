@@ -26,8 +26,8 @@ class UserStory extends ObjectBehavior
     {
         $project->getProductOwner()->willReturn($user);
         $this->setProject($project);
-
         $this->setAssignee($developer);
+
         $this->deliver();
         $this->getAssignee()->shouldReturn($user);
         $this->getStatus()->shouldReturn(\MiniTeam\ScrumBundle\Entity\UserStory::TO_VALIDATE);
