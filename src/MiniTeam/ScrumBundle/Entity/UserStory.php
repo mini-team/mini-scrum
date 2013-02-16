@@ -298,7 +298,7 @@ class UserStory
     public function addComment(\MiniTeam\ScrumBundle\Entity\Comment $comment)
     {
         $this->comments[] = $comment;
-        $comment->setPost($this);
+        $comment->setStory($this);
     }
 
     /**
