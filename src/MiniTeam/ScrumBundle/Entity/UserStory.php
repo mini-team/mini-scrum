@@ -298,7 +298,7 @@ class UserStory
     public function addComment(\MiniTeam\ScrumBundle\Entity\Comment $comment)
     {
         $this->comments[] = $comment;
-        $comment->setPost($this);
+        $comment->setStory($this);
     }
 
     /**
@@ -378,7 +378,7 @@ class UserStory
      *
      * @param \MiniTeam\UserBundle\Entity\User $user
      */
-    public function starts(User $user)
+    public function start(User $user)
     {
         $this->setAssignee($user);
         $this->setStatus(self::DOING);

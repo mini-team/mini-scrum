@@ -150,7 +150,7 @@ class StoryController extends Controller
                 $story->unplan();
                 break;
             case 'start':
-                $story->starts($this->getUser());
+                $story->start($this->getUser());
                 break;
             case 'deliver':
                 $story->deliver();
