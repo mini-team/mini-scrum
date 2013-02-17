@@ -85,7 +85,7 @@ class FeatureContext extends BehatContext implements KernelAwareInterface
             ->findOneByUsernameCanonical($username);
 
         $story = $em->getRepository('MiniTeamScrumBundle:UserStory')->find($id);
-        $story->starts($user);
+        $story->start($user);
 
         $em->persist($story);
         $em->flush();
@@ -101,7 +101,7 @@ class FeatureContext extends BehatContext implements KernelAwareInterface
         $user = $em->getRepository('MiniTeamUserBundle:User')->findOneByUsernameCanonical($user);
 
         $story = $em->getRepository('MiniTeamScrumBundle:UserStory')->find($id);
-        $story->starts($user);
+        $story->start($user);
         $story->deliver();
 
         $em->persist($story);
