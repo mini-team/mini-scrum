@@ -61,7 +61,7 @@ class Comment
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -71,20 +71,20 @@ class Comment
     /**
      * Set content
      *
-     * @param string $content
+     * @param  string  $content
      * @return Comment
      */
     public function setContent($content)
     {
         $this->content = $content;
-    
+
         return $this;
     }
 
     /**
      * Get content
      *
-     * @return string 
+     * @return string
      */
     public function getContent()
     {
@@ -94,37 +94,36 @@ class Comment
     /**
      * Set date
      *
-     * @param \DateTime $date
+     * @param  \DateTime $date
      * @return Comment
      */
     public function setDate($date)
     {
         $this->date = $date;
-    
+
         return $this;
     }
 
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDate()
     {
         return $this->date;
     }
 
-
     /**
      * Set author
      *
-     * @param \MiniTeam\UserBundle\Entity\User $author
+     * @param  \MiniTeam\UserBundle\Entity\User $author
      * @return Comment
      */
     public function setAuthor($author)
     {
         $this->author = $author;
-    
+
         return $this;
     }
 
@@ -141,7 +140,7 @@ class Comment
     /**
      * Set story
      *
-     * @param \MiniTeam\ScrumBundle\Entity\UserStory $story
+     * @param  \MiniTeam\ScrumBundle\Entity\UserStory $story
      * @return Comment
      */
     public function setStory($story)

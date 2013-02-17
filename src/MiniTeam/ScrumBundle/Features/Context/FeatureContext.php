@@ -14,8 +14,7 @@ use Symfony\Component\HttpKernel\KernelInterface;
 /**
  * Features context.
  */
-class FeatureContext extends BehatContext
-                  implements KernelAwareInterface
+class FeatureContext extends BehatContext implements KernelAwareInterface
 {
     private $kernel;
     private $parameters;
@@ -42,6 +41,14 @@ class FeatureContext extends BehatContext
     }
 
     /**
+     * @return \Doctrine\ORM\EntityManager
+     */
+    protected function getEntityManager()
+    {
+        return $this->kernel->getContainer()->get('doctrine.orm.entity_manager');
+    }
+
+    /**
      * @Given /^I am viewing story (\d+)$/
      */
     public function viewStory($id)
@@ -50,18 +57,59 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^I am working on the story "(?P<id>[^"]*)"$/
      * @Given /^the story "(?P<id>[^"]*)" is (?P<status>[^"]*)$/
      */
     public function setStoryStatus($id, $status = \MiniTeam\ScrumBundle\Entity\UserStory::DOING)
     {
         $status = $this->convertStateToStatus($status);
 
-        $this->updateStory($id, $status);
+        $em = $this->getEntityManager();
+
+        $story = $em->getRepository('MiniTeamScrumBundle:UserStory')->find($id);
+        $story->setStatus($status);
+
+        $em->persist($story);
+        $em->flush();
     }
 
     /**
-     * @When /^I (?P<action>:?\w+) the user story "(?P<id>[^"]*)"$/
+     * @Given /^I am working on the story "(?P<id>[^"]*)"$/
+     */
+    public function assignStory($id)
+    {
+        $username = $this->getMainContext()->getSubcontext('user_bundle')->getUsername();
+
+        $em = $this->getEntityManager();
+
+        $user = $em->getRepository('MiniTeamUserBundle:User')
+            ->findOneByUsernameCanonical($username);
+
+        $story = $em->getRepository('MiniTeamScrumBundle:UserStory')->find($id);
+        $story->starts($user);
+
+        $em->persist($story);
+        $em->flush();
+    }
+
+    /**
+     * @Given /^the story "([^"]*)" was delivered by ([^"]*)$/
+     */
+    public function userChangedStoryStatus($id, $user)
+    {
+        $em = $this->kernel->getContainer()->get('doctrine.orm.entity_manager');
+
+        $user = $em->getRepository('MiniTeamUserBundle:User')->findOneByUsernameCanonical($user);
+
+        $story = $em->getRepository('MiniTeamScrumBundle:UserStory')->find($id);
+        $story->starts($user);
+        $story->deliver();
+
+        $em->persist($story);
+        $em->flush();
+    }
+
+    /**
+     * @When /^I (?P<action>:?\w+) the story "(?P<id>[^"]*)"$/
      */
     public function changeStateOfUserStory($action, $id)
     {
@@ -111,7 +159,6 @@ class FeatureContext extends BehatContext
         return $status;
     }
 
-
     /**
      * @Then /^(?:|it )should be assigned to (?P<assignee>[^"]*)$/
      */
@@ -119,22 +166,6 @@ class FeatureContext extends BehatContext
     {
         return new Step\Then(sprintf('I should see "%s" in the "#assignee" element', $assignee));
     }
-
-    /**
-     * @param $id
-     * @param $status
-     */
-    protected function updateStory($id, $status)
-    {
-        $em = $this->kernel->getContainer()->get('doctrine.orm.entity_manager');
-
-        $story = $em->getRepository('MiniTeamScrumBundle:UserStory')->find($id);
-        $story->setStatus($status);
-
-        $em->persist($story);
-        $em->flush();
-    }
-
 
     /**
      * @When /^I write comment "([^"]*)"$/

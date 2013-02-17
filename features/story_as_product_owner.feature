@@ -22,34 +22,48 @@ Feature: User story features
     As a product owner I plan a user story
     for the new sprint.
 
-    When I plan the user story "1"
+    When I plan the story "1"
     Then the story should be planned
 
   Scenario: Unplan a user story
     As a product owner I unplan a user story.
 
     Given the story "1" is planned
-    When I unplan the user story "1"
+    When I unplan the story "1"
     Then the story should be in backlog
 
   Scenario: Delete a user story
     As a product owner I can delete a user story
 
     Given the story "1" is in the backlog
-    When I delete the user story "1"
+    When I delete the story "1"
     Then I should be on "/mini-scrum/us-list/product-backlog"
     And I should not see text matching "ETQ user ceci est une user story fixture"
 
   Scenario: Refuse a user story
     As a product owner I can refuse a user story
 
-    Given the story "1" is delivered
-    When I refuse the user story "1"
+    Given the story "1" was delivered by edouard
+    When I refuse the story "1"
     Then the story should be in progress
+    And it should be assigned to edouard
 
   Scenario: Accept a user story
     As a product owner I can accept a user story
 
     Given the story "1" is delivered
-    When I accept the user story "1"
+    When I accept the story "1"
     Then the story should be done
+
+  Scenario Outline: Deblock a user story
+    As a product owner I can deblock a user story
+
+    Given the story "1" is <initial>
+    Then the story "1" is blocked
+    When I deblock the story "1"
+    Then the story should be planned
+
+  Examples:
+    | initial     |
+    | planned     |
+    | in progress |
