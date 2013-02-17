@@ -35,7 +35,7 @@ class UserStory
     /**
      * @var Project
      *
-     * @ORM\ManyToOne(targetEntity="MiniTeam\ScrumBundle\Entity\Project")
+     * @ORM\ManyToOne(targetEntity="MiniTeam\ScrumBundle\Entity\Project", inversedBy="stories")
      * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      */
     protected $project;

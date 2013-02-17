@@ -4,17 +4,32 @@
     {{ render(controller('MiniTeamScrumBundle:Project:scrumBar', { 'project': project.slug, 'activeTab': 'home'})) }}
 
     <div class="row-fluid">
-
         {{ render(controller('MiniTeamScrumBundle:Project:needFeedbackModule', { 'project': project.slug})) }}
-
     </div>
 
     <hr>
 
     <div class="row-fluid">
-        <div class="span6 well" id="members">
-            <h3>Members</h3>
-            <ul>
+        {% if app.user in project.developers%}
+        <div class="span6" id="todo">
+            <h4><i class="icon-ok"></i> Todos</h4>
+            <ul class="unstyled">
+                {% for story in todo %}
+                    <li class="well">
+                        <p class="text-info pull-right">{{ story.points }} pts</p>
+                        <a href="{{ path('story_show', { 'project': project.slug, 'id': story.id }) }}">
+                            <span class="gray-text">#{{ story.number }}</span>
+                            <span class="black-text">{{ story.title }}</span>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <div class="span6" id="members">
+            <h4>Members</h4>
+            <ul class="well unstyled">
             {% for membership in project.memberships %}
                 <li>{{ "%username% as %role%"|replace({ "%username%": membership.user.username, "%role%": membership.role }) }}</li>
             {% else %}

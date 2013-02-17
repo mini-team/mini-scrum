@@ -25,7 +25,12 @@ class ProjectController extends Controller
             return $this->redirect($url);
         }
 
-        return array('project' => $project);
+        $todo = null;
+        if ($this->getUser()->isDeveloper($project)) {
+            $todo = $project->getAssigneeStories($this->getUser());
+        }
+
+        return array('project' => $project, 'todo' => $todo);
     }
 
     /**

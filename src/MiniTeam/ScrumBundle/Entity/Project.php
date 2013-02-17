@@ -81,11 +81,19 @@ class Project
     protected $developers;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="MiniTeam\ScrumBundle\Entity\UserStory", mappedBy="project")
+     */
+    protected $stories;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->memberships = new ArrayCollection();
+        $this->stories     = new ArrayCollection();
     }
 
     /**
@@ -263,5 +271,33 @@ class Project
         }
 
         return $this->developers;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\ArrayCollection $stories
+     */
+    public function setStories($stories)
+    {
+        $this->stories = $stories;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getStories()
+    {
+        return $this->stories;
+    }
+
+    /**
+     * @param \MiniTeam\UserBundle\Entity\User $user
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAssigneeStories(User $user)
+    {
+        return $this->getStories()->filter(function ($story) use ($user) {
+            return $user == $story->getAssignee();
+        });
     }
 }

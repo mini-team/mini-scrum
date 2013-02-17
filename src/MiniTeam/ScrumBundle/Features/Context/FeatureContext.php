@@ -182,4 +182,20 @@ class FeatureContext extends BehatContext implements KernelAwareInterface
     {
         return new Step\When(sprintf('I press "comment-submit-button"'));
     }
+
+    /**
+     * @Given /^I go to the project "([^"]*)" homepage$/
+     */
+    public function iGoToTheProjectHomepage($project)
+    {
+        return new Step\Given('I go to "/'.$project.'"');
+    }
+
+    /**
+     * @Then /^I should see (\d+) stories in the todo list$/
+     */
+    public function iShouldSeeTwoStoriesInTheTodoList($count)
+    {
+        return new Step\Then(sprintf('I should see %s "#todo ul li" elements', $count));
+    }
 }
