@@ -4,17 +4,18 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
     <parameters>
-        <parameter key="mini_team_scrum.example.class">MiniTeam\ScrumBundle\Example</parameter>
+        <parameter key="mini_team_scrum.form.type.story_point.class">MiniTeam\ScrumBundle\Form\Type\StoryPointType</parameter>
+        <parameter key="mini_team_scrum.form.type.story_status.class">MiniTeam\ScrumBundle\Form\Type\StoryStatusType</parameter>
     </parameters>
 
     <services>
-        <service id="mini_team_scrum.example" class="%mini_team_scrum.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="mini_team_scrum.form.type.story_point" class="%mini_team_scrum.form.type.story_point.class%">
+            <argument>%story_points_values%</argument>
+            <tag name="form.type" alias="story_point"/>
+        </service>
+        <service id="mini_team_scrum.form.type.story_status" class="%mini_team_scrum.form.type.story_status.class%">
+            <tag name="form.type" alias="story_status"/>
         </service>
     </services>
-    -->
 </container>
