@@ -48,7 +48,7 @@ class Comment
     /**
      * @var \MiniTeam\ScrumBundle\Entity\UserStory
      *
-     * @ORM\ManyToOne(targetEntity="MiniTeam\ScrumBundle\Entity\UserStory")
+     * @ORM\ManyToOne(targetEntity="MiniTeam\ScrumBundle\Entity\UserStory", inversedBy="comments")
      * @ORM\JoinColumn(name="story_id", referencedColumnName="id")
      */
     protected $story;
