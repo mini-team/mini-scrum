@@ -78,7 +78,7 @@ class UserStory
     /**
      * @var string
      *
-     * @ORM\Column(name="status", type="string",length=20)
+     * @ORM\Column(name="status", type="string", length=20)
      */
     protected $status;
 
@@ -94,6 +94,39 @@ class UserStory
      * @ORM\OneToMany(targetEntity="MiniTeam\ScrumBundle\Entity\Comment", mappedBy="story")
      */
     protected $comments;
+
+    /**
+     * @var \MiniTeam\UserBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="MiniTeam\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="previous_user_id", referencedColumnName="id")
+     */
+    protected $previousAssignee;
+
+    /**
+     * Construct the story
+     */
+    public function __construct()
+    {
+        $this->status = self::PRODUCT_BACKLOG;
+    }
+
+    /**
+     * Return the available statuses.
+     *
+     * @return array
+     */
+    public static function getStatuses()
+    {
+        return array(
+            self::PRODUCT_BACKLOG,
+            self::SPRINT_BACKLOG,
+            self::DOING,
+            self::BLOCKED,
+            self::TO_VALIDATE,
+            self::DONE,
+        );
+    }
 
     /**
      * Get id
@@ -302,6 +335,26 @@ class UserStory
     }
 
     /**
+     * @param \MiniTeam\UserBundle\Entity\User $previousAssignee
+     *
+     * @return UserStory
+     */
+    public function setPreviousAssignee(User $previousAssignee)
+    {
+        $this->previousAssignee = $previousAssignee;
+
+        return $this;
+    }
+
+    /**
+     * @return \MiniTeam\UserBundle\Entity\User
+     */
+    public function getPreviousAssignee()
+    {
+        return $this->previousAssignee;
+    }
+
+    /**
      * @return bool
      */
     public function isAssigned()
@@ -391,6 +444,10 @@ class UserStory
      */
     public function deliver()
     {
+        if (null !== ($assignee = $this->getAssignee())) {
+            $this->setPreviousAssignee($assignee);
+        }
+
         if (null !== ($user = $this->getProject()->getProductOwner())) {
             $this->setAssignee($user);
         }
@@ -401,10 +458,17 @@ class UserStory
     /**
      * Refuse the user story.
      * The status is changed to "doing"
+     *
+     * @todo assign the story back to the developer
      */
     public function refuse()
     {
         $this->setStatus(self::DOING);
+
+
+        if (null !== ($assignee = $this->getPreviousAssignee())) {
+            $this->setAssignee($assignee);
+        }
     }
 
     /**
@@ -426,17 +490,12 @@ class UserStory
     }
 
     /**
-     * @return array
+     * Deblock a user story.
+     * Change the status back to the value
+     * it had before being blocked.
      */
-    public static function getStatuses()
+    public function deblock()
     {
-        return array(
-            self::PRODUCT_BACKLOG,
-            self::SPRINT_BACKLOG,
-            self::DOING,
-            self::BLOCKED,
-            self::TO_VALIDATE,
-            self::DONE,
-        );
+        $this->setStatus(self::SPRINT_BACKLOG);
     }
 }
