@@ -198,4 +198,12 @@ class FeatureContext extends BehatContext implements KernelAwareInterface
     {
         return new Step\Then(sprintf('I should see %s "#todo ul li" elements', $count));
     }
+
+    /**
+     * @Then /^I should see (\d+) stories in the validation list$/
+     */
+    public function iShouldSeeTwoStoriesInTheValidationList($count)
+    {
+        return new Step\Then(sprintf('I should see %s "#validation ul li" elements', $count));
+    }
 }

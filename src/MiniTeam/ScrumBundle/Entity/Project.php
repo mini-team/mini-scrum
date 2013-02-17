@@ -290,6 +290,8 @@ class Project
     }
 
     /**
+     * Get stories assigned to a user.
+     *
      * @param \MiniTeam\UserBundle\Entity\User $user
      *
      * @return \Doctrine\Common\Collections\Collection
@@ -298,6 +300,18 @@ class Project
     {
         return $this->getStories()->filter(function ($story) use ($user) {
             return $user == $story->getAssignee();
+        });
+    }
+
+    /**
+     * Returns delivered stories, ready fo validation.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDeliveredStories()
+    {
+        return $this->getStories()->filter(function ($story) {
+            return $story->isDelivered();
         });
     }
 }

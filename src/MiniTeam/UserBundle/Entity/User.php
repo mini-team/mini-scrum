@@ -142,4 +142,14 @@ class User extends BaseUser
 
         return $membership !== null && $membership->isDeveloper();
     }
+
+    /**
+     * @param \MiniTeam\ScrumBundle\Entity\Project $project
+     *
+     * @return bool
+     */
+    public function isProductOwner(Project $project)
+    {
+        return $this == $project->getProductOwner();
+    }
 }

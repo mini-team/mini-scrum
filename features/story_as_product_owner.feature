@@ -67,3 +67,12 @@ Feature: User story features
     | initial     |
     | planned     |
     | in progress |
+
+  Scenario: See list of delivered stories
+    As a product owner
+    I see the list of stories I have to validate
+
+    Given the story "3" was delivered by edouard
+    And the story "4" was delivered by edouard
+    When I go to the project "mini-scrum" homepage
+    Then I should see 2 stories in the validation list
