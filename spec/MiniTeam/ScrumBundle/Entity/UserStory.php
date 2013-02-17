@@ -11,7 +11,7 @@ class UserStory extends ObjectBehavior
      */
     function it_should_be_started_by_a_user($user)
     {
-        $this->starts($user);
+        $this->start($user);
 
         $this->getAssignee()->shouldReturn($user);
         $this->getStatus()->shouldReturn(\MiniTeam\ScrumBundle\Entity\UserStory::DOING);
