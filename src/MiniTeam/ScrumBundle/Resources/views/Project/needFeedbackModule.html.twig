@@ -2,13 +2,16 @@
 <div class="span6">
     <h4><i class="icon-comment"></i> Need your feedback</h4>
 
-    <a href="#">
-        <div class="well">
-            <p class="text-info pull-right">5 pts<br><span class="badge badge-important"> </span></p>
-            <span class="gray-text">#12</span>
-            <span class="black-text">ETQ dev j'envoie le rapport quotidien pré-rempli au membres du projets. Le contenu est modificable avant envoi</span>
-            </p>
-        </div>
-    </a>
+    {% for notif in notifList %}
+        <a href="{{ path('story_show', { 'project': project.slug,'id': notif.story.id }) }}">
+            <div class="well">
+                <p class="text-info pull-right">{{ notif.story.points }} pts</p>
+                {# TODO add a colored point to see if the story is blocked (red), backlog or done (gray) or other (blue) #}
+                <span class="gray-text">#{{ notif.story.number }}</span>
+                <span class="black-text">{{ notif.story.title }}</span>
+                </p>
+            </div>
+        </a>
+    {% endfor %}
 
 </div>

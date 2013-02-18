@@ -65,11 +65,19 @@ class ProjectController extends Controller
      */
     public function needFeedbackModuleAction($project)
     {
-        //if product owner -> list stories with comment notif
+        $project = $this->getDoctrine()
+            ->getRepository('MiniTeamScrumBundle:Project')
+            ->findOneBySlug($project);
+
+        //list story with comment notif for me
+        $notifRepo = $this->getDoctrine()->getRepository('MiniTeamScrumBundle:StoryNotification');
+
+        $notifList = $notifRepo->getStoryNotifications($project,$this->getUser());
 
         return array(
             'project'   => $project,
-            'plop'      => 'oh yeah plop'
+            'plop'      => 'oh yeah plop',
+            'notifList' => $notifList
         );
     }
 

@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @author Edouard Garnier de Labareyre <edouard@melix.net>
  *
  * @ORM\Table(name="miniscrum_story_notif")
- * @ORM\Entity(repositoryClass="MiniTeam\ScrumBundle\Entity\StoryNotificationRepository")
+ * @ORM\Entity(repositoryClass="MiniTeam\ScrumBundle\Repository\StoryNotificationRepository")
  */
 class StoryNotification
 {
