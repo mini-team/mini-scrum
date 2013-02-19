@@ -29,14 +29,11 @@ class ProjectController extends Controller
     }
 
     /**
+     * @Extra\ParamConverter("project", options={ "mapping": { "project": "slug" } })
      * @Extra\Template()
      */
-    public function scrumBarAction($project, $activeTab)
+    public function scrumBarAction(Project $project, $activeTab)
     {
-        $project = $this->getDoctrine()
-            ->getRepository('MiniTeamScrumBundle:Project')
-            ->findOneBySlug($project);
-
         $usRepo = $this->getDoctrine()->getRepository('MiniTeamScrumBundle:UserStory');
 
         //TODO do it in one request
@@ -57,26 +54,21 @@ class ProjectController extends Controller
             'nb_to_validate'     => $nb_to_validate,
             'nb_done'            => $nb_done,
         );
-
     }
 
     /**
+     * @Extra\ParamConverter("project", options={ "mapping": { "project": "slug" } })
      * @Extra\Template()
      */
-    public function needFeedbackModuleAction($project)
+    public function needFeedbackModuleAction(Project $project)
     {
-        $project = $this->getDoctrine()
-            ->getRepository('MiniTeamScrumBundle:Project')
-            ->findOneBySlug($project);
-
-        //list story with comment notif for me
+        //list story with comment notif for current user
         $notifRepo = $this->getDoctrine()->getRepository('MiniTeamScrumBundle:StoryNotification');
 
-        $notifList = $notifRepo->getStoryNotifications($project,$this->getUser());
+        $notifList = $notifRepo->findAllByUserOnProject($project,$this->getUser());
 
         return array(
             'project'   => $project,
-            'plop'      => 'oh yeah plop',
             'notifList' => $notifList
         );
     }

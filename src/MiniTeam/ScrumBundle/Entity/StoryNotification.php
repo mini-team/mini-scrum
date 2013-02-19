@@ -78,7 +78,7 @@ class StoryNotification
      * Set story the notification is about
      *
      * @param \MiniTeam\ScrumBundle\Entity\UserStory $story
-     * @return Comment
+     * @return StoryNotification
      */
     public function setStory($story)
     {

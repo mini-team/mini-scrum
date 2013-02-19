@@ -60,9 +60,9 @@ class CommentController extends Controller
 
         if ($form->isValid()) {
             $comment = $form->getData();
-            $project = $comment->getStory()->getProject();
-            $story = $comment->getStory();
-            $author = $comment->getAuthor();
+            $story   = $comment->getStory();
+            $author  = $comment->getAuthor();
+            $project = $story->getProject();
 
             $em = $this->getDoctrine()->getManager();
 
@@ -70,16 +70,16 @@ class CommentController extends Controller
             $em->persist($comment);
 
             //add story notification to all users which are likely to be concerned by this comment
-            if( $author->getRole($project) == \MiniTeam\ScrumBundle\Entity\Membership::PRODUCT_OWNER) {
+            if($author->getRole($project) == \MiniTeam\ScrumBundle\Entity\Membership::PRODUCT_OWNER) {
                 if( $story->getAssignee() != null ){
-                    $this->addStoryNotification($story,$story->getAssignee());
-                }else{
+                    $em->persist($this->newStoryNotification($story, $story->getAssignee()));
+                } else {
                     foreach( $project->getDevelopers() as $dev){
-                        $this->addStoryNotification($story,$dev);
+                        $em->persist($this->newStoryNotification($story, $dev));
                     }
                 }
-            }else if ($author->getRole($project) == \MiniTeam\ScrumBundle\Entity\Membership::DEVELOPER) {
-                $this->addStoryNotification($story,$project->getProductOwner());
+            } else if ($author->getRole($project) == \MiniTeam\ScrumBundle\Entity\Membership::DEVELOPER) {
+                $em->persist($this->newStoryNotification($story, $project->getProductOwner()));
             }
 
             $em->flush();
@@ -97,19 +97,18 @@ class CommentController extends Controller
     }
 
     /**
-     * Add a story notification for a given user
+     * Create story notification for a given user
      *
-     * @param \MiniTeam\ScrumBundle\Entity\UserStory $story
-     * @param \MiniTeam\UserBundle\Entity\User       $recipient
-     *
+     * @param \MiniTeam\ScrumBundle\Entity\UserStory          $story
+     * @param \MiniTeam\UserBundle\Entity\User                $recipient
+     * @return \MiniTeam\ScrumBundle\Entity\StoryNotification $notification
      */
-    protected function addStoryNotification($story, $recipient)
+    protected function newStoryNotification($story, $recipient)
     {
-        $em = $this->getDoctrine()->getManager();
         $notification = new StoryNotification();
         $notification->setRecipient($recipient);
         $notification->setStory($story);
-        $em->persist($notification);
+        return $notification;
     }
 
 }
