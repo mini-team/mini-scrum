@@ -9,7 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Form;
-use MiniTeam\ScrumBundle\Entity\StoryNotification;
 
 /**
  * @author Edouard de Labareyre <edouard@melix.net>
@@ -60,29 +59,14 @@ class CommentController extends Controller
 
         if ($form->isValid()) {
             $comment = $form->getData();
-            $story   = $comment->getStory();
-            $author  = $comment->getAuthor();
-            $project = $story->getProject();
-
-            $em = $this->getDoctrine()->getManager();
 
             //add comment
+            $em = $this->getDoctrine()->getManager();
             $em->persist($comment);
-
-            //add story notification to all users which are likely to be concerned by this comment
-            if($author->getRole($project) == \MiniTeam\ScrumBundle\Entity\Membership::PRODUCT_OWNER) {
-                if( $story->getAssignee() != null ){
-                    $em->persist($this->newStoryNotification($story, $story->getAssignee()));
-                } else {
-                    foreach( $project->getDevelopers() as $dev){
-                        $em->persist($this->newStoryNotification($story, $dev));
-                    }
-                }
-            } else if ($author->getRole($project) == \MiniTeam\ScrumBundle\Entity\Membership::DEVELOPER) {
-                $em->persist($this->newStoryNotification($story, $project->getProductOwner()));
-            }
-
             $em->flush();
+
+            //add story notification for this comment
+            $this->get('story_notifier')->addStoryNotificationForComment($comment);
 
             return $this->redirect(
                 $this->generateUrl(
@@ -96,19 +80,6 @@ class CommentController extends Controller
         }
     }
 
-    /**
-     * Create story notification for a given user
-     *
-     * @param \MiniTeam\ScrumBundle\Entity\UserStory          $story
-     * @param \MiniTeam\UserBundle\Entity\User                $recipient
-     * @return \MiniTeam\ScrumBundle\Entity\StoryNotification $notification
-     */
-    protected function newStoryNotification($story, $recipient)
-    {
-        $notification = new StoryNotification();
-        $notification->setRecipient($recipient);
-        $notification->setStory($story);
-        return $notification;
-    }
+
 
 }

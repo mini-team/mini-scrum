@@ -5,7 +5,6 @@ namespace MiniTeam\ScrumBundle\Controller;
 use MiniTeam\ScrumBundle\Entity\Project;
 use MiniTeam\ScrumBundle\Entity\UserStory;
 use MiniTeam\ScrumBundle\Entity\Comment;
-use MiniTeam\UserBundle\Entity\User;
 use MiniTeam\ScrumBundle\Form\UserStoryType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -30,9 +29,8 @@ class StoryController extends Controller
      */
     public function showAction( Project $project, UserStory $story)
     {
-
         //remove notifications on this story
-        $this->removeNotifications($story, $this->getUser());
+        $this->get('story_notifier')->resetStoryNotification($story, $this->getUser());
 
         //create comment form
         $comment = new Comment();
@@ -129,27 +127,6 @@ class StoryController extends Controller
                 )
             );
         }
-    }
-
-    /**
-     * Remove all notifications for a given user on a given story
-     *
-     * @param \MiniTeam\ScrumBundle\Entity\UserStory $story
-     * @param \MiniTeam\UserBundle\Entity\User $user
-     */
-    protected function removeNotifications(UserStory $story, User $user)
-    {
-        $notifications = $this->getDoctrine()->getRepository('MiniTeamScrumBundle:StoryNotification')->findBy(
-            array(
-                'story' => $story,
-                'recipient'=> $user
-            )
-        );
-        $em = $this->getDoctrine()->getManager();
-        foreach($notifications as $notification) {
-            $em->remove($notification);
-        }
-        $em->flush();
     }
 
     /**

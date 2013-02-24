@@ -71,3 +71,9 @@ stof_doctrine_extensions:
     orm:
         default:
             sluggable: true
+
+
+services:
+    story_notifier:
+        class:        MiniTeam\ScrumBundle\Service\StoryNotifier
+        arguments:    [@doctrine.orm.entity_manager]
