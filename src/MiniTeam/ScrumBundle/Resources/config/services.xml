@@ -18,4 +18,5 @@
             <tag name="form.type" alias="story_status"/>
         </service>
     </services>
+
 </container>

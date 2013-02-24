@@ -17,7 +17,6 @@ use Symfony\Component\Form\Form;
  */
 class CommentController extends Controller
 {
-
     /**
      * @Extra\Route("/comment/new", name="comment_new")
      * @Extra\ParamConverter("story", options={"mapping": {"story": "id"}})
@@ -60,9 +59,13 @@ class CommentController extends Controller
         if ($form->isValid()) {
             $comment = $form->getData();
 
+            //add comment
             $em = $this->getDoctrine()->getManager();
             $em->persist($comment);
             $em->flush();
+
+            //add story notification for this comment
+            $this->get('story_notifier')->addStoryNotificationForComment($comment);
 
             return $this->redirect(
                 $this->generateUrl(

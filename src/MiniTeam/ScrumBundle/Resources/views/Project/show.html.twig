@@ -4,7 +4,15 @@
     {{ render(controller('MiniTeamScrumBundle:Project:scrumBar', { 'project': project.slug, 'activeTab': 'home'})) }}
 
     <div class="row-fluid">
-        <div class="span4 well" id="members">
+
+        {{ render(controller('MiniTeamScrumBundle:Project:needFeedbackModule', { 'project': project.slug})) }}
+
+    </div>
+
+    <hr>
+
+    <div class="row-fluid">
+        <div class="span6 well" id="members">
             <h3>Members</h3>
             <ul>
             {% for membership in project.memberships %}
@@ -14,5 +22,8 @@
             {% endfor %}
             </ul>
         </div>
+
     </div>
+
+
 {% endblock %}

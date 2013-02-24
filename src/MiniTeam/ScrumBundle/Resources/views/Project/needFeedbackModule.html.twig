@@ -1,0 +1,17 @@
+
+<div class="span6">
+    <h4><i class="icon-comment"></i> Need your feedback</h4>
+
+    {% for notif in notifList %}
+        <a href="{{ path('story_show', { 'project': project.slug,'id': notif.story.id }) }}">
+            <div class="well">
+                <p class="text-info pull-right">{{ notif.story.points }} pts</p>
+                {# TODO add a colored point to see if the story is blocked (red), backlog or done (gray) or other (blue) #}
+                <span class="gray-text">#{{ notif.story.number }}</span>
+                <span class="black-text">{{ notif.story.title }}</span>
+                </p>
+            </div>
+        </a>
+    {% endfor %}
+
+</div>
