@@ -39,7 +39,6 @@ class StoryNotification
      */
     protected $story;
 
-
     /**
      * Get id
      *
@@ -49,7 +48,6 @@ class StoryNotification
     {
         return $this->id;
     }
-
 
     /**
      * Set recipient of story notification

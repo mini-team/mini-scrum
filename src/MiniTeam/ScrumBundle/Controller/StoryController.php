@@ -26,7 +26,7 @@ class StoryController extends Controller
      * @Extra\ParamConverter("project", options={"mapping": {"project": "slug"}})
      * @Extra\Template()
      */
-    public function showAction( Project $project, UserStory $story)
+    public function showAction(Project $project, UserStory $story)
     {
         //remove notifications on this story
         $this->get('story_notifier')->resetStoryNotification($story, $this->getUser());

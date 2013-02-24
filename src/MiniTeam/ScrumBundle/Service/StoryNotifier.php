@@ -10,9 +10,14 @@ use Doctrine\ORM\EntityManager;
 
 class StoryNotifier
 {
-
+    /**
+     * @var \Doctrine\ORM\EntityManager
+     */
     protected $em;
 
+    /**
+     * @param \Doctrine\ORM\EntityManager $entityManager
+     */
     public function __construct(EntityManager $entityManager)
     {
         $this->em = $entityManager;
