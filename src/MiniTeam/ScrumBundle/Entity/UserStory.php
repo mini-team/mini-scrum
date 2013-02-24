@@ -465,7 +465,6 @@ class UserStory
     {
         $this->setStatus(self::DOING);
 
-
         if (null !== ($assignee = $this->getPreviousAssignee())) {
             $this->setAssignee($assignee);
         }
