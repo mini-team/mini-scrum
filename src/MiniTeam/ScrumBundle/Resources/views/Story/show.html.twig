@@ -129,7 +129,7 @@
     {% if story.isInBacklog %}
         <a class="btn btn-info" id="plan" href="{{ path('story_plan', { 'project': project.slug, 'id': story.id }) }}"><i class="icon-plus icon-white"></i> Plan for next sprint</a>
     {% elseif story.isBlocked %}
-        <a class="btn btn-success" id="deliver" href=""><i class="icon-hand-down icon-white"></i> Deblock</a>
+        <a class="btn btn-success" id="deblock" href="{{ path('story_deblock', { 'project': project.slug, 'id': story.id }) }}"><i class="icon-hand-down icon-white"></i> Deblock</a>
     {% elseif story.isDelivered %}
         <a class="btn btn-success" id="accept" href="{{ path('story_accept', { 'project': project.slug, 'id': story.id }) }}"><i class="icon-thumbs-up icon-white"></i> Accept</a>
     {% endif %}
@@ -154,5 +154,3 @@
         <a class="btn btn-success" id="deblock" href=""><i class="icon-hand-down icon-white"></i> Deblock</a>
     {% endif %}
 {% endblock %}
-
-

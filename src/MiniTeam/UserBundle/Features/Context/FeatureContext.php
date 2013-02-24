@@ -15,12 +15,13 @@ use Symfony\Component\HttpKernel\KernelInterface;
 /**
  * Features context.
  */
-class FeatureContext extends BehatContext
-                  implements KernelAwareInterface
+class FeatureContext extends BehatContext implements KernelAwareInterface
 {
     private $kernel;
     private $parameters;
     private $assertion;
+
+    protected $username;
 
     /**
      * Initializes context with parameters from behat.yml.
@@ -61,11 +62,21 @@ class FeatureContext extends BehatContext
      */
     public function iAmAuthenticatedAs($username, $password)
     {
+        $this->username = $username;
+
         return array(
             new Step\When('I am on "/login"'),
             new Step\When('I fill in "Username" with "'.$username.'"'),
             new Step\When('I fill in "Password" with "'.$password.'"'),
             new Step\When('I press "Login"'),
         );
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getUsername()
+    {
+        return $this->username;
     }
 }

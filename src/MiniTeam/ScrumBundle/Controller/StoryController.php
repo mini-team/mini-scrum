@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Form;
 
-
 /**
  * @author Benjamin Grandfond <benjamin.grandfond@gmail.com>
  * @author Edouard de Labareyre <edouard@melix.net>
@@ -137,6 +136,7 @@ class StoryController extends Controller
      * @Extra\Route("/us/{id}/refuse", name="story_refuse", defaults={"status": "refuse"}))
      * @Extra\Route("/us/{id}/accept", name="story_accept", defaults={"status": "accept"}))
      * @Extra\Route("/us/{id}/block", name="story_block", defaults={"status": "block"}))
+     * @Extra\Route("/us/{id}/deblock", name="story_deblock", defaults={"status": "deblock"}))
      *
      * @param \MiniTeam\ScrumBundle\Entity\UserStory $story
      * @param                                        $status
@@ -153,7 +153,7 @@ class StoryController extends Controller
                 $story->unplan();
                 break;
             case 'start':
-                $story->starts($this->getUser());
+                $story->start($this->getUser());
                 break;
             case 'deliver':
                 $story->deliver();
@@ -166,6 +166,9 @@ class StoryController extends Controller
                 break;
             case 'block':
                 $story->block();
+                break;
+            case 'deblock':
+                $story->deblock();
                 break;
         }
 

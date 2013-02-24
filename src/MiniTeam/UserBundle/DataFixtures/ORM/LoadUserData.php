@@ -59,7 +59,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      * @param $email
      * @param $username
      * @param $password
-     * @param $name
      *
      * @return \MiniTeam\UserBundle\Entity\User
      */

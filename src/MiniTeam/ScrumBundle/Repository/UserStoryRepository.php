@@ -19,8 +19,8 @@ class UserStoryRepository extends EntityRepository
      * @param Project $project
      * @param integer $status
      */
-    public function countUserStoriesWithStatus(Project $project, $status){
-
+    public function countUserStoriesWithStatus(Project $project, $status)
+    {
         $qb = $this->createQueryBuilder('us');
         $qb
             ->select($qb->expr()->count('us.id'))
