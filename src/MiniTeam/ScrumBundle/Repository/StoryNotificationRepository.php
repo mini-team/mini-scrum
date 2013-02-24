@@ -16,7 +16,7 @@ class StoryNotificationRepository extends EntityRepository
      * Get all the story notifications of a given user for a given project
      *
      * @param Project $project
-     * @param User $user
+     * @param User    $user
      */
     public function findAllByUserOnProject(Project $project, User $recipient)
     {

@@ -34,15 +34,15 @@ class StoryNotifier
         $project = $story->getProject();
 
         //add story notification to all users which are likely to be concerned by this comment
-        if($author->getRole($project) == \MiniTeam\ScrumBundle\Entity\Membership::PRODUCT_OWNER) {
-            if( $story->getAssignee() != null ){
+        if ($author->getRole($project) == \MiniTeam\ScrumBundle\Entity\Membership::PRODUCT_OWNER) {
+            if ( $story->getAssignee() != null ) {
                 $this->em->persist($this->newStoryNotification($story, $story->getAssignee()));
             } else {
-                foreach( $project->getDevelopers() as $dev){
+                foreach ( $project->getDevelopers() as $dev) {
                     $this->em->persist($this->newStoryNotification($story, $dev));
                 }
             }
-        } else if ($author->getRole($project) == \MiniTeam\ScrumBundle\Entity\Membership::DEVELOPER) {
+        } elseif ($author->getRole($project) == \MiniTeam\ScrumBundle\Entity\Membership::DEVELOPER) {
             $this->em->persist($this->newStoryNotification($story, $project->getProductOwner()));
         }
 
@@ -62,7 +62,7 @@ class StoryNotifier
                 'recipient'=> $user
             )
         );
-        foreach($notifications as $notification) {
+        foreach ($notifications as $notification) {
             $this->em->remove($notification);
         }
         $this->em->flush();
@@ -71,8 +71,8 @@ class StoryNotifier
     /**
      * Create story notification for a given user
      *
-     * @param \MiniTeam\ScrumBundle\Entity\UserStory          $story
-     * @param \MiniTeam\UserBundle\Entity\User                $recipient
+     * @param  \MiniTeam\ScrumBundle\Entity\UserStory         $story
+     * @param  \MiniTeam\UserBundle\Entity\User               $recipient
      * @return \MiniTeam\ScrumBundle\Entity\StoryNotification $notification
      */
     protected function newStoryNotification($story, $recipient)
@@ -80,6 +80,7 @@ class StoryNotifier
         $notification = new StoryNotification();
         $notification->setRecipient($recipient);
         $notification->setStory($story);
+
         return $notification;
     }
 }

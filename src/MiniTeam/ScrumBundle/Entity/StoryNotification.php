@@ -42,7 +42,7 @@ class StoryNotification
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -52,13 +52,13 @@ class StoryNotification
     /**
      * Set recipient of story notification
      *
-     * @param \MiniTeam\UserBundle\Entity\User $recipient
+     * @param  \MiniTeam\UserBundle\Entity\User $recipient
      * @return StoryNotification
      */
     public function setRecipient($recipient)
     {
         $this->recipient = $recipient;
-    
+
         return $this;
     }
 
@@ -75,7 +75,7 @@ class StoryNotification
     /**
      * Set story the notification is about
      *
-     * @param \MiniTeam\ScrumBundle\Entity\UserStory $story
+     * @param  \MiniTeam\ScrumBundle\Entity\UserStory $story
      * @return StoryNotification
      */
     public function setStory($story)

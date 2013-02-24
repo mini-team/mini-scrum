@@ -17,7 +17,6 @@ use Symfony\Component\Form\Form;
  */
 class CommentController extends Controller
 {
-
     /**
      * @Extra\Route("/comment/new", name="comment_new")
      * @Extra\ParamConverter("story", options={"mapping": {"story": "id"}})
