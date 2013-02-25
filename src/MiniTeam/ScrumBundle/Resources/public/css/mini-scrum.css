@@ -1,3 +1,13 @@
+body {
+    padding-bottom: 40px;
+    background-image: url('/bootstrap/img/debut_light.png');
+    background-repeat: repeat;
+}
+
+.well.user-story {
+    background-color: #fff9cb;
+}
+
 .nav.pull-center {
     position: absolute;
     left: 50%;
