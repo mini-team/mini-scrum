@@ -13,7 +13,7 @@ class User extends ObjectBehavior
     {
         $project->getName()->willReturn('foo');
 
-        $this->shouldThrow('\RuntimeException')->duringGetProjectRole($project);
+        $this->shouldThrow('\RuntimeException')->duringGetRole($project);
     }
 
     /**
@@ -27,6 +27,6 @@ class User extends ObjectBehavior
         $membership->getProject()->willReturn($project);
 
         $this->getMemberships()->add($membership);
-        $this->getProjectRole($project)->shouldReturn($role);
+        $this->getRole($project)->shouldReturn($role);
     }
 }
