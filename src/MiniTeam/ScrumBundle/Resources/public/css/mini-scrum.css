@@ -32,26 +32,23 @@ body {
     text-align: right;
 }
 
-.very-close{
-    margin-top:3px;
-    margin-bottom:3px;
-    padding: 4px;
-    padding-left: 8px;
-}
-
-.dev-comment{
+.story-comment{
+    background-color: #eee;
+    color: #333;
+    border-color: #ccc;
     margin-top:3px;
     margin-bottom:3px;
     padding: 4px;
     padding-left: 8px;
     max-width: 75%;
+}
+.dev-comment{
+
 }
 .po-comment{
-    margin-top:3px;
-    margin-bottom:3px;
-    padding: 4px;
-    padding-left: 8px;
-    max-width: 75%;
+    background-color: #fff9cb;
+    color: #444;
+    border-color: #ccc;
     margin-left: 25%;
 }
 
