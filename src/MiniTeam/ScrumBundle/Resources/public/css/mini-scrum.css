@@ -4,10 +4,10 @@ body {
 }
 
 .well.user-story {
-    background-color: #fff9cb;
-    border-color: #aaaaaa;
+    background-color: #fcfbf5;
+    border: 0px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
-
 
 .story-adds{
     background-color: #e4e3d5;
