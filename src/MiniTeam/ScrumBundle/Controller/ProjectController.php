@@ -27,7 +27,7 @@ class ProjectController extends Controller
 
         $todoList = array();
         if ($this->getUser()->isDeveloper($project)) {
-            $todoList = $project->getAssigneeStories($this->getUser());
+            $todoList = $project->getStoriesAssignedTo($this->getUser());
         }
 
         $validationList = array();

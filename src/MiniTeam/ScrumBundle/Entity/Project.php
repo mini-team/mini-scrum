@@ -296,7 +296,7 @@ class Project
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getAssigneeStories(User $user)
+    public function getStoriesAssignedTo(User $user)
     {
         return $this->getStories()->filter(function ($story) use ($user) {
             return $user == $story->getAssignee();
