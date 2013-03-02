@@ -1,11 +1,21 @@
 body {
-    padding-bottom: 40px;
-    background-image: url('/bootstrap/img/debut_light.png');
-    background-repeat: repeat;
+    background-color: #efeddf;
+    font-family: 'Raleway', sans-serif;
 }
 
 .well.user-story {
     background-color: #fff9cb;
+    border-color: #aaaaaa;
+}
+
+
+.story-adds{
+    background-color: #e4e3d5;
+}
+
+hr {
+    border-top-color:#A9A68F;
+    border-bottom-color: #ddd;
 }
 
 .nav.pull-center {
