@@ -7,6 +7,7 @@
     <parameters>
         <parameter key="mini_team_scrum.form.type.story_point.class">MiniTeam\ScrumBundle\Form\Type\StoryPointType</parameter>
         <parameter key="mini_team_scrum.form.type.story_status.class">MiniTeam\ScrumBundle\Form\Type\StoryStatusType</parameter>
+        <parameter key="mini_team_scrum.notifier.story_notifier.class">MiniTeam\ScrumBundle\Notifier\StoryNotifier</parameter>
     </parameters>
 
     <services>
@@ -17,6 +18,8 @@
         <service id="mini_team_scrum.form.type.story_status" class="%mini_team_scrum.form.type.story_status.class%">
             <tag name="form.type" alias="story_status"/>
         </service>
+        <service id="mini_team_scrum.notifier.story_notifier" class="%mini_team_scrum.notifier.story_notifier.class%">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+        </service>
     </services>
-
 </container>

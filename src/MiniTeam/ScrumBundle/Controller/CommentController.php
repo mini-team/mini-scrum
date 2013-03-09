@@ -30,8 +30,8 @@ class CommentController extends Controller
         $comment->setStory($story);
 
         $commentForm = $this->createFormBuilder($comment)
-                            ->add('content', 'text')
-                            ->getForm();
+            ->add('content', 'text')
+            ->getForm();
 
         if ($request->isMethod('post')) {
             $response = $this->processCommentForm($request, $commentForm);
@@ -65,7 +65,8 @@ class CommentController extends Controller
             $em->flush();
 
             //add story notification for this comment
-            $this->get('story_notifier')->addStoryNotificationForComment($comment);
+            $this->get('mini_team_scrum.notifier.story_notifier')
+                ->addStoryNotificationForComment($comment);
 
             return $this->redirect(
                 $this->generateUrl(
