@@ -36,10 +36,14 @@ class StoryController extends Controller
         $comment = new Comment();
         $comment->setStory($story);
         $commentForm = $this->createFormBuilder($comment)
-                            ->add('content', 'text')
-                            ->getForm();
+            ->add('content', 'text')
+            ->getForm();
 
-        return array('project' => $project, 'story' => $story, 'commentForm'=> $commentForm->createView() );
+        return array(
+            'project' => $project,
+            'story' => $story,
+            'commentForm'=> $commentForm->createView()
+        );
     }
 
     /**

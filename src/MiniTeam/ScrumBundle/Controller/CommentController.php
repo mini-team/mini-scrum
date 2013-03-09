@@ -30,8 +30,8 @@ class CommentController extends Controller
         $comment->setStory($story);
 
         $commentForm = $this->createFormBuilder($comment)
-                            ->add('content', 'text')
-                            ->getForm();
+            ->add('content', 'text')
+            ->getForm();
 
         if ($request->isMethod('post')) {
             $response = $this->processCommentForm($request, $commentForm);
