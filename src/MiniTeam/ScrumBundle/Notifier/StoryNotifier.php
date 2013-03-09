@@ -1,6 +1,6 @@
 <?php
 
-namespace MiniTeam\ScrumBundle\Service;
+namespace MiniTeam\ScrumBundle\Notifier;
 
 use MiniTeam\ScrumBundle\Entity\Comment;
 use MiniTeam\ScrumBundle\Entity\UserStory;
