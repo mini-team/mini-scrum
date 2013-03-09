@@ -3,13 +3,8 @@
 {% block body %}
     {{ render(controller('MiniTeamScrumBundle:Project:scrumBar', { 'project': project.slug, 'activeTab': 'home'})) }}
 
-    <div class="row-fluid">
+    <div class="row-fluid project-modules">
         {{ render(controller('MiniTeamScrumBundle:Project:needFeedbackModule', { 'project': project.slug})) }}
-    </div>
-
-    <hr>
-
-    <div class="row-fluid">
         {% if app.user in project.developers%}
             {{ block("todoList") }}
         {% elseif app.user == project.productOwner %}
@@ -26,14 +21,11 @@
             {% endfor %}
             </ul>
         </div>
-
     </div>
-
-
 {% endblock %}
 
 {% block todoList %}
-<div class="span6" id="todo">
+<div class="span6 pull-right" id="todo">
     <h4><i class="icon-wrench"></i> Working on</h4>
     <ul class="unstyled">
         {% for story in todoList %}
@@ -50,7 +42,7 @@
 {% endblock %}
 
 {% block validationList %}
-<div class="span6" id="validation">
+<div class="span6 pull-right" id="validation">
     <h4><i class="icon-thumbs-up"></i> Need your validation</h4>
     <ul class="unstyled">
         {% for story in validationList %}

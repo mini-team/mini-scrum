@@ -62,7 +62,6 @@ hr {
     margin-left: 25%;
 }
 
-
 .gray-text{
     color:#999;
 }
@@ -79,4 +78,8 @@ input[type="text"].input-large {
     font-size: 25px;
     height: 45px;
     line-height: 45px;
+}
+
+.row-fluid.project-modules [class*="span"]:nth-child(odd) {
+    margin-left: 0px;
 }
