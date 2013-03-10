@@ -29,16 +29,21 @@ class StoryController extends Controller
     public function showAction(Project $project, UserStory $story)
     {
         //remove notifications on this story
-        $this->get('story_notifier')->resetStoryNotification($story, $this->getUser());
+        $this->get('mini_team_scrum.notifier.story_notifier')
+            ->resetStoryNotification($story, $this->getUser());
 
         //create comment form
         $comment = new Comment();
         $comment->setStory($story);
         $commentForm = $this->createFormBuilder($comment)
-                            ->add('content', 'text')
-                            ->getForm();
+            ->add('content', 'text')
+            ->getForm();
 
-        return array('project' => $project, 'story' => $story, 'commentForm'=> $commentForm->createView() );
+        return array(
+            'project' => $project,
+            'story' => $story,
+            'commentForm'=> $commentForm->createView()
+        );
     }
 
     /**
