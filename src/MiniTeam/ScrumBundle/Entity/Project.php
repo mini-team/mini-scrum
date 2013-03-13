@@ -81,11 +81,19 @@ class Project
     protected $developers;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="MiniTeam\ScrumBundle\Entity\UserStory", mappedBy="project")
+     */
+    protected $stories;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->memberships = new ArrayCollection();
+        $this->stories     = new ArrayCollection();
     }
 
     /**
@@ -263,5 +271,47 @@ class Project
         }
 
         return $this->developers;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\ArrayCollection $stories
+     */
+    public function setStories($stories)
+    {
+        $this->stories = $stories;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getStories()
+    {
+        return $this->stories;
+    }
+
+    /**
+     * Get stories assigned to a user.
+     *
+     * @param \MiniTeam\UserBundle\Entity\User $user
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getStoriesAssignedTo(User $user)
+    {
+        return $this->getStories()->filter(function ($story) use ($user) {
+            return $user == $story->getAssignee();
+        });
+    }
+
+    /**
+     * Returns delivered stories, ready fo validation.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDeliveredStories()
+    {
+        return $this->getStories()->filter(function ($story) {
+            return $story->isDelivered();
+        });
     }
 }

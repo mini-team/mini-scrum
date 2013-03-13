@@ -98,11 +98,11 @@ class User extends BaseUser
     /**
      * Return the role of the user on the selected project.
      *
-     * @param null $project
+     * @param null|Project $project
      *
-     * @return Membership
+     * @return String
      */
-    public function getRole($project = null)
+    public function getRole(Project $project = null)
     {
         if (null == $project) {
             $project = $this->getSelectedProject();
@@ -129,5 +129,27 @@ class User extends BaseUser
         }
 
         throw new \RuntimeException(sprintf('The user has no role on the project "%s".', $project->getName()));
+    }
+
+    /**
+     * @param \MiniTeam\ScrumBundle\Entity\Project $project
+     *
+     * @return bool
+     */
+    public function isDeveloper(Project $project)
+    {
+        $membership = $this->getMembership($project);
+
+        return $membership !== null && $membership->isDeveloper();
+    }
+
+    /**
+     * @param \MiniTeam\ScrumBundle\Entity\Project $project
+     *
+     * @return bool
+     */
+    public function isProductOwner(Project $project)
+    {
+        return $this == $project->getProductOwner();
     }
 }

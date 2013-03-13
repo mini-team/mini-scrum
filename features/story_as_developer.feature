@@ -29,3 +29,12 @@ Feature: User story features
     Given I am working on the story "2"
     When I block the story "2"
     Then the story should be blocked
+
+  Scenario: See list of todos
+    As a developer
+    I see the list of stories I am working on
+
+    Given I am working on the story "1"
+    And I am working on the story "2"
+    When I go to the project "mini-scrum" homepage
+    Then I should see 2 stories in the todo list

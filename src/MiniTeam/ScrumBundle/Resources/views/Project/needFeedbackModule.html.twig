@@ -1,7 +1,6 @@
 
 <div class="span6">
     <h4><i class="icon-comment"></i> Need your feedback</h4>
-
     {% for notif in notifList %}
         <a href="{{ path('story_show', { 'project': project.slug,'id': notif.story.id }) }}">
             <div class="well user-story">
