@@ -29,7 +29,7 @@
     <h4><i class="icon-wrench"></i> Working on</h4>
     <ul class="unstyled">
         {% for story in todoList %}
-            <li class="well">
+            <li class="well user-story">
                 <p class="text-info pull-right">{{ story.points }} pts</p>
                 <a href="{{ path('story_show', { 'project': project.slug, 'id': story.id }) }}">
                     <span class="gray-text">#{{ story.number }}</span>
@@ -46,7 +46,7 @@
     <h4><i class="icon-thumbs-up"></i> Need your validation</h4>
     <ul class="unstyled">
         {% for story in validationList %}
-            <li class="well">
+            <li class="well user-story">
                 <p class="text-info pull-right">{{ story.points }} pts</p>
                 <a href="{{ path('story_show', { 'project': project.slug, 'id': story.id }) }}">
                     <span class="gray-text">#{{ story.number }}</span>
