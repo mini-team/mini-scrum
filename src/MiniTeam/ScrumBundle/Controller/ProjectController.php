@@ -35,7 +35,6 @@ class ProjectController extends Controller
             $validationList = $project->getDeliveredStories();
         }
 
-
         return array(
             'project'        => $project,
             'todoList'       => $todoList,
