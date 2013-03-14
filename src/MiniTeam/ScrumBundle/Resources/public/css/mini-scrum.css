@@ -43,7 +43,6 @@ hr {
 }
 
 .story-comment{
-    
     color: #333;
     border-color: #ccc;
     margin-top:3px;
@@ -60,6 +59,17 @@ hr {
     color: #444;
     border-color: #ccc;
     margin-left: 25%;
+}
+
+.issue{
+    margin-top:3px;
+    margin-bottom:3px;
+    padding: 4px;
+    padding-left: 8px;
+}
+
+.solved-issue{
+    text-decoration : line-through;
 }
 
 .gray-text{
