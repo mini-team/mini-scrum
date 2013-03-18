@@ -100,6 +100,20 @@
                         {{ issue.content }}
                     </div>
                 {% endfor %}
+                {% if issueForm != null %}
+                <form action="{{ path('issue_new',{'project': project.slug, 'story': story.id}) }}" method="post" class="form-inline">
+                    <div class="alert issue issue-form">
+                        <strong>Issue: </strong>
+                        {{ form_widget(
+                        issueForm.content,
+                        {'attr': {'class':'input-xlarge'} }
+                        ) }}
+                        <button type="submit" class="btn comment-button" id="comment-submit-button""><i class="icon-ok"></i></button>
+                        {{ form_rest(issueForm) }}
+                    </div>
+
+                </form>
+                {%  endif %}
             </div>
 
         </div>

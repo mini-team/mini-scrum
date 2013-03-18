@@ -5,6 +5,7 @@ namespace MiniTeam\ScrumBundle\Controller;
 use MiniTeam\ScrumBundle\Entity\Project;
 use MiniTeam\ScrumBundle\Entity\UserStory;
 use MiniTeam\ScrumBundle\Entity\Comment;
+use MiniTeam\ScrumBundle\Entity\Issue;
 use MiniTeam\ScrumBundle\Form\UserStoryType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -39,10 +40,23 @@ class StoryController extends Controller
             ->add('content', 'text')
             ->getForm();
 
+        //create issue form if product owner and to validate
+        if ($story->getStatus()=='to-validate' && $this->getUser()->isProductOwner($project)) {
+            $issue = new Issue();
+            $issue->setStory($story);
+            $issueForm = $this->createFormBuilder($issue)
+                ->add('content', 'text')
+                ->getForm()
+                ->createView();
+        } else {
+            $issueForm=null;
+        }
+
         return array(
             'project' => $project,
             'story' => $story,
-            'commentForm'=> $commentForm->createView()
+            'commentForm' => $commentForm->createView(),
+            'issueForm'=> $issueForm
         );
     }
 

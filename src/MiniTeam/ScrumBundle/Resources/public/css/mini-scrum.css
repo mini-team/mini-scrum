@@ -72,6 +72,15 @@ hr {
     text-decoration : line-through;
 }
 
+.issue-form{
+    color: #333;
+    border-color: #ccc;
+    max-width: 100%;
+    background-color: #f2f2f2;
+    max-width: 75%;
+}
+
+
 .gray-text{
     color:#999;
 }

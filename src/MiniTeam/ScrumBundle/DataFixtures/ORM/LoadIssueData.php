@@ -24,7 +24,7 @@ class LoadIssueData extends AbstractFixture implements OrderedFixtureInterface
     {
         $issue1 = $this->createIssue('Problème alignement sous Chrome', $this->getReference('story-4'));
         $issue2 = $this->createIssue('Ne fonctionne pas en mode portrait', $this->getReference('story-4'));
-        $issue2->setOpened(false);
+        $issue1->setOpened(false);
 
         $manager->persist($issue1);
         $manager->persist($issue2);
