@@ -172,16 +172,33 @@ class FeatureContext extends BehatContext implements KernelAwareInterface
      */
     public function writeComment($comment)
     {
-        return new Step\When(sprintf('I fill in "form_content" with "%s"',$comment));
+        return new Step\When(sprintf('I fill in "comment-form-content" with "%s"',$comment));
     }
 
     /**
-     * @Given /^I submit my comment$/
+     * @When /^I submit my comment$/
      */
     public function submitComment()
     {
         return new Step\When(sprintf('I press "comment-submit-button"'));
     }
+
+    /**
+     * @When /^I report an issue "([^"]*)"$/
+     */
+    public function writeIssue($issue)
+    {
+        return new Step\When(sprintf('I fill in "issue-form-content" with "%s"',$issue));
+    }
+
+    /**
+     * @When /^I submit my issue$/
+     */
+    public function submitIssue()
+    {
+        return new Step\When(sprintf('I press "issue-submit-button"'));
+    }
+
 
     /**
      * @Given /^I go to the project "([^"]*)" homepage$/
