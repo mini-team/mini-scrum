@@ -7,6 +7,7 @@ use MiniTeam\ScrumBundle\Entity\UserStory;
 use MiniTeam\ScrumBundle\Entity\Comment;
 use MiniTeam\ScrumBundle\Entity\Issue;
 use MiniTeam\ScrumBundle\Form\UserStoryType;
+use MiniTeam\ScrumBundle\Repository\IssueRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -38,9 +39,11 @@ class StoryController extends Controller
         $comment->setStory($story);
         $commentForm = $this->createFormBuilder($comment)
             ->add('content', 'text')
-            ->getForm();
+            ->getForm()
+            ->createView();
 
         //create issue form if product owner and to validate
+        $issueForm=null;
         if ($story->getStatus()=='to-validate' && $this->getUser()->isProductOwner($project)) {
             $issue = new Issue();
             $issue->setStory($story);
@@ -48,14 +51,12 @@ class StoryController extends Controller
                 ->add('content', 'text')
                 ->getForm()
                 ->createView();
-        } else {
-            $issueForm=null;
         }
 
         return array(
             'project' => $project,
             'story' => $story,
-            'commentForm' => $commentForm->createView(),
+            'commentForm' => $commentForm,
             'issueForm'=> $issueForm
         );
     }
@@ -176,6 +177,8 @@ class StoryController extends Controller
                 break;
             case 'deliver':
                 $story->deliver();
+                //mark all issues as solved
+                $this->getDoctrine()->getRepository('MiniTeamScrumBundle:Issue')->solveIssuesOnStory($story);
                 break;
             case 'refuse':
                 $story->refuse();
