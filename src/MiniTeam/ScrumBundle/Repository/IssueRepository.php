@@ -28,4 +28,3 @@ class IssueRepository extends EntityRepository
         $qb->getQuery()->execute();
     }
 }
-

@@ -7,7 +7,6 @@ use MiniTeam\ScrumBundle\Entity\UserStory;
 use MiniTeam\ScrumBundle\Entity\Comment;
 use MiniTeam\ScrumBundle\Entity\Issue;
 use MiniTeam\ScrumBundle\Form\UserStoryType;
-use MiniTeam\ScrumBundle\Repository\IssueRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
