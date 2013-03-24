@@ -4,7 +4,6 @@ namespace MiniTeam\ScrumBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use MiniTeam\ScrumBundle\Entity\UserStory;
-use MiniTeam\ScrumBundle\Entity\Issue;
 
 /**
  * IssueRepository

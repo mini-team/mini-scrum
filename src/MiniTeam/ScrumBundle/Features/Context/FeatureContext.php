@@ -199,7 +199,6 @@ class FeatureContext extends BehatContext implements KernelAwareInterface
         return new Step\When(sprintf('I press "issue-submit-button"'));
     }
 
-
     /**
      * @Given /^I go to the project "([^"]*)" homepage$/
      */

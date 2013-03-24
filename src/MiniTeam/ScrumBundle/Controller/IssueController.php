@@ -24,10 +24,10 @@ class IssueController extends Controller
      */
     public function newAction(UserStory $story, Request $request)
     {
-        $user = $this->container->get('security.context')->getToken()->getUser();
+        $user = $this->getUser();
 
         ///deny if not a PO or not in "to validate" status
-        if ($user->isProductOwner($story->getProject()) || $story->getStatus() != 'to-validate') {
+        if ($user->isProductOwner($story->getProject()) || !$story->isDelivered()) {
             $this->redirect($this->generateUrl('project_show'));
         }
 
