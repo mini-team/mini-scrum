@@ -96,6 +96,11 @@ class UserStory
     protected $comments;
 
     /**
+     * @ORM\OneToMany(targetEntity="MiniTeam\ScrumBundle\Entity\Issue", mappedBy="story")
+     */
+    protected $issues;
+
+    /**
      * @var \MiniTeam\UserBundle\Entity\User
      *
      * @ORM\ManyToOne(targetEntity="MiniTeam\UserBundle\Entity\User")
@@ -332,6 +337,23 @@ class UserStory
     {
         $this->comments[] = $comment;
         $comment->setStory($this);
+    }
+
+    /**
+     * Get all the issues on this story
+     */
+    public function getIssues()
+    {
+        return $this->issues;
+    }
+
+    /**
+     * Add an issue for this story
+     */
+    public function addIssue(\MiniTeam\ScrumBundle\Entity\Issue $issue)
+    {
+        $this->issues[] = $issue;
+        $issue->setStory($this);
     }
 
     /**

@@ -83,32 +83,41 @@
                         <strong>{{ app.user.username }}: </strong>
                         {{ form_widget(
                             commentForm.content,
-                            {'attr': {'class':'input-xlarge'} }
+                            {'attr': {'class':'input-xlarge'},
+                             'id':'comment-form-content'}
                         ) }}
-                        <button type="submit" class="btn comment-button" id="comment-submit-button""><i class="icon-ok"></i></button>
                         {{ form_rest(commentForm) }}
+                        <button type="submit" class="btn comment-button" id="comment-submit-button""><i class="icon-ok"></i></button>
                     </div>
 
                 </form>
 
             </div>
 
-
-
-            {#
             <div class="span6">
-                <div class="alert alert-danger very-close">
-                    Ne fonctionne pas avec Thunderbird comme client de messagerie
-                </div>
-                <hr>
-                <div class="alert very-close">
-                    Le lien ne fonctionne pas sous ipad (disabled)
-                </div>
-                <div class="alert very-close">
-                    Problème de formattage html de l'email
-                </div>
+                <h4><i class="icon-fire"></i> Issues</h4>
+                {% for issue in story.issues %}
+                    <div class="alert issue{% if issue.opened %} alert-danger{% else %} solved-issue{% endif %}">
+                        {{ issue.content }}
+                    </div>
+                {% endfor %}
+                {% if issueForm != null %}
+                <form action="{{ path('issue_new',{'project': project.slug, 'story': story.id}) }}" method="post" class="form-inline">
+                    <div class="alert issue issue-form">
+                        <strong>Issue: </strong>
+                        {{ form_widget(
+                        issueForm.content,
+                        {'attr': {'class':'input-xlarge'},
+                         'id':'issue-form-content'}
+                        ) }}
+                        {{ form_rest(issueForm) }}
+                        <button type="submit" class="btn comment-button" id="issue-submit-button""><i class="icon-ok"></i></button>
+                    </div>
+
+                </form>
+                {%  endif %}
             </div>
-            #}
+
         </div>
     </div>
 </div>
