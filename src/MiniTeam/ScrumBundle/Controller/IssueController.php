@@ -39,14 +39,18 @@ class IssueController extends Controller
                           ->getForm();
 
         if ($request->isMethod('post')) {
-            $response = $this->processIssueForm($request, $issueForm);
-
-            if ($response instanceof RedirectResponse) {
-                return $response;
-            }
+            $this->processIssueForm($request, $issueForm);
         }
 
-        $this->redirect($this->generateUrl('project_show'));
+        return $this->redirect(
+            $this->generateUrl(
+                'story_show',
+                array(
+                    'project' => $issue->getStory()->getProject()->getSlug(),
+                    'id' => $issue->getStory()->getId()
+                )
+            )
+        );
     }
 
     /**
@@ -55,7 +59,6 @@ class IssueController extends Controller
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \Symfony\Component\Form\Form              $form
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     protected function processIssueForm(Request $request, Form $form)
     {
@@ -66,16 +69,6 @@ class IssueController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($issue);
             $em->flush();
-
-            return $this->redirect(
-                $this->generateUrl(
-                    'story_show',
-                    array(
-                        'project' => $issue->getStory()->getProject()->getSlug(),
-                        'id' => $issue->getStory()->getId()
-                    )
-                )
-            );
         }
     }
 }
